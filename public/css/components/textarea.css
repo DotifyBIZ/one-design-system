@@ -1,0 +1,98 @@
+/* ============================================================
+   Dotify One Design Kit — Textarea Component
+   Shares .dotify-field, .dotify-label, .dotify-field__hint/error
+   with the Input component.
+   https://repo.dotify.biz/one/design-system/css/components/textarea.css
+
+   HTML usage:
+     <div class="dotify-field">
+       <label class="dotify-label" for="msg">Message</label>
+       <textarea class="dotify-textarea" id="msg" rows="4"></textarea>
+     </div>
+   ============================================================ */
+
+.dotify-textarea {
+  display: block;
+  width: 100%;
+  padding: var(--dotify-spacing-2-5) var(--dotify-spacing-3-5);
+  background-color: var(--dotify-color-surface-raised);
+  color: var(--dotify-color-on-surface);
+  border: 1px solid var(--dotify-color-border-strong);
+  border-radius: var(--dotify-radius);
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  line-height: var(--dotify-leading-relaxed);
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.dotify-textarea::placeholder {
+  color: var(--dotify-color-on-surface-faint);
+}
+
+.dotify-textarea:hover:not(:disabled) {
+  border-color: var(--dotify-color-secondary);
+}
+
+.dotify-textarea:focus,
+.dotify-textarea:focus-visible {
+  outline: none;
+  border-color: var(--dotify-color-border-focus);
+  box-shadow: 0 0 0 3px rgb(33 31 96 / 0.15);
+}
+
+.dotify-textarea--invalid,
+.dotify-textarea[aria-invalid='true'] {
+  border-color: var(--dotify-color-error);
+}
+
+.dotify-textarea--invalid:focus,
+.dotify-textarea[aria-invalid='true']:focus {
+  border-color: var(--dotify-color-error);
+  box-shadow: 0 0 0 3px rgb(217 26 29 / 0.15);
+}
+
+.dotify-textarea:disabled,
+.dotify-textarea--disabled {
+  background-color: var(--dotify-color-surface-inset);
+  color: var(--dotify-color-on-surface-muted);
+  border-color: var(--dotify-color-border);
+  cursor: not-allowed;
+  opacity: 0.6;
+  resize: none;
+}
+
+/* No resize modifier */
+.dotify-textarea--no-resize {
+  resize: none;
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-textarea {
+    background-color: var(--dotify-gray-800);
+    border-color: var(--dotify-gray-600);
+  }
+  .dotify-textarea:focus,
+  .dotify-textarea:focus-visible {
+    box-shadow: 0 0 0 3px rgb(134 131 232 / 0.25);
+  }
+  .dotify-textarea:disabled {
+    background-color: var(--dotify-gray-900);
+  }
+}
+
+.dark .dotify-textarea {
+  background-color: var(--dotify-gray-800);
+  border-color: var(--dotify-gray-600);
+}
+.dark .dotify-textarea:focus,
+.dark .dotify-textarea:focus-visible {
+  box-shadow: 0 0 0 3px rgb(134 131 232 / 0.25);
+}
+.dark .dotify-textarea:disabled {
+  background-color: var(--dotify-gray-900);
+}

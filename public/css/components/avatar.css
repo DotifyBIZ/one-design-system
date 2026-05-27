@@ -1,0 +1,123 @@
+/* ============================================================
+   Dotify One Design Kit — Avatar Component
+   https://repo.dotify.biz/one/design-system/css/components/avatar.css
+
+   HTML usage:
+     <!-- Image avatar -->
+     <span class="dotify-avatar dotify-avatar--md">
+       <img class="dotify-avatar__image" src="alice.jpg" alt="Alice">
+     </span>
+
+     <!-- Initials avatar -->
+     <span class="dotify-avatar dotify-avatar--md">
+       <span class="dotify-avatar__initials" aria-hidden="true">AJ</span>
+     </span>
+
+     <!-- With status dot -->
+     <span class="dotify-avatar dotify-avatar--md">
+       <img class="dotify-avatar__image" src="alice.jpg" alt="Alice">
+       <span class="dotify-avatar__status dotify-avatar__status--online" aria-label="Online"></span>
+     </span>
+
+     <!-- Avatar group -->
+     <div class="dotify-avatar-group">
+       <span class="dotify-avatar dotify-avatar--sm">…</span>
+       <span class="dotify-avatar dotify-avatar--sm">…</span>
+     </div>
+   ============================================================ */
+
+.dotify-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--dotify-radius-full);
+  background-color: var(--dotify-indigo-100);
+  color: var(--dotify-indigo-700);
+  flex-shrink: 0;
+  /* default md */
+  width: 40px;
+  height: 40px;
+  font-size: var(--dotify-text-sm);
+  font-weight: var(--dotify-font-weight-semibold);
+  font-family: var(--dotify-font-body);
+}
+
+/* ---- Sizes ---- */
+.dotify-avatar--xs  { width: 24px; height: 24px; font-size: var(--dotify-text-2xs, 0.625rem); }
+.dotify-avatar--sm  { width: 32px; height: 32px; font-size: var(--dotify-text-xs); }
+/* md = default */
+.dotify-avatar--lg  { width: 48px; height: 48px; font-size: var(--dotify-text-base); }
+.dotify-avatar--xl  { width: 64px; height: 64px; font-size: var(--dotify-text-xl); }
+.dotify-avatar--2xl { width: 80px; height: 80px; font-size: var(--dotify-text-2xl); }
+
+/* ---- Image ---- */
+.dotify-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---- Initials ---- */
+.dotify-avatar__initials {
+  line-height: 1;
+  text-transform: uppercase;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ---- Status dot ---- */
+.dotify-avatar__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+  height: 25%;
+  min-width: 8px;
+  min-height: 8px;
+  border-radius: var(--dotify-radius-full);
+  border: 2px solid var(--dotify-color-surface);
+}
+
+.dotify-avatar__status--online  { background-color: var(--dotify-color-success); }
+.dotify-avatar__status--away    { background-color: var(--dotify-yellow-400); }
+.dotify-avatar__status--busy    { background-color: var(--dotify-color-error); }
+.dotify-avatar__status--offline { background-color: var(--dotify-gray-400); }
+
+/* ---- Colour variants (for initials backgrounds) ---- */
+.dotify-avatar--red    { background-color: var(--dotify-red-100);    color: var(--dotify-red-700); }
+.dotify-avatar--blue   { background-color: var(--dotify-blue-100);   color: var(--dotify-blue-700); }
+.dotify-avatar--green  { background-color: var(--dotify-green-100);  color: var(--dotify-green-700); }
+.dotify-avatar--gray   { background-color: var(--dotify-gray-100);   color: var(--dotify-gray-700); }
+
+/* ---- Avatar group ---- */
+.dotify-avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dotify-avatar-group .dotify-avatar {
+  border: 2px solid var(--dotify-color-surface);
+  margin-left: calc(var(--dotify-spacing-2) * -1);
+}
+
+.dotify-avatar-group .dotify-avatar:first-child {
+  margin-left: 0;
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-avatar { background-color: var(--dotify-indigo-800); color: var(--dotify-indigo-100); }
+  .dotify-avatar--red   { background-color: var(--dotify-red-900);   color: var(--dotify-red-200); }
+  .dotify-avatar--blue  { background-color: var(--dotify-blue-900);  color: var(--dotify-blue-200); }
+  .dotify-avatar--green { background-color: var(--dotify-green-900); color: var(--dotify-green-200); }
+  .dotify-avatar--gray  { background-color: var(--dotify-gray-700);  color: var(--dotify-gray-200); }
+}
+
+.dark .dotify-avatar { background-color: var(--dotify-indigo-800); color: var(--dotify-indigo-100); }
+.dark .dotify-avatar--red   { background-color: var(--dotify-red-900);   color: var(--dotify-red-200); }
+.dark .dotify-avatar--blue  { background-color: var(--dotify-blue-900);  color: var(--dotify-blue-200); }
+.dark .dotify-avatar--green { background-color: var(--dotify-green-900); color: var(--dotify-green-200); }
+.dark .dotify-avatar--gray  { background-color: var(--dotify-gray-700);  color: var(--dotify-gray-200); }

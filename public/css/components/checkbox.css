@@ -1,0 +1,117 @@
+/* ============================================================
+   Dotify One Design Kit — Checkbox Component
+   https://repo.dotify.biz/one/design-system/css/components/checkbox.css
+
+   HTML usage:
+     <label class="dotify-checkbox">
+       <input type="checkbox" class="dotify-checkbox__input">
+       <span class="dotify-checkbox__label">Accept terms</span>
+     </label>
+
+     <!-- Disabled -->
+     <label class="dotify-checkbox dotify-checkbox--disabled">
+       <input type="checkbox" class="dotify-checkbox__input" disabled>
+       <span class="dotify-checkbox__label">Unavailable</span>
+     </label>
+   ============================================================ */
+
+.dotify-checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--dotify-spacing-2-5);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dotify-checkbox--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.dotify-checkbox__input {
+  -webkit-appearance: none;
+  appearance: none;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border: 2px solid var(--dotify-color-border-strong);
+  border-radius: 4px;
+  background-color: var(--dotify-color-surface-raised);
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+  position: relative;
+}
+
+.dotify-checkbox__input:hover:not(:disabled) {
+  border-color: var(--dotify-color-secondary);
+}
+
+.dotify-checkbox__input:checked {
+  background-color: var(--dotify-color-secondary);
+  border-color: var(--dotify-color-secondary);
+}
+
+/* Checkmark via clip-path */
+.dotify-checkbox__input:checked::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background-color: #ffffff;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6l3 3 5-5'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6l3 3 5-5'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.dotify-checkbox__input:indeterminate {
+  background-color: var(--dotify-color-secondary);
+  border-color: var(--dotify-color-secondary);
+}
+
+.dotify-checkbox__input:indeterminate::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  right: 2px;
+  height: 2px;
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  border-radius: 1px;
+}
+
+.dotify-checkbox__input:focus-visible {
+  outline: 2px solid var(--dotify-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.dotify-checkbox__input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.dotify-checkbox__label {
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  color: var(--dotify-color-on-surface);
+  line-height: var(--dotify-leading-normal);
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-checkbox__input {
+    background-color: var(--dotify-gray-800);
+    border-color: var(--dotify-gray-500);
+  }
+}
+
+.dark .dotify-checkbox__input {
+  background-color: var(--dotify-gray-800);
+  border-color: var(--dotify-gray-500);
+}

@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dotify One Design System — Component Test Page</title>
+  <link rel="stylesheet" href="css/index.css">
+  <style>
+    /* ---- Demo scaffolding — not part of the design system ---- */
+    body { background: var(--dotify-color-surface); }
+
+    .demo-main {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 8rem;
+    }
+
+    .demo-section {
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--dotify-color-border);
+    }
+    .demo-section:first-of-type { border-top: none; margin-top: 1rem; }
+
+    .demo-section > h2 {
+      font-size: var(--dotify-text-2xl);
+      font-family: var(--dotify-font-heading);
+      font-weight: 600;
+      color: var(--dotify-color-on-surface);
+      margin-bottom: 2rem;
+    }
+
+    .demo-label {
+      display: block;
+      font-size: var(--dotify-text-xs);
+      font-family: var(--dotify-font-mono);
+      color: var(--dotify-color-on-surface-muted);
+      margin-top: 0.375rem;
+    }
+
+    .demo-subsection {
+      margin-bottom: 2.5rem;
+    }
+    .demo-subsection-title {
+      font-size: var(--dotify-text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dotify-color-on-surface-muted);
+      margin-bottom: 1rem;
+      padding-bottom: 0.375rem;
+      border-bottom: 1px solid var(--dotify-color-border);
+    }
+
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .demo-row--center { align-items: center; }
+
+    .demo-cell { display: flex; flex-direction: column; gap: 0.375rem; }
+
+    /* Colour swatches */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 0.75rem;
+    }
+    .swatch {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--dotify-color-border);
+    }
+    .swatch__color { height: 52px; }
+    .swatch__info {
+      padding: 0.5rem 0.625rem;
+      background: var(--dotify-color-surface-raised);
+    }
+    .swatch__name {
+      font-size: var(--dotify-text-xs);
+      font-weight: 600;
+      color: var(--dotify-color-on-surface);
+      line-height: 1.4;
+    }
+    .swatch__token {
+      font-size: 10px;
+      font-family: var(--dotify-font-mono);
+      color: var(--dotify-color-on-surface-muted);
+      word-break: break-all;
+      line-height: 1.4;
+      margin-top: 1px;
+    }
+
+    /* Scale strip (colour primitives) */
+    .scale-row { display: flex; gap: 3px; margin-bottom: 0.5rem; border-radius: 10px; overflow: hidden; }
+    .scale-step { flex: 1; height: 40px; }
+    .scale-labels {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 1.25rem;
+    }
+    .scale-step-label {
+      flex: 1;
+      font-size: 9px;
+      font-family: var(--dotify-font-mono);
+      color: var(--dotify-color-on-surface-muted);
+      text-align: center;
+    }
+
+    /* Icon grid */
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 0.75rem;
+    }
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 0.5rem;
+      border: 1px solid var(--dotify-color-border);
+      border-radius: var(--dotify-radius);
+      background: var(--dotify-color-surface-raised);
+      text-align: center;
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+    .icon-item:hover {
+      background: var(--dotify-color-surface-inset);
+      border-color: var(--dotify-color-border-strong);
+    }
+    .icon-item span {
+      font-size: 10px;
+      font-family: var(--dotify-font-mono);
+      color: var(--dotify-color-on-surface-muted);
+      word-break: break-all;
+      line-height: 1.3;
+    }
+
+    /* Forms grid */
+    .forms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .demo-panel {
+      background: var(--dotify-color-surface-raised);
+      border: 1px solid var(--dotify-color-border);
+      border-radius: var(--dotify-radius);
+      padding: 1.5rem;
+    }
+    .demo-panel-title {
+      font-size: var(--dotify-text-sm);
+      font-weight: 600;
+      color: var(--dotify-color-on-surface);
+      margin-bottom: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+  NAVBAR (sticky — part of the design system)
+============================================================ -->
+<nav class="dotify-navbar dotify-navbar--branded">
+  <div class="dotify-navbar__inner">
+    <a href="#" class="dotify-navbar__brand">
+      <svg class="dotify-icon dotify-icon--sm" aria-hidden="true" style="margin-right:0.5rem"><use href="icons/heroicons-sprite.svg#star"></use></svg>
+      Dotify DS
+    </a>
+    <ul class="dotify-navbar__nav">
+      <li><a href="#tokens"     class="dotify-navbar__link">Tokens</a></li>
+      <li><a href="#typography" class="dotify-navbar__link">Typography</a></li>
+      <li><a href="#buttons"    class="dotify-navbar__link">Buttons</a></li>
+      <li><a href="#forms"      class="dotify-navbar__link">Forms</a></li>
+      <li><a href="#feedback"   class="dotify-navbar__link">Feedback</a></li>
+      <li><a href="#cards"      class="dotify-navbar__link">Cards</a></li>
+      <li><a href="#navigation" class="dotify-navbar__link">Nav</a></li>
+      <li><a href="#table"      class="dotify-navbar__link">Table</a></li>
+      <li><a href="#overlay"    class="dotify-navbar__link">Overlay</a></li>
+      <li><a href="#avatars"    class="dotify-navbar__link">Avatars</a></li>
+      <li><a href="#icons"      class="dotify-navbar__link">Icons</a></li>
+    </ul>
+    <div class="dotify-navbar__actions">
+      <button
+        class="dotify-btn dotify-btn--ghost dotify-btn--sm"
+        onclick="document.documentElement.classList.toggle('dark'); this.textContent = document.documentElement.classList.contains('dark') ? '☀ Light' : '☾ Dark';"
+      >☾ Dark</button>
+    </div>
+    <button class="dotify-navbar__mobile-toggle" aria-label="Open menu" onclick="this.closest('nav').querySelector('.dotify-navbar__mobile-menu').classList.toggle('dotify-navbar__mobile-menu--open')">
+      <svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#bars-3"></use></svg>
+    </button>
+    <div class="dotify-navbar__mobile-menu">
+      <a href="#tokens"     class="dotify-navbar__link">Tokens</a>
+      <a href="#buttons"    class="dotify-navbar__link">Buttons</a>
+      <a href="#forms"      class="dotify-navbar__link">Forms</a>
+      <a href="#components" class="dotify-navbar__link">Components</a>
+    </div>
+  </div>
+</nav>
+
+<main class="demo-main">
+
+  <!-- ============================================================
+    COLOUR TOKENS
+  ============================================================ -->
+  <section class="demo-section" id="tokens">
+    <h2>Colour Tokens</h2>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Semantic — Primary (Dotify Red)</p>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-primary)"></div><div class="swatch__info"><div class="swatch__name">primary</div><div class="swatch__token">--dotify-color-primary</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-primary-hover)"></div><div class="swatch__info"><div class="swatch__name">primary-hover</div><div class="swatch__token">red-700</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-primary-active)"></div><div class="swatch__info"><div class="swatch__name">primary-active</div><div class="swatch__token">red-800</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-primary-light)"></div><div class="swatch__info"><div class="swatch__name">primary-light</div><div class="swatch__token">red-50 / red-950 dark</div></div></div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Semantic — Secondary (Dotify Indigo)</p>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-secondary)"></div><div class="swatch__info"><div class="swatch__name">secondary</div><div class="swatch__token">--dotify-color-secondary</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-secondary-hover)"></div><div class="swatch__info"><div class="swatch__name">secondary-hover</div><div class="swatch__token">indigo-700</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-secondary-active)"></div><div class="swatch__info"><div class="swatch__name">secondary-active</div><div class="swatch__token">indigo-800</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-secondary-light)"></div><div class="swatch__info"><div class="swatch__name">secondary-light</div><div class="swatch__token">indigo-50 / indigo-950 dark</div></div></div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Semantic — Status</p>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-success)"></div><div class="swatch__info"><div class="swatch__name">success</div><div class="swatch__token">green-600</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-success-light)"></div><div class="swatch__info"><div class="swatch__name">success-light</div><div class="swatch__token">green-50 / green-950 dark</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-error)"></div><div class="swatch__info"><div class="swatch__name">error</div><div class="swatch__token">error-600</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-error-light)"></div><div class="swatch__info"><div class="swatch__name">error-light</div><div class="swatch__token">error-50 / error-950 dark</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-warning)"></div><div class="swatch__info"><div class="swatch__name">warning</div><div class="swatch__token">yellow-400</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-warning-light)"></div><div class="swatch__info"><div class="swatch__name">warning-light</div><div class="swatch__token">yellow-50 / yellow-950 dark</div></div></div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Semantic — Surface &amp; Text</p>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-surface);outline:1px solid var(--dotify-color-border);outline-offset:-1px"></div><div class="swatch__info"><div class="swatch__name">surface</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-surface-raised);outline:1px solid var(--dotify-color-border);outline-offset:-1px"></div><div class="swatch__info"><div class="swatch__name">surface-raised</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-surface-inset)"></div><div class="swatch__info"><div class="swatch__name">surface-inset</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-on-surface)"></div><div class="swatch__info"><div class="swatch__name">on-surface</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-on-surface-muted)"></div><div class="swatch__info"><div class="swatch__name">on-surface-muted</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-on-surface-faint)"></div><div class="swatch__info"><div class="swatch__name">on-surface-faint</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-border)"></div><div class="swatch__info"><div class="swatch__name">border</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:var(--dotify-color-focus-ring)"></div><div class="swatch__info"><div class="swatch__name">focus-ring</div></div></div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Primitive scales</p>
+
+      <p style="font-size:var(--dotify-text-xs);color:var(--dotify-color-on-surface-muted);margin-bottom:0.5rem;font-family:var(--dotify-font-mono)">--dotify-red-*</p>
+      <div class="scale-row">
+        <div class="scale-step" style="background:var(--dotify-red-50)"  title="red-50"></div>
+        <div class="scale-step" style="background:var(--dotify-red-100)" title="red-100"></div>
+        <div class="scale-step" style="background:var(--dotify-red-200)" title="red-200"></div>
+        <div class="scale-step" style="background:var(--dotify-red-300)" title="red-300"></div>
+        <div class="scale-step" style="background:var(--dotify-red-400)" title="red-400"></div>
+        <div class="scale-step" style="background:var(--dotify-red-500)" title="red-500"></div>
+        <div class="scale-step" style="background:var(--dotify-red-600)" title="red-600 ← base"></div>
+        <div class="scale-step" style="background:var(--dotify-red-700)" title="red-700"></div>
+        <div class="scale-step" style="background:var(--dotify-red-800)" title="red-800"></div>
+        <div class="scale-step" style="background:var(--dotify-red-900)" title="red-900"></div>
+        <div class="scale-step" style="background:var(--dotify-red-950)" title="red-950"></div>
+      </div>
+      <div class="scale-labels">
+        <span class="scale-step-label">50</span><span class="scale-step-label">100</span><span class="scale-step-label">200</span>
+        <span class="scale-step-label">300</span><span class="scale-step-label">400</span><span class="scale-step-label">500</span>
+        <span class="scale-step-label">600</span><span class="scale-step-label">700</span><span class="scale-step-label">800</span>
+        <span class="scale-step-label">900</span><span class="scale-step-label">950</span>
+      </div>
+
+      <p style="font-size:var(--dotify-text-xs);color:var(--dotify-color-on-surface-muted);margin-bottom:0.5rem;font-family:var(--dotify-font-mono)">--dotify-indigo-*</p>
+      <div class="scale-row">
+        <div class="scale-step" style="background:var(--dotify-indigo-50)"></div>
+        <div class="scale-step" style="background:var(--dotify-indigo-100)"></div>
+        <div class="scale-step" style="background:var(--dotify-indigo-200)"></div>
+        <div class="scale-step" style="background:var(--dotify-indigo-300)"></div>
+        <div class="scale-step" style="background:var(--dotify-indigo-400)"></div>
+        <div class="scale-step" style="background:var(--dotify-indigo-500)"></div>
+        <div class="scale-step" style="background:var(--dotify-indigo-600)"></div>
+        <div class="scale-step" style="background:var(--dotify-indigo-700)"></div>
+        <div class="scale-step" style="background:var(--dotify-indigo-800)"></div>
+        <div class="scale-step" style="background:var(--dotify-indigo-900)"></div>
+        <div class="scale-step" style="background:var(--dotify-indigo-950)"></div>
+      </div>
+      <div class="scale-labels">
+        <span class="scale-step-label">50</span><span class="scale-step-label">100</span><span class="scale-step-label">200</span>
+        <span class="scale-step-label">300</span><span class="scale-step-label">400</span><span class="scale-step-label">500</span>
+        <span class="scale-step-label">600</span><span class="scale-step-label">700</span><span class="scale-step-label">800</span>
+        <span class="scale-step-label">900</span><span class="scale-step-label">950</span>
+      </div>
+
+      <p style="font-size:var(--dotify-text-xs);color:var(--dotify-color-on-surface-muted);margin-bottom:0.5rem;font-family:var(--dotify-font-mono)">--dotify-green-*</p>
+      <div class="scale-row">
+        <div class="scale-step" style="background:var(--dotify-green-50)"></div><div class="scale-step" style="background:var(--dotify-green-100)"></div>
+        <div class="scale-step" style="background:var(--dotify-green-200)"></div><div class="scale-step" style="background:var(--dotify-green-300)"></div>
+        <div class="scale-step" style="background:var(--dotify-green-400)"></div><div class="scale-step" style="background:var(--dotify-green-500)"></div>
+        <div class="scale-step" style="background:var(--dotify-green-600)"></div><div class="scale-step" style="background:var(--dotify-green-700)"></div>
+        <div class="scale-step" style="background:var(--dotify-green-800)"></div><div class="scale-step" style="background:var(--dotify-green-900)"></div>
+        <div class="scale-step" style="background:var(--dotify-green-950)"></div>
+      </div>
+      <div class="scale-labels">
+        <span class="scale-step-label">50</span><span class="scale-step-label">100</span><span class="scale-step-label">200</span>
+        <span class="scale-step-label">300</span><span class="scale-step-label">400</span><span class="scale-step-label">500</span>
+        <span class="scale-step-label">600</span><span class="scale-step-label">700</span><span class="scale-step-label">800</span>
+        <span class="scale-step-label">900</span><span class="scale-step-label">950</span>
+      </div>
+
+      <p style="font-size:var(--dotify-text-xs);color:var(--dotify-color-on-surface-muted);margin-bottom:0.5rem;font-family:var(--dotify-font-mono)">--dotify-gray-* (Tailwind verbatim)</p>
+      <div class="scale-row">
+        <div class="scale-step" style="background:var(--dotify-gray-50)"></div><div class="scale-step" style="background:var(--dotify-gray-100)"></div>
+        <div class="scale-step" style="background:var(--dotify-gray-200)"></div><div class="scale-step" style="background:var(--dotify-gray-300)"></div>
+        <div class="scale-step" style="background:var(--dotify-gray-400)"></div><div class="scale-step" style="background:var(--dotify-gray-500)"></div>
+        <div class="scale-step" style="background:var(--dotify-gray-600)"></div><div class="scale-step" style="background:var(--dotify-gray-700)"></div>
+        <div class="scale-step" style="background:var(--dotify-gray-800)"></div><div class="scale-step" style="background:var(--dotify-gray-900)"></div>
+        <div class="scale-step" style="background:var(--dotify-gray-950)"></div>
+      </div>
+      <div class="scale-labels">
+        <span class="scale-step-label">50</span><span class="scale-step-label">100</span><span class="scale-step-label">200</span>
+        <span class="scale-step-label">300</span><span class="scale-step-label">400</span><span class="scale-step-label">500</span>
+        <span class="scale-step-label">600</span><span class="scale-step-label">700</span><span class="scale-step-label">800</span>
+        <span class="scale-step-label">900</span><span class="scale-step-label">950</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    TYPOGRAPHY
+  ============================================================ -->
+  <section class="demo-section" id="typography">
+    <h2>Typography</h2>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Heading scale</p>
+      <h1>h1 — The quick brown fox jumps</h1>
+      <h2 style="border:none;padding:0;margin-top:0.5rem">h2 — The quick brown fox jumps</h2>
+      <h3 style="text-transform:none;letter-spacing:normal;font-size:var(--dotify-text-2xl);color:var(--dotify-color-on-surface)">h3 — The quick brown fox jumps</h3>
+      <h4>h4 — The quick brown fox jumps</h4>
+      <h5>h5 — The quick brown fox jumps</h5>
+      <h6>h6 — The quick brown fox jumps</h6>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Text size scale</p>
+      <div style="display:flex;flex-direction:column;gap:0.625rem">
+        <span style="font-size:var(--dotify-text-5xl);line-height:1.1">5xl · 48px</span>
+        <span style="font-size:var(--dotify-text-4xl);line-height:1.1">4xl · 36px</span>
+        <span style="font-size:var(--dotify-text-3xl);line-height:1.15">3xl · 30px</span>
+        <span style="font-size:var(--dotify-text-2xl)">2xl · 24px</span>
+        <span style="font-size:var(--dotify-text-xl)">xl · 20px</span>
+        <span style="font-size:var(--dotify-text-lg)">lg · 18px · The quick brown fox jumps over the lazy dog</span>
+        <span style="font-size:var(--dotify-text-base)">base · 16px · The quick brown fox jumps over the lazy dog</span>
+        <span style="font-size:var(--dotify-text-sm)">sm · 14px · The quick brown fox jumps over the lazy dog</span>
+        <span style="font-size:var(--dotify-text-xs)">xs · 12px · The quick brown fox jumps over the lazy dog</span>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Body + links + code</p>
+      <p style="max-width:65ch;margin-bottom:1rem">
+        Regular body text set in Montserrat 400. Links are <a href="#">styled in secondary indigo</a>
+        and underline on hover. The baseline line-height gives comfortable reading at 1.625.
+      </p>
+      <p style="max-width:65ch;margin-bottom:1rem;color:var(--dotify-color-on-surface-muted);font-size:var(--dotify-text-sm)">
+        Muted text at <code style="font-family:var(--dotify-font-mono);font-size:0.875em">--dotify-color-on-surface-muted</code>.
+        Use for helper text, descriptions, and secondary labels.
+      </p>
+      <pre style="padding:1rem;background:var(--dotify-color-surface-inset);border-radius:var(--dotify-radius);font-family:var(--dotify-font-mono);font-size:var(--dotify-text-sm);overflow-x:auto">--dotify-font-mono — monospace preformatted text block</pre>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    BUTTONS
+  ============================================================ -->
+  <section class="demo-section" id="buttons">
+    <h2>Buttons</h2>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Variants</p>
+      <div class="demo-row demo-row--center">
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--primary">Primary</button>
+          <span class="demo-label">--primary</span>
+        </div>
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--secondary">Secondary</button>
+          <span class="demo-label">--secondary</span>
+        </div>
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--ghost">Ghost</button>
+          <span class="demo-label">--ghost</span>
+        </div>
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--danger">Danger</button>
+          <span class="demo-label">--danger</span>
+        </div>
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--link">Link button</button>
+          <span class="demo-label">--link</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Sizes</p>
+      <div class="demo-row demo-row--center">
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--primary dotify-btn--xs">XSmall</button>
+          <span class="demo-label">--xs</span>
+        </div>
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--primary dotify-btn--sm">Small</button>
+          <span class="demo-label">--sm</span>
+        </div>
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--primary">Medium</button>
+          <span class="demo-label">default</span>
+        </div>
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--primary dotify-btn--lg">Large</button>
+          <span class="demo-label">--lg</span>
+        </div>
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--primary dotify-btn--xl">XLarge</button>
+          <span class="demo-label">--xl</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">With icons</p>
+      <div class="demo-row demo-row--center">
+        <button class="dotify-btn dotify-btn--primary">
+          <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#plus"></use></svg>
+          Add item
+        </button>
+        <button class="dotify-btn dotify-btn--secondary">
+          <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#arrow-down-tray"></use></svg>
+          Download
+        </button>
+        <button class="dotify-btn dotify-btn--ghost">
+          <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#arrow-path"></use></svg>
+          Refresh
+        </button>
+        <button class="dotify-btn dotify-btn--ghost dotify-btn--icon" aria-label="Settings">
+          <svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#cog-6-tooth"></use></svg>
+        </button>
+        <button class="dotify-btn dotify-btn--danger dotify-btn--icon" aria-label="Delete">
+          <svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#trash"></use></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Block + Disabled</p>
+      <div style="max-width:360px;display:flex;flex-direction:column;gap:0.75rem">
+        <button class="dotify-btn dotify-btn--primary dotify-btn--block dotify-btn--lg">Block button</button>
+        <div class="demo-row">
+          <button class="dotify-btn dotify-btn--primary" disabled>Disabled primary</button>
+          <button class="dotify-btn dotify-btn--secondary" disabled>Disabled secondary</button>
+          <button class="dotify-btn dotify-btn--ghost" disabled>Disabled ghost</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    BADGES
+  ============================================================ -->
+  <section class="demo-section" id="badges">
+    <h2>Badges</h2>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Tinted (default)</p>
+      <div class="demo-row demo-row--center">
+        <span class="dotify-badge dotify-badge--primary">Primary</span>
+        <span class="dotify-badge dotify-badge--secondary">Secondary</span>
+        <span class="dotify-badge dotify-badge--success">Success</span>
+        <span class="dotify-badge dotify-badge--error">Error</span>
+        <span class="dotify-badge dotify-badge--warning">Warning</span>
+        <span class="dotify-badge dotify-badge--gray">Gray</span>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Filled</p>
+      <div class="demo-row demo-row--center">
+        <span class="dotify-badge dotify-badge--primary dotify-badge--filled">Primary</span>
+        <span class="dotify-badge dotify-badge--secondary dotify-badge--filled">Secondary</span>
+        <span class="dotify-badge dotify-badge--success dotify-badge--filled">Success</span>
+        <span class="dotify-badge dotify-badge--error dotify-badge--filled">Error</span>
+        <span class="dotify-badge dotify-badge--warning dotify-badge--filled">Warning</span>
+        <span class="dotify-badge dotify-badge--gray dotify-badge--filled">Gray</span>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Sizes &amp; Pill modifier</p>
+      <div class="demo-row demo-row--center">
+        <div class="demo-cell"><span class="dotify-badge dotify-badge--secondary dotify-badge--sm">Small</span><span class="demo-label">--sm</span></div>
+        <div class="demo-cell"><span class="dotify-badge dotify-badge--secondary">Default</span><span class="demo-label">default</span></div>
+        <div class="demo-cell"><span class="dotify-badge dotify-badge--secondary dotify-badge--lg">Large</span><span class="demo-label">--lg</span></div>
+        <div class="demo-cell"><span class="dotify-badge dotify-badge--primary dotify-badge--pill">Pill</span><span class="demo-label">--pill</span></div>
+        <div class="demo-cell"><span class="dotify-badge dotify-badge--success dotify-badge--pill dotify-badge--filled">Pill filled</span><span class="demo-label">--pill + --filled</span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    FORMS
+  ============================================================ -->
+  <section class="demo-section" id="forms">
+    <h2>Forms</h2>
+
+    <div class="forms-grid">
+
+      <!-- Input states -->
+      <div class="demo-panel">
+        <p class="demo-panel-title">Input</p>
+        <div class="dotify-field">
+          <label class="dotify-label" for="t-input-default">Default</label>
+          <input type="text" id="t-input-default" class="dotify-input" placeholder="Placeholder text">
+          <p class="dotify-field__hint">Helper text for extra context.</p>
+        </div>
+        <div class="dotify-field" style="margin-top:1rem">
+          <label class="dotify-label" for="t-input-invalid">
+            Invalid <span aria-hidden="true" style="color:var(--dotify-color-error)">*</span>
+          </label>
+          <input type="text" id="t-input-invalid" class="dotify-input dotify-input--invalid"
+            value="bad@value" aria-invalid="true" aria-describedby="t-input-invalid-err">
+          <p class="dotify-field__error" id="t-input-invalid-err" role="alert">This value is not valid.</p>
+        </div>
+        <div class="dotify-field" style="margin-top:1rem">
+          <label class="dotify-label" for="t-input-disabled">Disabled</label>
+          <input type="text" id="t-input-disabled" class="dotify-input" value="Disabled value" disabled>
+        </div>
+      </div>
+
+      <!-- Input group -->
+      <div class="demo-panel">
+        <p class="demo-panel-title">Input Group</p>
+        <div class="dotify-field">
+          <label class="dotify-label" for="t-ig-url">Website</label>
+          <div class="dotify-input-group">
+            <span class="dotify-input-group__addon">https://</span>
+            <input type="text" id="t-ig-url" class="dotify-input" placeholder="example.com">
+          </div>
+        </div>
+        <div class="dotify-field" style="margin-top:1rem">
+          <label class="dotify-label" for="t-ig-search">Search</label>
+          <div class="dotify-input-group">
+            <input type="search" id="t-ig-search" class="dotify-input" placeholder="Search…">
+            <button class="dotify-btn dotify-btn--primary dotify-btn--sm" style="border-radius:0 var(--dotify-radius) var(--dotify-radius) 0">Go</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Textarea -->
+      <div class="demo-panel">
+        <p class="demo-panel-title">Textarea</p>
+        <div class="dotify-field">
+          <label class="dotify-label" for="t-textarea">Message</label>
+          <textarea id="t-textarea" class="dotify-textarea" rows="3" placeholder="Write something…"></textarea>
+        </div>
+        <div class="dotify-field" style="margin-top:1rem">
+          <label class="dotify-label" for="t-textarea-nr">No resize</label>
+          <textarea id="t-textarea-nr" class="dotify-textarea dotify-textarea--no-resize" rows="2" placeholder="Cannot resize"></textarea>
+        </div>
+        <div class="dotify-field" style="margin-top:1rem">
+          <label class="dotify-label" for="t-textarea-invalid">Invalid</label>
+          <textarea id="t-textarea-invalid" class="dotify-textarea dotify-textarea--invalid" rows="2" aria-invalid="true">Bad value here</textarea>
+        </div>
+      </div>
+
+      <!-- Select -->
+      <div class="demo-panel">
+        <p class="demo-panel-title">Select</p>
+        <div class="dotify-field">
+          <label class="dotify-label" for="t-select">Choose plan</label>
+          <div class="dotify-select-wrapper">
+            <select id="t-select" class="dotify-select">
+              <option value="">Select a plan…</option>
+              <option>Starter — Free</option>
+              <option>Pro — $9/mo</option>
+              <option>Enterprise — Contact us</option>
+            </select>
+          </div>
+        </div>
+        <div class="dotify-field" style="margin-top:1rem">
+          <label class="dotify-label" for="t-select-disabled">Disabled</label>
+          <div class="dotify-select-wrapper">
+            <select id="t-select-disabled" class="dotify-select" disabled>
+              <option>Disabled option</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checkbox -->
+      <div class="demo-panel">
+        <p class="demo-panel-title">Checkbox</p>
+        <div style="display:flex;flex-direction:column;gap:0.625rem">
+          <label class="dotify-checkbox">
+            <input type="checkbox" class="dotify-checkbox__input" checked>
+            <span class="dotify-checkbox__label">Checked</span>
+          </label>
+          <label class="dotify-checkbox">
+            <input type="checkbox" class="dotify-checkbox__input">
+            <span class="dotify-checkbox__label">Unchecked</span>
+          </label>
+          <label class="dotify-checkbox">
+            <input type="checkbox" class="dotify-checkbox__input" id="t-indeterminate">
+            <span class="dotify-checkbox__label">Indeterminate</span>
+          </label>
+          <label class="dotify-checkbox">
+            <input type="checkbox" class="dotify-checkbox__input" disabled>
+            <span class="dotify-checkbox__label">Disabled</span>
+          </label>
+          <label class="dotify-checkbox">
+            <input type="checkbox" class="dotify-checkbox__input" checked disabled>
+            <span class="dotify-checkbox__label">Disabled + checked</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Radio -->
+      <div class="demo-panel">
+        <p class="demo-panel-title">Radio</p>
+        <fieldset style="border:none;padding:0;margin:0">
+          <legend class="dotify-label" style="margin-bottom:0.75rem">Notify me via</legend>
+          <div class="dotify-radio-group">
+            <label class="dotify-radio">
+              <input type="radio" name="t-notify" class="dotify-radio__input" checked>
+              <span class="dotify-radio__label">Email</span>
+            </label>
+            <label class="dotify-radio">
+              <input type="radio" name="t-notify" class="dotify-radio__input">
+              <span class="dotify-radio__label">SMS</span>
+            </label>
+            <label class="dotify-radio">
+              <input type="radio" name="t-notify" class="dotify-radio__input" disabled>
+              <span class="dotify-radio__label">Push (unavailable)</span>
+            </label>
+          </div>
+        </fieldset>
+        <fieldset style="border:none;padding:0;margin:1.25rem 0 0">
+          <legend class="dotify-label" style="margin-bottom:0.75rem">Inline group</legend>
+          <div class="dotify-radio-group dotify-radio-group--inline">
+            <label class="dotify-radio"><input type="radio" name="t-size" class="dotify-radio__input" checked><span class="dotify-radio__label">S</span></label>
+            <label class="dotify-radio"><input type="radio" name="t-size" class="dotify-radio__input"><span class="dotify-radio__label">M</span></label>
+            <label class="dotify-radio"><input type="radio" name="t-size" class="dotify-radio__input"><span class="dotify-radio__label">L</span></label>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Toggle -->
+      <div class="demo-panel">
+        <p class="demo-panel-title">Toggle</p>
+        <div style="display:flex;flex-direction:column;gap:1rem">
+          <label class="dotify-toggle dotify-toggle--sm">
+            <input type="checkbox" class="dotify-toggle__input">
+            <span class="dotify-toggle__track"></span>
+            <span class="dotify-toggle__label">Small (off)</span>
+          </label>
+          <label class="dotify-toggle">
+            <input type="checkbox" class="dotify-toggle__input" checked>
+            <span class="dotify-toggle__track"></span>
+            <span class="dotify-toggle__label">Medium (on)</span>
+          </label>
+          <label class="dotify-toggle dotify-toggle--lg">
+            <input type="checkbox" class="dotify-toggle__input" checked>
+            <span class="dotify-toggle__track"></span>
+            <span class="dotify-toggle__label">Large (on)</span>
+          </label>
+          <label class="dotify-toggle">
+            <input type="checkbox" class="dotify-toggle__input" disabled>
+            <span class="dotify-toggle__track"></span>
+            <span class="dotify-toggle__label">Disabled</span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    FEEDBACK
+  ============================================================ -->
+  <section class="demo-section" id="feedback">
+    <h2>Feedback</h2>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Alerts</p>
+      <div style="display:flex;flex-direction:column;gap:1rem;max-width:680px">
+        <div class="dotify-alert" role="status" aria-live="polite">
+          <svg class="dotify-icon dotify-alert__icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#information-circle"></use></svg>
+          <div class="dotify-alert__content">
+            <p class="dotify-alert__title">Default info alert</p>
+            <p class="dotify-alert__body">Use this for neutral informational messages.</p>
+          </div>
+        </div>
+        <div class="dotify-alert dotify-alert--success" role="status" aria-live="polite">
+          <svg class="dotify-icon dotify-alert__icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#check-circle"></use></svg>
+          <div class="dotify-alert__content">
+            <p class="dotify-alert__title">Success — Changes saved</p>
+            <p class="dotify-alert__body">Your profile has been updated successfully.</p>
+          </div>
+          <button class="dotify-alert__dismiss" aria-label="Dismiss alert">
+            <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#x-mark"></use></svg>
+          </button>
+        </div>
+        <div class="dotify-alert dotify-alert--error" role="alert" aria-live="assertive">
+          <svg class="dotify-icon dotify-alert__icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#x-circle"></use></svg>
+          <div class="dotify-alert__content">
+            <p class="dotify-alert__title">Error — Could not save</p>
+            <p class="dotify-alert__body">There was a problem. Please try again or contact support.</p>
+          </div>
+          <button class="dotify-alert__dismiss" aria-label="Dismiss alert">
+            <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#x-mark"></use></svg>
+          </button>
+        </div>
+        <div class="dotify-alert dotify-alert--warning">
+          <svg class="dotify-icon dotify-alert__icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#exclamation-triangle"></use></svg>
+          <div class="dotify-alert__content">
+            <p class="dotify-alert__title">Warning — Action required</p>
+            <p class="dotify-alert__body">Your subscription expires in 3 days.</p>
+          </div>
+        </div>
+        <!-- Banner variant -->
+        <div class="dotify-alert dotify-alert--success dotify-alert--banner">
+          <svg class="dotify-icon dotify-alert__icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#check-circle"></use></svg>
+          <div class="dotify-alert__content">
+            <p class="dotify-alert__title">Banner alert — full-width variant</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Spinners</p>
+      <div class="demo-row demo-row--center" style="margin-bottom:1.5rem">
+        <div class="demo-cell"><div class="dotify-spinner dotify-spinner--xs" role="status" aria-label="Loading"></div><span class="demo-label">--xs</span></div>
+        <div class="demo-cell"><div class="dotify-spinner dotify-spinner--sm" role="status" aria-label="Loading"></div><span class="demo-label">--sm</span></div>
+        <div class="demo-cell"><div class="dotify-spinner" role="status" aria-label="Loading"></div><span class="demo-label">default</span></div>
+        <div class="demo-cell"><div class="dotify-spinner dotify-spinner--lg" role="status" aria-label="Loading"></div><span class="demo-label">--lg</span></div>
+        <div class="demo-cell"><div class="dotify-spinner dotify-spinner--xl" role="status" aria-label="Loading"></div><span class="demo-label">--xl</span></div>
+      </div>
+      <div class="demo-row demo-row--center">
+        <div class="demo-cell"><div class="dotify-spinner dotify-spinner--primary dotify-spinner--lg" role="status" aria-label="Loading"></div><span class="demo-label">--primary</span></div>
+        <div class="demo-cell"><div class="dotify-spinner dotify-spinner--muted dotify-spinner--lg" role="status" aria-label="Loading"></div><span class="demo-label">--muted</span></div>
+        <div class="demo-cell" style="background:var(--dotify-color-primary);padding:0.75rem;border-radius:var(--dotify-radius)">
+          <div class="dotify-spinner dotify-spinner--white dotify-spinner--lg" role="status" aria-label="Loading"></div>
+          <span class="demo-label" style="color:#fff">--white</span>
+        </div>
+        <button class="dotify-btn dotify-btn--primary dotify-btn--lg" style="gap:0.625rem">
+          <div class="dotify-spinner dotify-spinner--white dotify-spinner--sm" role="status" aria-label="Loading"></div>
+          Loading…
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    CARDS
+  ============================================================ -->
+  <section class="demo-section" id="cards">
+    <h2>Cards</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem">
+
+      <div class="dotify-card">
+        <div class="dotify-card__body">
+          <p class="dotify-card__title">Default card</p>
+          <p class="dotify-card__subtitle">Surface raised, standard border, 15px radius.</p>
+          <p style="font-size:var(--dotify-text-sm);margin-top:0.75rem;color:var(--dotify-color-on-surface-muted)">Body content goes here. Can be any HTML.</p>
+        </div>
+        <div class="dotify-card__footer">
+          <button class="dotify-btn dotify-btn--primary dotify-btn--sm">Primary</button>
+          <button class="dotify-btn dotify-btn--ghost dotify-btn--sm">Cancel</button>
+        </div>
+      </div>
+
+      <div class="dotify-card dotify-card--interactive" tabindex="0" role="button">
+        <div class="dotify-card__body">
+          <p class="dotify-card__title">Interactive card</p>
+          <p class="dotify-card__subtitle">Hover or focus to see lift effect.</p>
+          <p style="font-size:var(--dotify-text-sm);margin-top:0.75rem;color:var(--dotify-color-on-surface-muted)">Uses <code>--interactive</code> modifier. Supports keyboard focus.</p>
+        </div>
+      </div>
+
+      <div class="dotify-card dotify-card--elevated">
+        <div class="dotify-card__body">
+          <p class="dotify-card__title">Elevated card</p>
+          <p class="dotify-card__subtitle">Larger drop shadow.</p>
+          <p style="font-size:var(--dotify-text-sm);margin-top:0.75rem;color:var(--dotify-color-on-surface-muted)">Uses <code>--elevated</code> modifier.</p>
+        </div>
+      </div>
+
+      <div class="dotify-card dotify-card--flat">
+        <div class="dotify-card__body">
+          <p class="dotify-card__title">Flat card</p>
+          <p class="dotify-card__subtitle">No shadow, subtle border only.</p>
+          <p style="font-size:var(--dotify-text-sm);margin-top:0.75rem;color:var(--dotify-color-on-surface-muted)">Uses <code>--flat</code> modifier.</p>
+        </div>
+      </div>
+
+      <div class="dotify-card">
+        <div class="dotify-card__header">
+          <p class="dotify-card__title">Card with header</p>
+          <span class="dotify-badge dotify-badge--success dotify-badge--sm">Active</span>
+        </div>
+        <div class="dotify-card__body">
+          <p style="font-size:var(--dotify-text-sm);color:var(--dotify-color-on-surface-muted)">Header, body, and footer are separated by borders.</p>
+        </div>
+        <div class="dotify-card__footer">
+          <button class="dotify-btn dotify-btn--secondary dotify-btn--sm">View details</button>
+        </div>
+      </div>
+
+      <div class="dotify-card">
+        <div class="dotify-card__image" style="background:var(--dotify-color-surface-inset);height:120px;display:flex;align-items:center;justify-content:center">
+          <svg class="dotify-icon dotify-icon--2xl" style="color:var(--dotify-color-on-surface-faint)" aria-hidden="true"><use href="icons/heroicons-sprite.svg#photo"></use></svg>
+        </div>
+        <div class="dotify-card__body">
+          <p class="dotify-card__title">Card with image</p>
+          <p class="dotify-card__subtitle">Image slot above body.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    NAVIGATION
+  ============================================================ -->
+  <section class="demo-section" id="navigation">
+    <h2>Navigation</h2>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Breadcrumb</p>
+      <nav class="dotify-breadcrumb" aria-label="Breadcrumb">
+        <ol class="dotify-breadcrumb__list">
+          <li class="dotify-breadcrumb__item"><a href="#" class="dotify-breadcrumb__link">Home</a></li>
+          <li class="dotify-breadcrumb__item"><a href="#" class="dotify-breadcrumb__link">Components</a></li>
+          <li class="dotify-breadcrumb__item"><span class="dotify-breadcrumb__current" aria-current="page">Breadcrumb</span></li>
+        </ol>
+      </nav>
+      <nav class="dotify-breadcrumb dotify-breadcrumb--slash" aria-label="Breadcrumb slash" style="margin-top:1rem">
+        <ol class="dotify-breadcrumb__list">
+          <li class="dotify-breadcrumb__item"><a href="#" class="dotify-breadcrumb__link">Home</a></li>
+          <li class="dotify-breadcrumb__item"><a href="#" class="dotify-breadcrumb__link">Settings</a></li>
+          <li class="dotify-breadcrumb__item"><span class="dotify-breadcrumb__current" aria-current="page">Profile</span></li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Tabs — underline (default)</p>
+      <div class="dotify-tabs">
+        <div class="dotify-tabs__list" role="tablist" aria-label="Account sections">
+          <button class="dotify-tabs__tab dotify-tabs__tab--active" role="tab" aria-selected="true" id="t-tab-1" aria-controls="t-panel-1">Overview</button>
+          <button class="dotify-tabs__tab" role="tab" aria-selected="false" id="t-tab-2" aria-controls="t-panel-2">
+            Settings
+            <span class="dotify-tabs__tab__count">4</span>
+          </button>
+          <button class="dotify-tabs__tab" role="tab" aria-selected="false" id="t-tab-3" aria-controls="t-panel-3">Billing</button>
+          <button class="dotify-tabs__tab" role="tab" disabled>Disabled</button>
+        </div>
+        <div id="t-panel-1" role="tabpanel" aria-labelledby="t-tab-1" class="dotify-tabs__panel">
+          <p>Active panel content — Overview section.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Tabs — pills modifier</p>
+      <div class="dotify-tabs dotify-tabs--pills">
+        <div class="dotify-tabs__list" role="tablist">
+          <button class="dotify-tabs__tab dotify-tabs__tab--active" role="tab">All</button>
+          <button class="dotify-tabs__tab" role="tab">Active</button>
+          <button class="dotify-tabs__tab" role="tab">Archived</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Sidebar (in-page demo)</p>
+      <div style="display:flex;border:1px solid var(--dotify-color-border);border-radius:var(--dotify-radius);overflow:hidden;height:300px">
+        <aside class="dotify-sidebar" style="position:relative;height:100%">
+          <nav class="dotify-sidebar__nav">
+            <div class="dotify-sidebar__section">
+              <span class="dotify-sidebar__section-label">Main</span>
+              <a href="#" class="dotify-sidebar__link dotify-sidebar__link--active">
+                <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#home"></use></svg>
+                Dashboard
+              </a>
+              <a href="#" class="dotify-sidebar__link">
+                <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#users"></use></svg>
+                Users
+              </a>
+              <a href="#" class="dotify-sidebar__link">
+                <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#chart-bar"></use></svg>
+                Analytics
+              </a>
+            </div>
+            <div class="dotify-sidebar__divider"></div>
+            <div class="dotify-sidebar__section">
+              <span class="dotify-sidebar__section-label">Settings</span>
+              <a href="#" class="dotify-sidebar__link">
+                <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#cog-6-tooth"></use></svg>
+                Preferences
+              </a>
+              <a href="#" class="dotify-sidebar__link">
+                <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#lock-closed"></use></svg>
+                Security
+              </a>
+            </div>
+          </nav>
+        </aside>
+        <div style="flex:1;padding:1.5rem;background:var(--dotify-color-surface);overflow:auto">
+          <p style="color:var(--dotify-color-on-surface-muted);font-size:var(--dotify-text-sm)">Main content area alongside the sidebar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Pagination</p>
+      <nav class="dotify-pagination" aria-label="Page navigation">
+        <ul class="dotify-pagination__list">
+          <li>
+            <a href="#" class="dotify-pagination__link dotify-pagination__prev" aria-label="Previous page">
+              <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#chevron-left"></use></svg>
+            </a>
+          </li>
+          <li><a href="#" class="dotify-pagination__link">1</a></li>
+          <li><a href="#" class="dotify-pagination__link dotify-pagination__link--active" aria-current="page">2</a></li>
+          <li><a href="#" class="dotify-pagination__link">3</a></li>
+          <li><a href="#" class="dotify-pagination__link">4</a></li>
+          <li><span class="dotify-pagination__ellipsis">…</span></li>
+          <li><a href="#" class="dotify-pagination__link">12</a></li>
+          <li>
+            <a href="#" class="dotify-pagination__link dotify-pagination__next" aria-label="Next page">
+              <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#chevron-right"></use></svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <nav class="dotify-pagination dotify-pagination--compact" aria-label="Compact pagination" style="margin-top:1rem">
+        <ul class="dotify-pagination__list">
+          <li><a href="#" class="dotify-pagination__link dotify-pagination__prev" aria-label="Prev"><svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#chevron-left"></use></svg></a></li>
+          <li><span style="font-size:var(--dotify-text-sm);color:var(--dotify-color-on-surface-muted);padding:0 0.5rem">Page 2 of 12</span></li>
+          <li><a href="#" class="dotify-pagination__link dotify-pagination__next" aria-label="Next"><svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#chevron-right"></use></svg></a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    TABLE
+  ============================================================ -->
+  <section class="demo-section" id="table">
+    <h2>Table</h2>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Default + hover rows</p>
+      <div class="dotify-table-wrapper">
+        <table class="dotify-table dotify-table--hover-rows">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th style="text-align:right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div style="display:flex;align-items:center;gap:0.625rem">
+                  <div class="dotify-avatar dotify-avatar--sm"><span class="dotify-avatar__initials">AJ</span></div>
+                  Alice Johnson
+                </div>
+              </td>
+              <td>alice@example.com</td>
+              <td>Admin</td>
+              <td><span class="dotify-badge dotify-badge--success">Active</span></td>
+              <td style="text-align:right">
+                <button class="dotify-btn dotify-btn--ghost dotify-btn--sm dotify-btn--icon" aria-label="Edit Alice"><svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#pencil"></use></svg></button>
+                <button class="dotify-btn dotify-btn--ghost dotify-btn--sm dotify-btn--icon" aria-label="Delete Alice"><svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#trash"></use></svg></button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex;align-items:center;gap:0.625rem">
+                  <div class="dotify-avatar dotify-avatar--sm dotify-avatar--blue"><span class="dotify-avatar__initials">BS</span></div>
+                  Bob Smith
+                </div>
+              </td>
+              <td>bob@example.com</td>
+              <td>Editor</td>
+              <td><span class="dotify-badge dotify-badge--warning">Pending</span></td>
+              <td style="text-align:right">
+                <button class="dotify-btn dotify-btn--ghost dotify-btn--sm dotify-btn--icon" aria-label="Edit Bob"><svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#pencil"></use></svg></button>
+                <button class="dotify-btn dotify-btn--ghost dotify-btn--sm dotify-btn--icon" aria-label="Delete Bob"><svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#trash"></use></svg></button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex;align-items:center;gap:0.625rem">
+                  <div class="dotify-avatar dotify-avatar--sm dotify-avatar--fuchsia"><span class="dotify-avatar__initials">CW</span></div>
+                  Carol White
+                </div>
+              </td>
+              <td>carol@example.com</td>
+              <td>Viewer</td>
+              <td><span class="dotify-badge dotify-badge--error">Inactive</span></td>
+              <td style="text-align:right">
+                <button class="dotify-btn dotify-btn--ghost dotify-btn--sm dotify-btn--icon" aria-label="Edit Carol"><svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#pencil"></use></svg></button>
+                <button class="dotify-btn dotify-btn--ghost dotify-btn--sm dotify-btn--icon" aria-label="Delete Carol"><svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#trash"></use></svg></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Striped + compact + bordered</p>
+      <div class="dotify-table-wrapper">
+        <table class="dotify-table dotify-table--striped dotify-table--compact dotify-table--bordered">
+          <thead><tr><th>Token</th><th>Value</th><th>Category</th></tr></thead>
+          <tbody>
+            <tr><td><code>--dotify-radius</code></td><td>15px</td><td>Radii</td></tr>
+            <tr><td><code>--dotify-radius-full</code></td><td>9999px</td><td>Radii</td></tr>
+            <tr><td><code>--dotify-spacing-4</code></td><td>16px</td><td>Spacing</td></tr>
+            <tr><td><code>--dotify-shadow</code></td><td>0 1px 3px …</td><td>Shadows</td></tr>
+            <tr><td><code>--dotify-color-primary</code></td><td>red-600</td><td>Colour</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Empty state</p>
+      <div class="dotify-table-wrapper">
+        <table class="dotify-table">
+          <thead><tr><th>Name</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td colspan="3" class="dotify-table__empty">
+              <svg class="dotify-icon dotify-icon--xl" style="color:var(--dotify-color-on-surface-faint);margin-bottom:0.5rem" aria-hidden="true"><use href="icons/heroicons-sprite.svg#folder"></use></svg>
+              <p>No records found</p>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    OVERLAY: Dropdown + Tooltip + Modal triggers
+  ============================================================ -->
+  <section class="demo-section" id="overlay">
+    <h2>Overlay Components</h2>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Tooltip</p>
+      <div class="demo-row demo-row--center" style="padding:3rem 0">
+        <div class="dotify-tooltip-wrapper">
+          <button class="dotify-btn dotify-btn--secondary dotify-btn--sm">Top (hover me)</button>
+          <div class="dotify-tooltip dotify-tooltip--top" role="tooltip">Tooltip on top</div>
+        </div>
+        <div class="dotify-tooltip-wrapper">
+          <button class="dotify-btn dotify-btn--secondary dotify-btn--sm">Bottom</button>
+          <div class="dotify-tooltip dotify-tooltip--bottom" role="tooltip">Tooltip on bottom</div>
+        </div>
+        <div class="dotify-tooltip-wrapper">
+          <button class="dotify-btn dotify-btn--secondary dotify-btn--sm">Right</button>
+          <div class="dotify-tooltip dotify-tooltip--right" role="tooltip">Tooltip on right</div>
+        </div>
+        <div class="dotify-tooltip-wrapper">
+          <button class="dotify-btn dotify-btn--secondary dotify-btn--sm">Left</button>
+          <div class="dotify-tooltip dotify-tooltip--left" role="tooltip">Tooltip on left</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Dropdown menu</p>
+      <div class="demo-row" style="min-height:220px;align-items:flex-start;gap:1.5rem">
+
+        <div class="dotify-dropdown" id="dd-1">
+          <button class="dotify-btn dotify-btn--secondary" onclick="toggleDropdown('dd-1')"
+            aria-haspopup="menu" aria-expanded="false" aria-controls="dd-1-menu">
+            Actions
+            <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#chevron-down"></use></svg>
+          </button>
+          <div class="dotify-dropdown__menu" id="dd-1-menu" role="menu">
+            <span class="dotify-dropdown__label">File</span>
+            <a href="#" class="dotify-dropdown__item" role="menuitem">
+              <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#pencil"></use></svg>
+              Edit
+            </a>
+            <a href="#" class="dotify-dropdown__item" role="menuitem">
+              <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#clipboard-document"></use></svg>
+              Duplicate
+            </a>
+            <a href="#" class="dotify-dropdown__item" role="menuitem">
+              <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#arrow-up-tray"></use></svg>
+              Export
+            </a>
+            <div class="dotify-dropdown__divider"></div>
+            <a href="#" class="dotify-dropdown__item dotify-dropdown__item--danger" role="menuitem">
+              <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#trash"></use></svg>
+              Delete
+            </a>
+          </div>
+        </div>
+
+        <div class="dotify-dropdown dotify-dropdown--right" id="dd-2">
+          <button class="dotify-btn dotify-btn--ghost dotify-btn--icon" onclick="toggleDropdown('dd-2')"
+            aria-haspopup="menu" aria-expanded="false" aria-label="More options">
+            <svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#ellipsis-horizontal"></use></svg>
+          </button>
+          <div class="dotify-dropdown__menu" role="menu">
+            <a href="#" class="dotify-dropdown__item" role="menuitem">View</a>
+            <a href="#" class="dotify-dropdown__item" role="menuitem">Share</a>
+            <div class="dotify-dropdown__divider"></div>
+            <a href="#" class="dotify-dropdown__item dotify-dropdown__item--danger" role="menuitem">Remove</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Modal</p>
+      <div class="demo-row demo-row--center">
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--ghost dotify-btn--sm" onclick="openModal('modal-sm')">Small</button>
+          <span class="demo-label">--sm</span>
+        </div>
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--secondary" onclick="openModal('modal-default')">Default</button>
+          <span class="demo-label">default</span>
+        </div>
+        <div class="demo-cell">
+          <button class="dotify-btn dotify-btn--primary" onclick="openModal('modal-lg')">Large</button>
+          <span class="demo-label">--lg</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    AVATARS
+  ============================================================ -->
+  <section class="demo-section" id="avatars">
+    <h2>Avatars</h2>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Sizes</p>
+      <div class="demo-row demo-row--center">
+        <div class="demo-cell"><div class="dotify-avatar dotify-avatar--xs"><span class="dotify-avatar__initials">AJ</span></div><span class="demo-label">--xs</span></div>
+        <div class="demo-cell"><div class="dotify-avatar dotify-avatar--sm"><span class="dotify-avatar__initials">AJ</span></div><span class="demo-label">--sm</span></div>
+        <div class="demo-cell"><div class="dotify-avatar"><span class="dotify-avatar__initials">AJ</span></div><span class="demo-label">default</span></div>
+        <div class="demo-cell"><div class="dotify-avatar dotify-avatar--lg"><span class="dotify-avatar__initials">AJ</span></div><span class="demo-label">--lg</span></div>
+        <div class="demo-cell"><div class="dotify-avatar dotify-avatar--xl"><span class="dotify-avatar__initials">AJ</span></div><span class="demo-label">--xl</span></div>
+        <div class="demo-cell"><div class="dotify-avatar dotify-avatar--2xl"><span class="dotify-avatar__initials">AJ</span></div><span class="demo-label">--2xl</span></div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Colour variants</p>
+      <div class="demo-row demo-row--center">
+        <div class="demo-cell"><div class="dotify-avatar dotify-avatar--lg"><span class="dotify-avatar__initials">IN</span></div><span class="demo-label">default (indigo)</span></div>
+        <div class="demo-cell"><div class="dotify-avatar dotify-avatar--lg dotify-avatar--red"><span class="dotify-avatar__initials">RE</span></div><span class="demo-label">--red</span></div>
+        <div class="demo-cell"><div class="dotify-avatar dotify-avatar--lg dotify-avatar--blue"><span class="dotify-avatar__initials">BL</span></div><span class="demo-label">--blue</span></div>
+        <div class="demo-cell"><div class="dotify-avatar dotify-avatar--lg dotify-avatar--green"><span class="dotify-avatar__initials">GR</span></div><span class="demo-label">--green</span></div>
+        <div class="demo-cell"><div class="dotify-avatar dotify-avatar--lg dotify-avatar--fuchsia"><span class="dotify-avatar__initials">FU</span></div><span class="demo-label">--fuchsia</span></div>
+        <div class="demo-cell"><div class="dotify-avatar dotify-avatar--lg dotify-avatar--gray"><span class="dotify-avatar__initials">GY</span></div><span class="demo-label">--gray</span></div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Status indicators</p>
+      <div class="demo-row demo-row--center">
+        <div class="demo-cell">
+          <div class="dotify-avatar dotify-avatar--lg">
+            <span class="dotify-avatar__initials">ON</span>
+            <span class="dotify-avatar__status dotify-avatar__status--online"></span>
+          </div>
+          <span class="demo-label">online</span>
+        </div>
+        <div class="demo-cell">
+          <div class="dotify-avatar dotify-avatar--lg">
+            <span class="dotify-avatar__initials">AW</span>
+            <span class="dotify-avatar__status dotify-avatar__status--away"></span>
+          </div>
+          <span class="demo-label">away</span>
+        </div>
+        <div class="demo-cell">
+          <div class="dotify-avatar dotify-avatar--lg">
+            <span class="dotify-avatar__initials">BY</span>
+            <span class="dotify-avatar__status dotify-avatar__status--busy"></span>
+          </div>
+          <span class="demo-label">busy</span>
+        </div>
+        <div class="demo-cell">
+          <div class="dotify-avatar dotify-avatar--lg">
+            <span class="dotify-avatar__initials">OF</span>
+            <span class="dotify-avatar__status dotify-avatar__status--offline"></span>
+          </div>
+          <span class="demo-label">offline</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Avatar group</p>
+      <div class="dotify-avatar-group">
+        <div class="dotify-avatar"><span class="dotify-avatar__initials">AJ</span></div>
+        <div class="dotify-avatar dotify-avatar--blue"><span class="dotify-avatar__initials">BS</span></div>
+        <div class="dotify-avatar dotify-avatar--fuchsia"><span class="dotify-avatar__initials">CW</span></div>
+        <div class="dotify-avatar dotify-avatar--green"><span class="dotify-avatar__initials">DM</span></div>
+        <div class="dotify-avatar dotify-avatar--gray"><span class="dotify-avatar__initials">+8</span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    ICONS
+  ============================================================ -->
+  <section class="demo-section" id="icons">
+    <h2>Icons</h2>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Sizes</p>
+      <div class="demo-row demo-row--center">
+        <div class="demo-cell"><svg class="dotify-icon dotify-icon--xs" aria-hidden="true"><use href="icons/heroicons-sprite.svg#home"></use></svg><span class="demo-label">--xs 12px</span></div>
+        <div class="demo-cell"><svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#home"></use></svg><span class="demo-label">--sm 16px</span></div>
+        <div class="demo-cell"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#home"></use></svg><span class="demo-label">default 24px</span></div>
+        <div class="demo-cell"><svg class="dotify-icon dotify-icon--lg" aria-hidden="true"><use href="icons/heroicons-sprite.svg#home"></use></svg><span class="demo-label">--lg 32px</span></div>
+        <div class="demo-cell"><svg class="dotify-icon dotify-icon--xl" aria-hidden="true"><use href="icons/heroicons-sprite.svg#home"></use></svg><span class="demo-label">--xl 40px</span></div>
+        <div class="demo-cell"><svg class="dotify-icon dotify-icon--2xl" aria-hidden="true"><use href="icons/heroicons-sprite.svg#home"></use></svg><span class="demo-label">--2xl 48px</span></div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">Colour variants</p>
+      <div class="demo-row demo-row--center">
+        <div class="demo-cell"><svg class="dotify-icon dotify-icon--lg dotify-icon--primary" aria-hidden="true"><use href="icons/heroicons-sprite.svg#heart"></use></svg><span class="demo-label">--primary</span></div>
+        <div class="demo-cell"><svg class="dotify-icon dotify-icon--lg dotify-icon--secondary" aria-hidden="true"><use href="icons/heroicons-sprite.svg#star"></use></svg><span class="demo-label">--secondary</span></div>
+        <div class="demo-cell"><svg class="dotify-icon dotify-icon--lg dotify-icon--success" aria-hidden="true"><use href="icons/heroicons-sprite.svg#check-circle"></use></svg><span class="demo-label">--success</span></div>
+        <div class="demo-cell"><svg class="dotify-icon dotify-icon--lg dotify-icon--error" aria-hidden="true"><use href="icons/heroicons-sprite.svg#x-circle"></use></svg><span class="demo-label">--error</span></div>
+        <div class="demo-cell"><svg class="dotify-icon dotify-icon--lg dotify-icon--warning" aria-hidden="true"><use href="icons/heroicons-sprite.svg#exclamation-triangle"></use></svg><span class="demo-label">--warning</span></div>
+        <div class="demo-cell"><svg class="dotify-icon dotify-icon--lg dotify-icon--muted" aria-hidden="true"><use href="icons/heroicons-sprite.svg#information-circle"></use></svg><span class="demo-label">--muted</span></div>
+      </div>
+    </div>
+
+    <div class="demo-subsection">
+      <p class="demo-subsection-title">All icons (50)</p>
+      <div class="icon-grid">
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#home"></use></svg><span>home</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#bars-3"></use></svg><span>bars-3</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#x-mark"></use></svg><span>x-mark</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#chevron-down"></use></svg><span>chevron-down</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#chevron-up"></use></svg><span>chevron-up</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#chevron-left"></use></svg><span>chevron-left</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#chevron-right"></use></svg><span>chevron-right</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#ellipsis-horizontal"></use></svg><span>ellipsis-horizontal</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#arrow-right"></use></svg><span>arrow-right</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#arrow-left"></use></svg><span>arrow-left</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#arrow-up"></use></svg><span>arrow-up</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#arrow-down"></use></svg><span>arrow-down</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#arrow-up-tray"></use></svg><span>arrow-up-tray</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#arrow-down-tray"></use></svg><span>arrow-down-tray</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#arrow-path"></use></svg><span>arrow-path</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#plus"></use></svg><span>plus</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#minus"></use></svg><span>minus</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#check"></use></svg><span>check</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#pencil"></use></svg><span>pencil</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#trash"></use></svg><span>trash</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#magnifying-glass"></use></svg><span>magnifying-glass</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#funnel"></use></svg><span>funnel</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#clipboard-document"></use></svg><span>clipboard-document</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#user"></use></svg><span>user</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#users"></use></svg><span>users</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#bell"></use></svg><span>bell</span></div>
+        <div class="icon-item"><svg class="dotify-icon dotify-icon--success" aria-hidden="true"><use href="icons/heroicons-sprite.svg#check-circle"></use></svg><span>check-circle</span></div>
+        <div class="icon-item"><svg class="dotify-icon dotify-icon--error" aria-hidden="true"><use href="icons/heroicons-sprite.svg#x-circle"></use></svg><span>x-circle</span></div>
+        <div class="icon-item"><svg class="dotify-icon dotify-icon--error" aria-hidden="true"><use href="icons/heroicons-sprite.svg#exclamation-circle"></use></svg><span>exclamation-circle</span></div>
+        <div class="icon-item"><svg class="dotify-icon dotify-icon--warning" aria-hidden="true"><use href="icons/heroicons-sprite.svg#exclamation-triangle"></use></svg><span>exclamation-triangle</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#information-circle"></use></svg><span>information-circle</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#question-mark-circle"></use></svg><span>question-mark-circle</span></div>
+        <div class="icon-item"><svg class="dotify-icon dotify-icon--success" aria-hidden="true"><use href="icons/heroicons-sprite.svg#shield-check"></use></svg><span>shield-check</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#eye"></use></svg><span>eye</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#eye-slash"></use></svg><span>eye-slash</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#envelope"></use></svg><span>envelope</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#phone"></use></svg><span>phone</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#document-text"></use></svg><span>document-text</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#folder"></use></svg><span>folder</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#chart-bar"></use></svg><span>chart-bar</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#photo"></use></svg><span>photo</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#calendar"></use></svg><span>calendar</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#clock"></use></svg><span>clock</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#credit-card"></use></svg><span>credit-card</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#shopping-cart"></use></svg><span>shopping-cart</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#cog-6-tooth"></use></svg><span>cog-6-tooth</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#lock-closed"></use></svg><span>lock-closed</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#star"></use></svg><span>star</span></div>
+        <div class="icon-item"><svg class="dotify-icon dotify-icon--primary" aria-hidden="true"><use href="icons/heroicons-sprite.svg#heart"></use></svg><span>heart</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#bookmark"></use></svg><span>bookmark</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#map-pin"></use></svg><span>map-pin</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#globe-alt"></use></svg><span>globe-alt</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#paper-clip"></use></svg><span>paper-clip</span></div>
+        <div class="icon-item"><svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#link"></use></svg><span>link</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ============================================================
+  MODALS (hidden until triggered)
+============================================================ -->
+<div class="dotify-modal" id="modal-sm" role="dialog" aria-modal="true" aria-labelledby="modal-sm-title">
+  <div class="dotify-modal__overlay" onclick="closeModal('modal-sm')"></div>
+  <div class="dotify-modal__panel dotify-modal__panel--sm">
+    <div class="dotify-modal__header">
+      <h2 class="dotify-modal__title" id="modal-sm-title">Small modal</h2>
+      <button class="dotify-modal__close" onclick="closeModal('modal-sm')" aria-label="Close">
+        <svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#x-mark"></use></svg>
+      </button>
+    </div>
+    <div class="dotify-modal__body">
+      <p>A compact confirmation dialog. Keep it short.</p>
+    </div>
+    <div class="dotify-modal__footer">
+      <button class="dotify-btn dotify-btn--ghost" onclick="closeModal('modal-sm')">Cancel</button>
+      <button class="dotify-btn dotify-btn--primary">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<div class="dotify-modal" id="modal-default" role="dialog" aria-modal="true" aria-labelledby="modal-default-title">
+  <div class="dotify-modal__overlay" onclick="closeModal('modal-default')"></div>
+  <div class="dotify-modal__panel">
+    <div class="dotify-modal__header">
+      <h2 class="dotify-modal__title" id="modal-default-title">Edit profile</h2>
+      <button class="dotify-modal__close" onclick="closeModal('modal-default')" aria-label="Close">
+        <svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#x-mark"></use></svg>
+      </button>
+    </div>
+    <div class="dotify-modal__body">
+      <div class="dotify-field">
+        <label class="dotify-label" for="modal-name">Display name</label>
+        <input type="text" id="modal-name" class="dotify-input" placeholder="Alice Johnson">
+      </div>
+      <div class="dotify-field" style="margin-top:1rem">
+        <label class="dotify-label" for="modal-bio">Bio</label>
+        <textarea id="modal-bio" class="dotify-textarea" rows="3" placeholder="Tell us about yourself…"></textarea>
+      </div>
+    </div>
+    <div class="dotify-modal__footer">
+      <button class="dotify-btn dotify-btn--ghost" onclick="closeModal('modal-default')">Cancel</button>
+      <button class="dotify-btn dotify-btn--primary">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<div class="dotify-modal" id="modal-lg" role="dialog" aria-modal="true" aria-labelledby="modal-lg-title">
+  <div class="dotify-modal__overlay" onclick="closeModal('modal-lg')"></div>
+  <div class="dotify-modal__panel dotify-modal__panel--lg">
+    <div class="dotify-modal__header">
+      <h2 class="dotify-modal__title" id="modal-lg-title">User management</h2>
+      <button class="dotify-modal__close" onclick="closeModal('modal-lg')" aria-label="Close">
+        <svg class="dotify-icon" aria-hidden="true"><use href="icons/heroicons-sprite.svg#x-mark"></use></svg>
+      </button>
+    </div>
+    <div class="dotify-modal__body">
+      <div class="dotify-table-wrapper">
+        <table class="dotify-table dotify-table--hover-rows">
+          <thead><tr><th>Name</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td>Alice Johnson</td><td>Admin</td><td><span class="dotify-badge dotify-badge--success">Active</span></td><td><button class="dotify-btn dotify-btn--ghost dotify-btn--sm">Edit</button></td></tr>
+            <tr><td>Bob Smith</td><td>Editor</td><td><span class="dotify-badge dotify-badge--warning">Pending</span></td><td><button class="dotify-btn dotify-btn--ghost dotify-btn--sm">Edit</button></td></tr>
+            <tr><td>Carol White</td><td>Viewer</td><td><span class="dotify-badge dotify-badge--error">Inactive</span></td><td><button class="dotify-btn dotify-btn--ghost dotify-btn--sm">Edit</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="dotify-modal__footer">
+      <button class="dotify-btn dotify-btn--ghost" onclick="closeModal('modal-lg')">Close</button>
+      <button class="dotify-btn dotify-btn--primary">
+        <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="icons/heroicons-sprite.svg#plus"></use></svg>
+        Add user
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  /* ---- Indeterminate checkbox ---- */
+  document.getElementById('t-indeterminate').indeterminate = true;
+
+  /* ---- Modal ---- */
+  function openModal(id) {
+    var el = document.getElementById(id);
+    el.classList.add('dotify-modal--open');
+    var firstFocusable = el.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (firstFocusable) firstFocusable.focus();
+    document.addEventListener('keydown', function escHandler(e) {
+      if (e.key === 'Escape') {
+        closeModal(id);
+        document.removeEventListener('keydown', escHandler);
+      }
+    });
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('dotify-modal--open');
+  }
+
+  /* ---- Dropdown ---- */
+  function toggleDropdown(id) {
+    var el = document.getElementById(id);
+    var btn = el.querySelector('[aria-expanded]');
+    var isOpen = el.classList.toggle('dotify-dropdown--open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) {
+      document.addEventListener('click', function outsideHandler(e) {
+        if (!el.contains(e.target)) {
+          el.classList.remove('dotify-dropdown--open');
+          btn.setAttribute('aria-expanded', 'false');
+          document.removeEventListener('click', outsideHandler);
+        }
+      });
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+/* ============================================================
+   Dotify One Design Kit — Colour Tokens
+   Primitive scales + semantic tokens + dark-mode overrides
+   https://repo.dotify.biz/one/design-system/css/tokens/colors.css
+   ============================================================ */
+
+/* ---- Primitive: Dotify Red (brand primary, base = 600) ---- */
+:root {
+  --dotify-red-50:  #FFF1F1;
+  --dotify-red-100: #FFE0E0;
+  --dotify-red-200: #FFC0C0;
+  --dotify-red-300: #FF9090;
+  --dotify-red-400: #F85555;
+  --dotify-red-500: #E82325;
+  --dotify-red-600: #B41618;
+  --dotify-red-700: #8F1113;
+  --dotify-red-800: #6D0C0E;
+  --dotify-red-900: #4B0809;
+  --dotify-red-950: #2D0404;
+}
+
+/* ---- Primitive: Dotify Indigo (primary secondary, base = 600) ---- */
+:root {
+  --dotify-indigo-50:  #EDEDFC;
+  --dotify-indigo-100: #D6D5F8;
+  --dotify-indigo-200: #AEACF1;
+  --dotify-indigo-300: #8683E8;
+  --dotify-indigo-400: #605DDB;
+  --dotify-indigo-500: #3F3CAF;
+  --dotify-indigo-600: #211F60;
+  --dotify-indigo-700: #1A1849;
+  --dotify-indigo-800: #131237;
+  --dotify-indigo-900: #0C0B24;
+  --dotify-indigo-950: #060514;
+}
+
+/* ---- Primitive: Dotify Blue (base = 600) ---- */
+:root {
+  --dotify-blue-50:  #EAF4FB;
+  --dotify-blue-100: #C8E4F5;
+  --dotify-blue-200: #91CBEB;
+  --dotify-blue-300: #5AAEE0;
+  --dotify-blue-400: #3492CF;
+  --dotify-blue-500: #2779B0;
+  --dotify-blue-600: #1F628E;
+  --dotify-blue-700: #184D70;
+  --dotify-blue-800: #123852;
+  --dotify-blue-900: #0C2436;
+  --dotify-blue-950: #06131E;
+}
+
+/* ---- Primitive: Dotify Fuchsia (base = 600) ---- */
+:root {
+  --dotify-fuchsia-50:  #FAEEF6;
+  --dotify-fuchsia-100: #F4D1E9;
+  --dotify-fuchsia-200: #EAA4D3;
+  --dotify-fuchsia-300: #DD76BC;
+  --dotify-fuchsia-400: #CF4EA7;
+  --dotify-fuchsia-500: #B23383;
+  --dotify-fuchsia-600: #8E1F62;
+  --dotify-fuchsia-700: #701850;
+  --dotify-fuchsia-800: #52113A;
+  --dotify-fuchsia-900: #360B26;
+  --dotify-fuchsia-950: #1F0516;
+}
+
+/* ---- Primitive: Dotify Green / Plus (base = 600) ---- */
+:root {
+  --dotify-green-50:  #EAFAEF;
+  --dotify-green-100: #C5F2D2;
+  --dotify-green-200: #8AE5A7;
+  --dotify-green-300: #52D87D;
+  --dotify-green-400: #2CC65D;
+  --dotify-green-500: #1EAD49;
+  --dotify-green-600: #158C36;
+  --dotify-green-700: #106D2A;
+  --dotify-green-800: #0C4F1F;
+  --dotify-green-900: #073214;
+  --dotify-green-950: #041C0B;
+}
+
+/* ---- Primitive: Dotify Yellow / Attention (base = 400) ---- */
+:root {
+  --dotify-yellow-50:  #FEFDE8;
+  --dotify-yellow-100: #FEFACA;
+  --dotify-yellow-200: #FEF69A;
+  --dotify-yellow-300: #FDF066;
+  --dotify-yellow-400: #EDD83D;
+  --dotify-yellow-500: #D4B90A;
+  --dotify-yellow-600: #B09306;
+  --dotify-yellow-700: #8A7007;
+  --dotify-yellow-800: #645107;
+  --dotify-yellow-900: #433606;
+  --dotify-yellow-950: #271F04;
+}
+
+/* ---- Primitive: Error Red / Dotify Minus (base = 600) ---- */
+:root {
+  --dotify-error-50:  #FFF1F1;
+  --dotify-error-100: #FFE2E2;
+  --dotify-error-200: #FFC4C4;
+  --dotify-error-300: #FF9595;
+  --dotify-error-400: #FF5C5E;
+  --dotify-error-500: #F52B2D;
+  --dotify-error-600: #D91A1D;
+  --dotify-error-700: #AA1315;
+  --dotify-error-800: #830E10;
+  --dotify-error-900: #5B090A;
+  --dotify-error-950: #370506;
+}
+
+/* ---- Primitive: Gray — Tailwind verbatim ---- */
+:root {
+  --dotify-gray-50:  #f9fafb;
+  --dotify-gray-100: #f3f4f6;
+  --dotify-gray-200: #e5e7eb;
+  --dotify-gray-300: #d1d5db;
+  --dotify-gray-400: #9ca3af;
+  --dotify-gray-500: #6b7280;
+  --dotify-gray-600: #4b5563;
+  --dotify-gray-700: #374151;
+  --dotify-gray-800: #1f2937;
+  --dotify-gray-900: #111827;
+  --dotify-gray-950: #030712;
+}
+
+/* ================================================================
+   Semantic tokens — light mode (default)
+   Components reference only these, never primitive tokens directly.
+   ================================================================ */
+:root {
+  /* Primary (Dotify Red) */
+  --dotify-color-primary:        var(--dotify-red-600);
+  --dotify-color-primary-hover:  var(--dotify-red-700);
+  --dotify-color-primary-active: var(--dotify-red-800);
+  --dotify-color-primary-light:  var(--dotify-red-50);
+  --dotify-color-primary-fg:     #ffffff;
+
+  /* Secondary (Dotify Indigo — primary secondary, used on buttons etc.) */
+  --dotify-color-secondary:        var(--dotify-indigo-600);
+  --dotify-color-secondary-hover:  var(--dotify-indigo-700);
+  --dotify-color-secondary-active: var(--dotify-indigo-800);
+  --dotify-color-secondary-light:  var(--dotify-indigo-50);
+  --dotify-color-secondary-fg:     #ffffff;
+
+  /* Surface / background */
+  --dotify-color-surface:         var(--dotify-gray-50);
+  --dotify-color-surface-raised:  #ffffff;
+  --dotify-color-surface-overlay: #ffffff;
+  --dotify-color-surface-inset:   var(--dotify-gray-100);
+
+  /* Text */
+  --dotify-color-on-surface:       var(--dotify-gray-900);
+  --dotify-color-on-surface-muted: var(--dotify-gray-500);
+  --dotify-color-on-surface-faint: var(--dotify-gray-400);
+
+  /* Borders */
+  --dotify-color-border:        var(--dotify-gray-200);
+  --dotify-color-border-strong: var(--dotify-gray-300);
+  --dotify-color-border-focus:  var(--dotify-indigo-600);
+
+  /* Success (Dotify Plus) */
+  --dotify-color-success:       var(--dotify-green-600);
+  --dotify-color-success-light: var(--dotify-green-50);
+  --dotify-color-success-fg:    #ffffff;
+  --dotify-color-on-success:    var(--dotify-green-900);
+
+  /* Error (Dotify Minus) */
+  --dotify-color-error:         var(--dotify-error-600);
+  --dotify-color-error-light:   var(--dotify-error-50);
+  --dotify-color-error-fg:      #ffffff;
+  --dotify-color-on-error:      var(--dotify-error-900);
+
+  /* Warning (Dotify Attention) */
+  --dotify-color-warning:       var(--dotify-yellow-400);
+  --dotify-color-warning-light: var(--dotify-yellow-50);
+  --dotify-color-warning-fg:    var(--dotify-gray-900); /* dark text on yellow — WCAG AA */
+  --dotify-color-on-warning:    var(--dotify-yellow-900);
+
+  /* Focus ring */
+  --dotify-color-focus-ring: var(--dotify-indigo-600);
+}
+
+/* ================================================================
+   Dark mode — via media query (default)
+   ================================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dotify-color-surface:         var(--dotify-gray-900);
+    --dotify-color-surface-raised:  var(--dotify-gray-800);
+    --dotify-color-surface-overlay: var(--dotify-gray-800);
+    --dotify-color-surface-inset:   var(--dotify-gray-950);
+
+    --dotify-color-on-surface:       var(--dotify-gray-50);
+    --dotify-color-on-surface-muted: var(--dotify-gray-400);
+    --dotify-color-on-surface-faint: var(--dotify-gray-500); /* gray-600 was ~2.5:1 on gray-900; gray-500 gives ~3.7:1 */
+
+    --dotify-color-border:        var(--dotify-gray-700);
+    --dotify-color-border-strong: var(--dotify-gray-600);
+    --dotify-color-border-focus:  var(--dotify-indigo-300);
+
+    --dotify-color-primary-light:    var(--dotify-red-950);
+    --dotify-color-secondary-light:  var(--dotify-indigo-950);
+    --dotify-color-success-light:    var(--dotify-green-950);
+    --dotify-color-error-light:      var(--dotify-error-950);
+    --dotify-color-warning-light:    var(--dotify-yellow-950);
+
+    /* on-* tokens must flip to light values — dark *-light backgrounds are near-black */
+    --dotify-color-on-success: var(--dotify-green-100);
+    --dotify-color-on-error:   var(--dotify-error-100);
+    --dotify-color-on-warning: var(--dotify-yellow-100);
+
+    --dotify-color-focus-ring:       var(--dotify-indigo-300);
+  }
+}
+
+/* ================================================================
+   Dark mode — via .dark class on <html> (manual toggle override)
+   ================================================================ */
+.dark {
+  --dotify-color-surface:         var(--dotify-gray-900);
+  --dotify-color-surface-raised:  var(--dotify-gray-800);
+  --dotify-color-surface-overlay: var(--dotify-gray-800);
+  --dotify-color-surface-inset:   var(--dotify-gray-950);
+
+  --dotify-color-on-surface:       var(--dotify-gray-50);
+  --dotify-color-on-surface-muted: var(--dotify-gray-400);
+  --dotify-color-on-surface-faint: var(--dotify-gray-500); /* gray-600 was ~2.5:1 on gray-900; gray-500 gives ~3.7:1 */
+
+  --dotify-color-border:        var(--dotify-gray-700);
+  --dotify-color-border-strong: var(--dotify-gray-600);
+  --dotify-color-border-focus:  var(--dotify-indigo-300);
+
+  --dotify-color-primary-light:    var(--dotify-red-950);
+  --dotify-color-secondary-light:  var(--dotify-indigo-950);
+  --dotify-color-success-light:    var(--dotify-green-950);
+  --dotify-color-error-light:      var(--dotify-error-950);
+  --dotify-color-warning-light:    var(--dotify-yellow-950);
+
+  /* on-* tokens must flip to light values — dark *-light backgrounds are near-black */
+  --dotify-color-on-success: var(--dotify-green-100);
+  --dotify-color-on-error:   var(--dotify-error-100);
+  --dotify-color-on-warning: var(--dotify-yellow-100);
+
+  --dotify-color-focus-ring:       var(--dotify-indigo-300);
+}

@@ -1,0 +1,150 @@
+/* ============================================================
+   Dotify One Design Kit — Modal / Dialog Component
+   https://repo.dotify.biz/one/design-system/css/components/modal.css
+
+   HTML usage:
+     <div class="dotify-modal" id="my-modal" aria-modal="true" role="dialog" aria-labelledby="modal-title">
+       <div class="dotify-modal__overlay" aria-hidden="true"></div>
+       <div class="dotify-modal__panel">
+         <div class="dotify-modal__header">
+           <h2 class="dotify-modal__title" id="modal-title">Dialog Title</h2>
+           <button class="dotify-modal__close" aria-label="Close dialog">
+             <svg class="dotify-icon" aria-hidden="true"><use href="/icons/heroicons-sprite.svg#x-mark"/></svg>
+           </button>
+         </div>
+         <div class="dotify-modal__body">…content…</div>
+         <div class="dotify-modal__footer">
+           <button class="dotify-btn dotify-btn--ghost">Cancel</button>
+           <button class="dotify-btn dotify-btn--primary">Confirm</button>
+         </div>
+       </div>
+     </div>
+
+   Toggle visibility with: .dotify-modal--open
+   JS: modal.classList.toggle('dotify-modal--open')
+   ============================================================ */
+
+.dotify-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: var(--dotify-z-modal);
+  align-items: center;
+  justify-content: center;
+  padding: var(--dotify-spacing-4);
+}
+
+.dotify-modal--open {
+  display: flex;
+}
+
+/* Overlay */
+.dotify-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgb(0 0 0 / 0.5);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* Panel */
+.dotify-modal__panel {
+  position: relative;
+  z-index: 1;
+  background-color: var(--dotify-color-surface-overlay);
+  border-radius: var(--dotify-radius);
+  box-shadow: var(--dotify-shadow-2xl);
+  width: 100%;
+  max-width: 32rem; /* 512px default */
+  max-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: dotify-modal-in 200ms ease;
+}
+
+@keyframes dotify-modal-in {
+  from { opacity: 0; transform: scale(0.96) translateY(-8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ---- Size modifiers ---- */
+.dotify-modal--sm .dotify-modal__panel  { max-width: 24rem; }
+.dotify-modal--lg .dotify-modal__panel  { max-width: 48rem; }
+.dotify-modal--xl .dotify-modal__panel  { max-width: 64rem; }
+.dotify-modal--full .dotify-modal__panel {
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100vh - 2rem);
+}
+
+/* Header */
+.dotify-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--dotify-spacing-5) var(--dotify-spacing-6);
+  border-bottom: 1px solid var(--dotify-color-border);
+  flex-shrink: 0;
+}
+
+.dotify-modal__title {
+  font-family: var(--dotify-font-heading);
+  font-size: var(--dotify-text-lg);
+  font-weight: var(--dotify-font-weight-semibold);
+  color: var(--dotify-color-on-surface);
+  line-height: var(--dotify-leading-tight);
+}
+
+.dotify-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  border-radius: var(--dotify-radius);
+  cursor: pointer;
+  color: var(--dotify-color-on-surface-muted);
+  transition: background-color 150ms ease, color 150ms ease;
+  flex-shrink: 0;
+}
+
+.dotify-modal__close:hover {
+  background-color: var(--dotify-color-surface-inset);
+  color: var(--dotify-color-on-surface);
+}
+
+.dotify-modal__close:focus-visible {
+  outline: 2px solid var(--dotify-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Body */
+.dotify-modal__body {
+  padding: var(--dotify-spacing-6);
+  overflow-y: auto;
+  flex: 1;
+  color: var(--dotify-color-on-surface);
+  font-size: var(--dotify-text-sm);
+  line-height: var(--dotify-leading-relaxed);
+}
+
+/* Footer */
+.dotify-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--dotify-spacing-3);
+  padding: var(--dotify-spacing-4) var(--dotify-spacing-6);
+  border-top: 1px solid var(--dotify-color-border);
+  background-color: var(--dotify-color-surface-inset);
+  flex-shrink: 0;
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-modal__overlay { background-color: rgb(0 0 0 / 0.65); }
+}
+
+.dark .dotify-modal__overlay { background-color: rgb(0 0 0 / 0.65); }

@@ -1,0 +1,113 @@
+/* ============================================================
+   Dotify One Design Kit — Card Component
+   https://repo.dotify.biz/one/design-system/css/components/card.css
+
+   HTML usage:
+     <div class="dotify-card">
+       <div class="dotify-card__header">
+         <h3 class="dotify-card__title">Title</h3>
+         <p class="dotify-card__subtitle">Subtitle</p>
+       </div>
+       <div class="dotify-card__body">…content…</div>
+       <div class="dotify-card__footer">
+         <button class="dotify-btn dotify-btn--primary">Action</button>
+       </div>
+     </div>
+   ============================================================ */
+
+.dotify-card {
+  background-color: var(--dotify-color-surface-raised);
+  border: 1px solid var(--dotify-color-border);
+  border-radius: var(--dotify-radius);
+  box-shadow: var(--dotify-shadow-sm);
+  overflow: hidden;
+}
+
+/* ---- Modifier: interactive / clickable ---- */
+.dotify-card--interactive {
+  cursor: pointer;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.dotify-card--interactive:hover {
+  box-shadow: var(--dotify-shadow-md);
+  transform: translateY(-1px);
+}
+
+.dotify-card--interactive:active {
+  transform: translateY(0);
+  box-shadow: var(--dotify-shadow-sm);
+}
+
+.dotify-card--interactive:focus-visible {
+  outline: 2px solid var(--dotify-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---- Modifier: flat (no shadow, stronger border) ---- */
+.dotify-card--flat {
+  box-shadow: none;
+  border-color: var(--dotify-color-border-strong);
+}
+
+/* ---- Modifier: elevated ---- */
+.dotify-card--elevated {
+  box-shadow: var(--dotify-shadow-lg);
+  border: none;
+}
+
+/* ---- Sections ---- */
+.dotify-card__header {
+  padding: var(--dotify-spacing-5) var(--dotify-spacing-6);
+  border-bottom: 1px solid var(--dotify-color-border);
+}
+
+.dotify-card__body {
+  padding: var(--dotify-spacing-6);
+}
+
+.dotify-card__footer {
+  padding: var(--dotify-spacing-4) var(--dotify-spacing-6);
+  background-color: var(--dotify-color-surface-inset);
+  border-top: 1px solid var(--dotify-color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--dotify-spacing-3);
+}
+
+/* ---- Card title / subtitle ---- */
+.dotify-card__title {
+  font-family: var(--dotify-font-heading);
+  font-size: var(--dotify-text-lg);
+  font-weight: var(--dotify-font-weight-semibold);
+  color: var(--dotify-color-on-surface);
+  line-height: var(--dotify-leading-tight);
+}
+
+.dotify-card__subtitle {
+  font-size: var(--dotify-text-sm);
+  color: var(--dotify-color-on-surface-muted);
+  margin-top: var(--dotify-spacing-0-5);
+}
+
+/* ---- Card image ---- */
+.dotify-card__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-card {
+    background-color: var(--dotify-color-surface-raised);
+    border-color: var(--dotify-color-border);
+  }
+  .dotify-card__footer {
+    background-color: var(--dotify-color-surface-inset);
+  }
+}

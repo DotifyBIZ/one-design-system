@@ -1,0 +1,103 @@
+/* ============================================================
+   Dotify One Design Kit — Table Component
+   https://repo.dotify.biz/one/design-system/css/components/table.css
+
+   HTML usage:
+     <div class="dotify-table-wrapper">
+       <table class="dotify-table dotify-table--striped">
+         <thead>
+           <tr>
+             <th>Name</th>
+             <th>Email</th>
+             <th>Status</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>Alice</td>
+             <td>alice@example.com</td>
+             <td><span class="dotify-badge dotify-badge--success-filled">Active</span></td>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+   ============================================================ */
+
+.dotify-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--dotify-color-border);
+  border-radius: var(--dotify-radius);
+}
+
+.dotify-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  color: var(--dotify-color-on-surface);
+  background-color: var(--dotify-color-surface-raised);
+}
+
+/* ---- Head ---- */
+.dotify-table thead {
+  background-color: var(--dotify-color-surface-inset);
+}
+
+.dotify-table th {
+  padding: var(--dotify-spacing-3) var(--dotify-spacing-4);
+  text-align: left;
+  font-weight: var(--dotify-font-weight-semibold);
+  color: var(--dotify-color-on-surface-muted);
+  border-bottom: 2px solid var(--dotify-color-border-strong);
+  white-space: nowrap;
+}
+
+/* ---- Body cells ---- */
+.dotify-table td {
+  padding: var(--dotify-spacing-3) var(--dotify-spacing-4);
+  border-bottom: 1px solid var(--dotify-color-border);
+  vertical-align: middle;
+}
+
+.dotify-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ---- Modifier: striped ---- */
+.dotify-table--striped tbody tr:nth-child(even) {
+  background-color: var(--dotify-color-surface-inset);
+}
+
+/* ---- Modifier: bordered (all cells) ---- */
+.dotify-table--bordered th,
+.dotify-table--bordered td {
+  border: 1px solid var(--dotify-color-border);
+}
+
+/* ---- Modifier: hover rows ---- */
+.dotify-table--hover tbody tr:hover {
+  background-color: var(--dotify-color-secondary-light);
+}
+
+/* ---- Modifier: compact ---- */
+.dotify-table--compact th,
+.dotify-table--compact td {
+  padding: var(--dotify-spacing-2) var(--dotify-spacing-3);
+}
+
+/* ---- Sortable column header ---- */
+.dotify-table th[aria-sort] {
+  cursor: pointer;
+}
+
+.dotify-table th[aria-sort='ascending']::after  { content: ' ↑'; }
+.dotify-table th[aria-sort='descending']::after { content: ' ↓'; }
+
+/* ---- Empty state ---- */
+.dotify-table__empty {
+  text-align: center;
+  padding: var(--dotify-spacing-12) var(--dotify-spacing-6);
+  color: var(--dotify-color-on-surface-muted);
+}

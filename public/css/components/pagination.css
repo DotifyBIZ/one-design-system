@@ -1,0 +1,124 @@
+/* ============================================================
+   Dotify One Design Kit — Pagination Component
+   https://repo.dotify.biz/one/design-system/css/components/pagination.css
+
+   HTML usage:
+     <nav class="dotify-pagination" aria-label="Pagination">
+       <a href="#" class="dotify-pagination__prev" aria-label="Previous page">
+         <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="/icons/heroicons-sprite.svg#chevron-left"/></svg>
+         Previous
+       </a>
+       <ol class="dotify-pagination__list">
+         <li><a href="#" class="dotify-pagination__link">1</a></li>
+         <li><a href="#" class="dotify-pagination__link dotify-pagination__link--active" aria-current="page">2</a></li>
+         <li><span class="dotify-pagination__ellipsis" aria-hidden="true">…</span></li>
+         <li><a href="#" class="dotify-pagination__link">10</a></li>
+       </ol>
+       <a href="#" class="dotify-pagination__next" aria-label="Next page">
+         Next
+         <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="/icons/heroicons-sprite.svg#chevron-right"/></svg>
+       </a>
+     </nav>
+   ============================================================ */
+
+.dotify-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--dotify-spacing-2);
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+}
+
+/* ---- Items list ---- */
+.dotify-pagination__list {
+  display: flex;
+  align-items: center;
+  gap: var(--dotify-spacing-1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ---- Shared link / button style (mirrors ghost button) ---- */
+.dotify-pagination__link,
+.dotify-pagination__prev,
+.dotify-pagination__next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dotify-spacing-1-5);
+  min-width: 36px;
+  height: 36px;
+  padding: 0 var(--dotify-spacing-2);
+  border: 1px solid var(--dotify-color-border-strong);
+  border-radius: var(--dotify-radius);
+  background-color: transparent;
+  color: var(--dotify-color-on-surface);
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: var(--dotify-font-weight-semibold);
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dotify-pagination__link:hover,
+.dotify-pagination__prev:hover,
+.dotify-pagination__next:hover {
+  background-color: var(--dotify-color-surface-inset);
+  border-color: var(--dotify-color-secondary);
+  color: var(--dotify-color-secondary);
+}
+
+.dotify-pagination__link:focus-visible,
+.dotify-pagination__prev:focus-visible,
+.dotify-pagination__next:focus-visible {
+  outline: 2px solid var(--dotify-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---- Active page ---- */
+.dotify-pagination__link--active,
+.dotify-pagination__link[aria-current='page'] {
+  background-color: var(--dotify-color-secondary);
+  border-color: var(--dotify-color-secondary);
+  color: #ffffff;
+}
+
+.dotify-pagination__link--active:hover,
+.dotify-pagination__link[aria-current='page']:hover {
+  background-color: var(--dotify-color-secondary-hover);
+  border-color: var(--dotify-color-secondary-hover);
+  color: #ffffff;
+}
+
+/* ---- Disabled state ---- */
+.dotify-pagination__link--disabled,
+.dotify-pagination__prev--disabled,
+.dotify-pagination__next--disabled,
+.dotify-pagination__link[aria-disabled='true'],
+.dotify-pagination__prev[aria-disabled='true'],
+.dotify-pagination__next[aria-disabled='true'] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---- Ellipsis ---- */
+.dotify-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  color: var(--dotify-color-on-surface-muted);
+}
+
+/* ---- Compact variant (no prev/next labels) ---- */
+.dotify-pagination--compact .dotify-pagination__prev,
+.dotify-pagination--compact .dotify-pagination__next {
+  min-width: 36px;
+  padding: 0;
+}
+
+/* ---- Dark mode — relies on semantic tokens, no overrides needed ---- */

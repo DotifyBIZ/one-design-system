@@ -1,0 +1,100 @@
+/* ============================================================
+   Dotify One Design Kit — Typography Utilities
+   https://repo.dotify.biz/one/design-system/css/utilities/typography.css
+   ============================================================ */
+
+/* ---- Font family ---- */
+.dotify-font-body    { font-family: var(--dotify-font-body); }
+.dotify-font-heading { font-family: var(--dotify-font-heading); }
+.dotify-font-mono    { font-family: var(--dotify-font-mono); }
+
+/* ---- Font size ---- */
+.dotify-text-xs   { font-size: var(--dotify-text-xs);   line-height: var(--dotify-leading-normal); }
+.dotify-text-sm   { font-size: var(--dotify-text-sm);   line-height: var(--dotify-leading-normal); }
+.dotify-text-base { font-size: var(--dotify-text-base); line-height: var(--dotify-leading-normal); }
+.dotify-text-lg   { font-size: var(--dotify-text-lg);   line-height: var(--dotify-leading-snug); }
+.dotify-text-xl   { font-size: var(--dotify-text-xl);   line-height: var(--dotify-leading-snug); }
+.dotify-text-2xl  { font-size: var(--dotify-text-2xl);  line-height: var(--dotify-leading-tight); }
+.dotify-text-3xl  { font-size: var(--dotify-text-3xl);  line-height: var(--dotify-leading-tight); }
+.dotify-text-4xl  { font-size: var(--dotify-text-4xl);  line-height: var(--dotify-leading-none); }
+.dotify-text-5xl  { font-size: var(--dotify-text-5xl);  line-height: var(--dotify-leading-none); }
+
+/* ---- Font weight ---- */
+.dotify-font-normal   { font-weight: var(--dotify-font-weight-normal); }
+.dotify-font-semibold { font-weight: var(--dotify-font-weight-semibold); }
+.dotify-font-bold     { font-weight: 700; }
+
+/* ---- Line height ---- */
+.dotify-leading-none    { line-height: var(--dotify-leading-none); }
+.dotify-leading-tight   { line-height: var(--dotify-leading-tight); }
+.dotify-leading-snug    { line-height: var(--dotify-leading-snug); }
+.dotify-leading-normal  { line-height: var(--dotify-leading-normal); }
+.dotify-leading-relaxed { line-height: var(--dotify-leading-relaxed); }
+.dotify-leading-loose   { line-height: var(--dotify-leading-loose); }
+
+/* ---- Letter spacing ---- */
+.dotify-tracking-tighter { letter-spacing: var(--dotify-tracking-tighter); }
+.dotify-tracking-tight   { letter-spacing: var(--dotify-tracking-tight); }
+.dotify-tracking-normal  { letter-spacing: var(--dotify-tracking-normal); }
+.dotify-tracking-wide    { letter-spacing: var(--dotify-tracking-wide); }
+.dotify-tracking-wider   { letter-spacing: var(--dotify-tracking-wider); }
+.dotify-tracking-widest  { letter-spacing: var(--dotify-tracking-widest); }
+
+/* ---- Text alignment ---- */
+.dotify-text-left    { text-align: left; }
+.dotify-text-center  { text-align: center; }
+.dotify-text-right   { text-align: right; }
+.dotify-text-justify { text-align: justify; }
+
+/* ---- Text transform ---- */
+.dotify-uppercase   { text-transform: uppercase; }
+.dotify-lowercase   { text-transform: lowercase; }
+.dotify-capitalize  { text-transform: capitalize; }
+.dotify-normal-case { text-transform: none; }
+
+/* ---- Text decoration ---- */
+.dotify-underline    { text-decoration-line: underline; }
+.dotify-no-underline { text-decoration-line: none; }
+.dotify-line-through { text-decoration-line: line-through; }
+
+/* ---- Text overflow ---- */
+.dotify-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dotify-text-nowrap   { white-space: nowrap; }
+.dotify-text-wrap     { white-space: normal; }
+.dotify-text-balance  { text-wrap: balance; }
+.dotify-break-words   { overflow-wrap: break-word; }
+.dotify-break-all     { word-break: break-all; }
+
+/* ---- Prose (readable body text block) ---- */
+.dotify-prose {
+  max-width: 65ch;
+  line-height: var(--dotify-leading-relaxed);
+  color: var(--dotify-color-on-surface);
+}
+
+.dotify-prose h1,
+.dotify-prose h2,
+.dotify-prose h3,
+.dotify-prose h4 {
+  margin-top: var(--dotify-spacing-8);
+  margin-bottom: var(--dotify-spacing-4);
+}
+
+.dotify-prose p {
+  margin-bottom: var(--dotify-spacing-4);
+}
+
+.dotify-prose ul,
+.dotify-prose ol {
+  padding-left: var(--dotify-spacing-6);
+  margin-bottom: var(--dotify-spacing-4);
+}
+
+.dotify-prose li + li {
+  margin-top: var(--dotify-spacing-1);
+}

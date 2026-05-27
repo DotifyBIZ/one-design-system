@@ -1,0 +1,130 @@
+/* ============================================================
+   Dotify One Design Kit — Colour Utilities
+   .dotify-text-*     → color
+   .dotify-bg-*       → background-color
+   .dotify-border-*   → border-color (requires .dotify-border or border-width set)
+   https://repo.dotify.biz/one/design-system/css/utilities/colors.css
+   ============================================================ */
+
+/* ---- Text colours — semantic ---- */
+.dotify-text-primary        { color: var(--dotify-color-primary); }
+.dotify-text-secondary      { color: var(--dotify-color-secondary); }
+.dotify-text-on-surface     { color: var(--dotify-color-on-surface); }
+.dotify-text-muted          { color: var(--dotify-color-on-surface-muted); }
+.dotify-text-faint          { color: var(--dotify-color-on-surface-faint); }
+.dotify-text-success        { color: var(--dotify-color-success); }
+.dotify-text-error          { color: var(--dotify-color-error); }
+.dotify-text-warning        { color: var(--dotify-color-warning); }
+.dotify-text-white          { color: #ffffff; }
+.dotify-text-black          { color: #000000; }
+
+/* ---- Text colours — palette ---- */
+.dotify-text-red-50   { color: var(--dotify-red-50); }
+.dotify-text-red-100  { color: var(--dotify-red-100); }
+.dotify-text-red-200  { color: var(--dotify-red-200); }
+.dotify-text-red-300  { color: var(--dotify-red-300); }
+.dotify-text-red-400  { color: var(--dotify-red-400); }
+.dotify-text-red-500  { color: var(--dotify-red-500); }
+.dotify-text-red-600  { color: var(--dotify-red-600); }
+.dotify-text-red-700  { color: var(--dotify-red-700); }
+.dotify-text-red-800  { color: var(--dotify-red-800); }
+.dotify-text-red-900  { color: var(--dotify-red-900); }
+.dotify-text-red-950  { color: var(--dotify-red-950); }
+
+.dotify-text-indigo-50   { color: var(--dotify-indigo-50); }
+.dotify-text-indigo-100  { color: var(--dotify-indigo-100); }
+.dotify-text-indigo-200  { color: var(--dotify-indigo-200); }
+.dotify-text-indigo-300  { color: var(--dotify-indigo-300); }
+.dotify-text-indigo-400  { color: var(--dotify-indigo-400); }
+.dotify-text-indigo-500  { color: var(--dotify-indigo-500); }
+.dotify-text-indigo-600  { color: var(--dotify-indigo-600); }
+.dotify-text-indigo-700  { color: var(--dotify-indigo-700); }
+.dotify-text-indigo-800  { color: var(--dotify-indigo-800); }
+.dotify-text-indigo-900  { color: var(--dotify-indigo-900); }
+.dotify-text-indigo-950  { color: var(--dotify-indigo-950); }
+
+.dotify-text-blue-50   { color: var(--dotify-blue-50); }
+.dotify-text-blue-600  { color: var(--dotify-blue-600); }
+.dotify-text-blue-700  { color: var(--dotify-blue-700); }
+
+.dotify-text-fuchsia-50   { color: var(--dotify-fuchsia-50); }
+.dotify-text-fuchsia-600  { color: var(--dotify-fuchsia-600); }
+.dotify-text-fuchsia-700  { color: var(--dotify-fuchsia-700); }
+
+.dotify-text-green-50   { color: var(--dotify-green-50); }
+.dotify-text-green-600  { color: var(--dotify-green-600); }
+.dotify-text-green-700  { color: var(--dotify-green-700); }
+
+.dotify-text-yellow-50   { color: var(--dotify-yellow-50); }
+.dotify-text-yellow-400  { color: var(--dotify-yellow-400); }
+.dotify-text-yellow-700  { color: var(--dotify-yellow-700); }
+
+.dotify-text-gray-50   { color: var(--dotify-gray-50); }
+.dotify-text-gray-100  { color: var(--dotify-gray-100); }
+.dotify-text-gray-200  { color: var(--dotify-gray-200); }
+.dotify-text-gray-300  { color: var(--dotify-gray-300); }
+.dotify-text-gray-400  { color: var(--dotify-gray-400); }
+.dotify-text-gray-500  { color: var(--dotify-gray-500); }
+.dotify-text-gray-600  { color: var(--dotify-gray-600); }
+.dotify-text-gray-700  { color: var(--dotify-gray-700); }
+.dotify-text-gray-800  { color: var(--dotify-gray-800); }
+.dotify-text-gray-900  { color: var(--dotify-gray-900); }
+.dotify-text-gray-950  { color: var(--dotify-gray-950); }
+
+/* ---- Background colours — semantic ---- */
+.dotify-bg-primary         { background-color: var(--dotify-color-primary); }
+.dotify-bg-primary-light   { background-color: var(--dotify-color-primary-light); }
+.dotify-bg-secondary       { background-color: var(--dotify-color-secondary); }
+.dotify-bg-secondary-light { background-color: var(--dotify-color-secondary-light); }
+.dotify-bg-surface         { background-color: var(--dotify-color-surface); }
+.dotify-bg-surface-raised  { background-color: var(--dotify-color-surface-raised); }
+.dotify-bg-surface-inset   { background-color: var(--dotify-color-surface-inset); }
+.dotify-bg-success         { background-color: var(--dotify-color-success); }
+.dotify-bg-success-light   { background-color: var(--dotify-color-success-light); }
+.dotify-bg-error           { background-color: var(--dotify-color-error); }
+.dotify-bg-error-light     { background-color: var(--dotify-color-error-light); }
+.dotify-bg-warning         { background-color: var(--dotify-color-warning); }
+.dotify-bg-warning-light   { background-color: var(--dotify-color-warning-light); }
+.dotify-bg-transparent     { background-color: transparent; }
+.dotify-bg-white           { background-color: #ffffff; }
+
+/* ---- Background colours — palette ---- */
+.dotify-bg-red-50   { background-color: var(--dotify-red-50); }
+.dotify-bg-red-100  { background-color: var(--dotify-red-100); }
+.dotify-bg-red-600  { background-color: var(--dotify-red-600); }
+.dotify-bg-red-700  { background-color: var(--dotify-red-700); }
+.dotify-bg-red-900  { background-color: var(--dotify-red-900); }
+.dotify-bg-red-950  { background-color: var(--dotify-red-950); }
+
+.dotify-bg-indigo-50   { background-color: var(--dotify-indigo-50); }
+.dotify-bg-indigo-100  { background-color: var(--dotify-indigo-100); }
+.dotify-bg-indigo-600  { background-color: var(--dotify-indigo-600); }
+.dotify-bg-indigo-700  { background-color: var(--dotify-indigo-700); }
+.dotify-bg-indigo-900  { background-color: var(--dotify-indigo-900); }
+.dotify-bg-indigo-950  { background-color: var(--dotify-indigo-950); }
+
+.dotify-bg-green-50   { background-color: var(--dotify-green-50); }
+.dotify-bg-green-600  { background-color: var(--dotify-green-600); }
+.dotify-bg-green-950  { background-color: var(--dotify-green-950); }
+
+.dotify-bg-yellow-50   { background-color: var(--dotify-yellow-50); }
+.dotify-bg-yellow-400  { background-color: var(--dotify-yellow-400); }
+.dotify-bg-yellow-950  { background-color: var(--dotify-yellow-950); }
+
+.dotify-bg-gray-50   { background-color: var(--dotify-gray-50); }
+.dotify-bg-gray-100  { background-color: var(--dotify-gray-100); }
+.dotify-bg-gray-200  { background-color: var(--dotify-gray-200); }
+.dotify-bg-gray-700  { background-color: var(--dotify-gray-700); }
+.dotify-bg-gray-800  { background-color: var(--dotify-gray-800); }
+.dotify-bg-gray-900  { background-color: var(--dotify-gray-900); }
+.dotify-bg-gray-950  { background-color: var(--dotify-gray-950); }
+
+/* ---- Border colours — semantic ---- */
+.dotify-border-color-primary    { border-color: var(--dotify-color-primary); }
+.dotify-border-color-secondary  { border-color: var(--dotify-color-secondary); }
+.dotify-border-color-border     { border-color: var(--dotify-color-border); }
+.dotify-border-color-strong     { border-color: var(--dotify-color-border-strong); }
+.dotify-border-color-success    { border-color: var(--dotify-color-success); }
+.dotify-border-color-error      { border-color: var(--dotify-color-error); }
+.dotify-border-color-warning    { border-color: var(--dotify-color-warning); }
+.dotify-border-color-transparent{ border-color: transparent; }

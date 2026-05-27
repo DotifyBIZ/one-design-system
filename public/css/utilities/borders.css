@@ -1,0 +1,63 @@
+/* ============================================================
+   Dotify One Design Kit — Border Utilities
+   https://repo.dotify.biz/one/design-system/css/utilities/borders.css
+   ============================================================ */
+
+/* ---- Border radius ---- */
+.dotify-rounded-none { border-radius: var(--dotify-radius-none); }
+.dotify-rounded      { border-radius: var(--dotify-radius); }       /* 15px — the Dotify standard */
+.dotify-rounded-full { border-radius: var(--dotify-radius-full); }
+
+/* Per-side radius */
+.dotify-rounded-t      { border-top-left-radius: var(--dotify-radius); border-top-right-radius: var(--dotify-radius); }
+.dotify-rounded-b      { border-bottom-left-radius: var(--dotify-radius); border-bottom-right-radius: var(--dotify-radius); }
+.dotify-rounded-l      { border-top-left-radius: var(--dotify-radius); border-bottom-left-radius: var(--dotify-radius); }
+.dotify-rounded-r      { border-top-right-radius: var(--dotify-radius); border-bottom-right-radius: var(--dotify-radius); }
+.dotify-rounded-tl     { border-top-left-radius: var(--dotify-radius); }
+.dotify-rounded-tr     { border-top-right-radius: var(--dotify-radius); }
+.dotify-rounded-bl     { border-bottom-left-radius: var(--dotify-radius); }
+.dotify-rounded-br     { border-bottom-right-radius: var(--dotify-radius); }
+
+/* ---- Border width ---- */
+.dotify-border-0  { border-width: 0; }
+.dotify-border    { border-width: 1px; }
+.dotify-border-2  { border-width: 2px; }
+.dotify-border-4  { border-width: 4px; }
+
+.dotify-border-t  { border-top-width: 1px; }
+.dotify-border-r  { border-right-width: 1px; }
+.dotify-border-b  { border-bottom-width: 1px; }
+.dotify-border-l  { border-left-width: 1px; }
+
+/* ---- Border style ---- */
+.dotify-border-solid  { border-style: solid; }
+.dotify-border-dashed { border-style: dashed; }
+.dotify-border-dotted { border-style: dotted; }
+.dotify-border-none   { border-style: none; }
+
+/* ---- Divide (children separator) ---- */
+.dotify-divide-y > * + * {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: var(--dotify-color-border);
+}
+
+.dotify-divide-x > * + * {
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: var(--dotify-color-border);
+}
+
+/* ---- Outline ---- */
+.dotify-outline-none    { outline: none; }
+.dotify-outline-primary { outline: 2px solid var(--dotify-color-primary); outline-offset: 2px; }
+.dotify-outline-secondary { outline: 2px solid var(--dotify-color-secondary); outline-offset: 2px; }
+
+/* ---- Ring (focus helper) ---- */
+.dotify-ring {
+  box-shadow: 0 0 0 3px var(--dotify-color-focus-ring);
+}
+
+.dotify-ring-primary {
+  box-shadow: 0 0 0 3px var(--dotify-color-primary);
+}

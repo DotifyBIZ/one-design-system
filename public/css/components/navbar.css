@@ -1,0 +1,156 @@
+/* ============================================================
+   Dotify One Design Kit — Navbar Component
+   https://repo.dotify.biz/one/design-system/css/components/navbar.css
+
+   HTML usage:
+     <header class="dotify-navbar">
+       <div class="dotify-container dotify-navbar__inner">
+         <a href="/" class="dotify-navbar__brand">
+           <img src="/logo.svg" alt="Dotify" height="32">
+         </a>
+         <nav class="dotify-navbar__nav" aria-label="Main navigation">
+           <a href="/features" class="dotify-navbar__link">Features</a>
+           <a href="/pricing"  class="dotify-navbar__link dotify-navbar__link--active">Pricing</a>
+         </nav>
+         <div class="dotify-navbar__actions">
+           <button class="dotify-btn dotify-btn--ghost dotify-btn--sm">Log in</button>
+           <button class="dotify-btn dotify-btn--primary dotify-btn--sm">Sign up</button>
+         </div>
+         <!-- Mobile toggle -->
+         <button class="dotify-navbar__mobile-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+           <svg class="dotify-icon" aria-hidden="true"><use href="/icons/heroicons-sprite.svg#bars-3"/></svg>
+         </button>
+       </div>
+     </header>
+   ============================================================ */
+
+.dotify-navbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--dotify-z-sticky);
+  width: 100%;
+  background-color: var(--dotify-color-surface-raised);
+  border-bottom: 1px solid var(--dotify-color-border);
+  box-shadow: var(--dotify-shadow-sm);
+}
+
+.dotify-navbar__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--dotify-spacing-6);
+  height: 4rem;
+}
+
+/* Brand */
+.dotify-navbar__brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: var(--dotify-color-on-surface);
+  font-weight: var(--dotify-font-weight-semibold);
+  font-size: var(--dotify-text-lg);
+}
+
+/* Nav links */
+.dotify-navbar__nav {
+  display: none;
+  align-items: center;
+  gap: var(--dotify-spacing-1);
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .dotify-navbar__nav { display: flex; }
+}
+
+.dotify-navbar__link {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--dotify-spacing-1-5) var(--dotify-spacing-3);
+  border-radius: var(--dotify-radius);
+  font-size: var(--dotify-text-sm);
+  font-weight: var(--dotify-font-weight-semibold);
+  color: var(--dotify-color-on-surface-muted);
+  text-decoration: none;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+.dotify-navbar__link:hover {
+  color: var(--dotify-color-on-surface);
+  background-color: var(--dotify-color-surface-inset);
+}
+
+.dotify-navbar__link--active {
+  color: var(--dotify-color-secondary);
+  background-color: var(--dotify-color-secondary-light);
+}
+
+.dotify-navbar__link:focus-visible {
+  outline: 2px solid var(--dotify-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Actions area */
+.dotify-navbar__actions {
+  display: none;
+  align-items: center;
+  gap: var(--dotify-spacing-2);
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .dotify-navbar__actions { display: flex; }
+}
+
+/* Mobile toggle */
+.dotify-navbar__mobile-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  border-radius: var(--dotify-radius);
+  cursor: pointer;
+  color: var(--dotify-color-on-surface);
+  transition: background-color 150ms ease;
+}
+
+.dotify-navbar__mobile-toggle:hover {
+  background-color: var(--dotify-color-surface-inset);
+}
+
+.dotify-navbar__mobile-toggle:focus-visible {
+  outline: 2px solid var(--dotify-color-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .dotify-navbar__mobile-toggle { display: none; }
+}
+
+/* Mobile menu panel (shown below the navbar) */
+.dotify-navbar__mobile-menu {
+  display: none;
+  flex-direction: column;
+  padding: var(--dotify-spacing-3) var(--dotify-spacing-4);
+  border-top: 1px solid var(--dotify-color-border);
+  background-color: var(--dotify-color-surface-raised);
+  gap: var(--dotify-spacing-1);
+}
+
+.dotify-navbar__mobile-menu--open {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .dotify-navbar__mobile-menu { display: none !important; }
+}
+
+/* Variant: with Dotify Red top accent */
+.dotify-navbar--branded {
+  border-top: 3px solid var(--dotify-color-primary);
+}

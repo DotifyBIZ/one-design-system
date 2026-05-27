@@ -1,0 +1,120 @@
+/* ============================================================
+   Dotify One Design Kit — Radio Component
+   https://repo.dotify.biz/one/design-system/css/components/radio.css
+
+   HTML usage:
+     <fieldset class="dotify-radio-group">
+       <legend class="dotify-label">Plan</legend>
+       <label class="dotify-radio">
+         <input type="radio" class="dotify-radio__input" name="plan" value="free">
+         <span class="dotify-radio__label">Free</span>
+       </label>
+       <label class="dotify-radio">
+         <input type="radio" class="dotify-radio__input" name="plan" value="pro">
+         <span class="dotify-radio__label">Pro</span>
+       </label>
+     </fieldset>
+   ============================================================ */
+
+.dotify-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dotify-spacing-2);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dotify-radio-group--inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--dotify-spacing-4);
+}
+
+.dotify-radio {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--dotify-spacing-2-5);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dotify-radio--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.dotify-radio__input {
+  -webkit-appearance: none;
+  appearance: none;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border: 2px solid var(--dotify-color-border-strong);
+  border-radius: var(--dotify-radius-full);
+  background-color: var(--dotify-color-surface-raised);
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+  position: relative;
+}
+
+.dotify-radio__input:hover:not(:disabled) {
+  border-color: var(--dotify-color-secondary);
+}
+
+.dotify-radio__input:checked {
+  background-color: var(--dotify-color-secondary);
+  border-color: var(--dotify-color-secondary);
+}
+
+/* Inner dot */
+.dotify-radio__input:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%);
+  border-radius: var(--dotify-radius-full);
+  background-color: #ffffff;
+}
+
+.dotify-radio__input:focus-visible {
+  outline: 2px solid var(--dotify-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.dotify-radio__input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.dotify-radio__label {
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  color: var(--dotify-color-on-surface);
+  line-height: var(--dotify-leading-normal);
+}
+
+.dotify-radio__description {
+  display: block;
+  font-size: var(--dotify-text-xs);
+  color: var(--dotify-color-on-surface-muted);
+  margin-top: var(--dotify-spacing-0-5);
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-radio__input {
+    background-color: var(--dotify-gray-800);
+    border-color: var(--dotify-gray-500);
+  }
+}
+
+.dark .dotify-radio__input {
+  background-color: var(--dotify-gray-800);
+  border-color: var(--dotify-gray-500);
+}

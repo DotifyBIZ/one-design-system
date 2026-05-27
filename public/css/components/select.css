@@ -1,0 +1,121 @@
+/* ============================================================
+   Dotify One Design Kit — Select Component
+   https://repo.dotify.biz/one/design-system/css/components/select.css
+
+   HTML usage:
+     <div class="dotify-field">
+       <label class="dotify-label" for="country">Country</label>
+       <div class="dotify-select-wrapper">
+         <select class="dotify-select" id="country">
+           <option>Choose…</option>
+           <option>United Kingdom</option>
+         </select>
+       </div>
+     </div>
+   ============================================================ */
+
+/* Wrapper provides the custom chevron icon */
+.dotify-select-wrapper {
+  position: relative;
+  display: block;
+}
+
+.dotify-select-wrapper::after {
+  content: '';
+  position: absolute;
+  right: var(--dotify-spacing-3-5);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  background-color: var(--dotify-color-on-surface-muted);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.dotify-select {
+  display: block;
+  width: 100%;
+  padding: var(--dotify-spacing-2-5) var(--dotify-spacing-10) var(--dotify-spacing-2-5) var(--dotify-spacing-3-5);
+  background-color: var(--dotify-color-surface-raised);
+  color: var(--dotify-color-on-surface);
+  border: 1px solid var(--dotify-color-border-strong);
+  border-radius: var(--dotify-radius);
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  line-height: var(--dotify-leading-normal);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.dotify-select:hover:not(:disabled) {
+  border-color: var(--dotify-color-secondary);
+}
+
+.dotify-select:focus,
+.dotify-select:focus-visible {
+  outline: none;
+  border-color: var(--dotify-color-border-focus);
+  box-shadow: 0 0 0 3px rgb(33 31 96 / 0.15);
+}
+
+.dotify-select--invalid,
+.dotify-select[aria-invalid='true'] {
+  border-color: var(--dotify-color-error);
+}
+
+.dotify-select:disabled,
+.dotify-select--disabled {
+  background-color: var(--dotify-color-surface-inset);
+  color: var(--dotify-color-on-surface-muted);
+  border-color: var(--dotify-color-border);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ---- Sizes ---- */
+.dotify-select--sm {
+  padding-top: var(--dotify-spacing-1-5);
+  padding-bottom: var(--dotify-spacing-1-5);
+  font-size: var(--dotify-text-xs);
+}
+
+.dotify-select--lg {
+  padding-top: var(--dotify-spacing-3);
+  padding-bottom: var(--dotify-spacing-3);
+  font-size: var(--dotify-text-base);
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-select {
+    background-color: var(--dotify-gray-800);
+    border-color: var(--dotify-gray-600);
+  }
+  .dotify-select:focus,
+  .dotify-select:focus-visible {
+    box-shadow: 0 0 0 3px rgb(134 131 232 / 0.25);
+  }
+  .dotify-select:disabled {
+    background-color: var(--dotify-gray-900);
+  }
+}
+
+.dark .dotify-select {
+  background-color: var(--dotify-gray-800);
+  border-color: var(--dotify-gray-600);
+}
+.dark .dotify-select:focus,
+.dark .dotify-select:focus-visible {
+  box-shadow: 0 0 0 3px rgb(134 131 232 / 0.25);
+}
+.dark .dotify-select:disabled {
+  background-color: var(--dotify-gray-900);
+}

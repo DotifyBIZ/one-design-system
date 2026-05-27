@@ -1,0 +1,118 @@
+/* ============================================================
+   Dotify One Design Kit — Alert / Banner Component
+   https://repo.dotify.biz/one/design-system/css/components/alert.css
+
+   HTML usage:
+     <div class="dotify-alert dotify-alert--success" role="alert">
+       <svg class="dotify-alert__icon dotify-icon" aria-hidden="true"><use href="/icons/heroicons-sprite.svg#check-circle"/></svg>
+       <div>
+         <p class="dotify-alert__title">Success</p>
+         <p class="dotify-alert__body">Your changes have been saved.</p>
+       </div>
+       <button class="dotify-alert__dismiss" aria-label="Dismiss">…</button>
+     </div>
+   ============================================================ */
+
+.dotify-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dotify-spacing-3);
+  padding: var(--dotify-spacing-4);
+  border-radius: var(--dotify-radius);
+  border: 1px solid transparent;
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  line-height: var(--dotify-leading-relaxed);
+}
+
+/* ---- Variants ---- */
+.dotify-alert--success {
+  background-color: var(--dotify-color-success-light);
+  border-color: var(--dotify-green-200);
+  color: var(--dotify-green-800);
+}
+
+.dotify-alert--error {
+  background-color: var(--dotify-color-error-light);
+  border-color: var(--dotify-error-200);
+  color: var(--dotify-error-800);
+}
+
+.dotify-alert--warning {
+  background-color: var(--dotify-color-warning-light);
+  border-color: var(--dotify-yellow-300);
+  color: var(--dotify-yellow-800);
+}
+
+/* ---- Icon ---- */
+.dotify-alert__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+}
+
+.dotify-alert--success .dotify-alert__icon { color: var(--dotify-color-success); }
+.dotify-alert--error   .dotify-alert__icon { color: var(--dotify-color-error); }
+.dotify-alert--warning .dotify-alert__icon { color: var(--dotify-yellow-600); }
+
+/* ---- Content ---- */
+.dotify-alert__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.dotify-alert__title {
+  font-weight: var(--dotify-font-weight-semibold);
+  margin-bottom: var(--dotify-spacing-0-5);
+}
+
+.dotify-alert__body {
+  margin: 0;
+}
+
+/* ---- Dismiss button ---- */
+.dotify-alert__dismiss {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  border-radius: var(--dotify-radius);
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.7;
+  transition: opacity 150ms ease, background-color 150ms ease;
+  padding: 0;
+}
+
+.dotify-alert__dismiss:hover {
+  opacity: 1;
+  background-color: rgb(0 0 0 / 0.08);
+}
+
+.dotify-alert__dismiss:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+}
+
+/* ---- Banner modifier (full-width, no border-radius) ---- */
+.dotify-alert--banner {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-alert--success { background-color: var(--dotify-green-950);  border-color: var(--dotify-green-800);  color: var(--dotify-green-200);  }
+  .dotify-alert--error   { background-color: var(--dotify-error-950);  border-color: var(--dotify-error-800);  color: var(--dotify-error-200);  }
+  .dotify-alert--warning { background-color: var(--dotify-yellow-950); border-color: var(--dotify-yellow-700); color: var(--dotify-yellow-200); }
+}
+
+.dark .dotify-alert--success { background-color: var(--dotify-green-950);  border-color: var(--dotify-green-800);  color: var(--dotify-green-200);  }
+.dark .dotify-alert--error   { background-color: var(--dotify-error-950);  border-color: var(--dotify-error-800);  color: var(--dotify-error-200);  }
+.dark .dotify-alert--warning { background-color: var(--dotify-yellow-950); border-color: var(--dotify-yellow-700); color: var(--dotify-yellow-200); }

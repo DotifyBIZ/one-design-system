@@ -1,0 +1,130 @@
+/* ============================================================
+   Dotify One Design Kit — Dropdown Component
+   https://repo.dotify.biz/one/design-system/css/components/dropdown.css
+
+   HTML usage:
+     <div class="dotify-dropdown">
+       <button class="dotify-btn dotify-btn--ghost" aria-haspopup="true" aria-expanded="false">
+         Options
+         <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="/icons/heroicons-sprite.svg#chevron-down"/></svg>
+       </button>
+       <div class="dotify-dropdown__menu" role="menu">
+         <a class="dotify-dropdown__item" href="#" role="menuitem">Edit</a>
+         <a class="dotify-dropdown__item" href="#" role="menuitem">Duplicate</a>
+         <div class="dotify-dropdown__divider" role="separator"></div>
+         <button class="dotify-dropdown__item dotify-dropdown__item--danger" role="menuitem">Delete</button>
+       </div>
+     </div>
+
+   Toggle visibility: button[aria-expanded="true"] + .dotify-dropdown__menu
+   or add .dotify-dropdown--open to .dotify-dropdown
+   ============================================================ */
+
+.dotify-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Menu panel */
+.dotify-dropdown__menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--dotify-spacing-1));
+  left: 0;
+  min-width: 12rem;
+  background-color: var(--dotify-color-surface-raised);
+  border: 1px solid var(--dotify-color-border);
+  border-radius: var(--dotify-radius);
+  box-shadow: var(--dotify-shadow-lg);
+  z-index: var(--dotify-z-dropdown);
+  padding: var(--dotify-spacing-1) 0;
+  animation: dotify-dropdown-in 150ms ease;
+  overflow: hidden;
+}
+
+/* Open state */
+.dotify-dropdown--open > .dotify-dropdown__menu,
+.dotify-dropdown [aria-expanded='true'] ~ .dotify-dropdown__menu {
+  display: block;
+}
+
+@keyframes dotify-dropdown-in {
+  from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Align right */
+.dotify-dropdown--right > .dotify-dropdown__menu {
+  left: auto;
+  right: 0;
+}
+
+/* Align up */
+.dotify-dropdown--up > .dotify-dropdown__menu {
+  top: auto;
+  bottom: calc(100% + var(--dotify-spacing-1));
+}
+
+/* Item */
+.dotify-dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: var(--dotify-spacing-2);
+  width: 100%;
+  padding: var(--dotify-spacing-2) var(--dotify-spacing-4);
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  color: var(--dotify-color-on-surface);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 100ms ease;
+}
+
+.dotify-dropdown__item:hover,
+.dotify-dropdown__item:focus-visible {
+  background-color: var(--dotify-color-surface-inset);
+  outline: none;
+}
+
+.dotify-dropdown__item--danger {
+  color: var(--dotify-color-error);
+}
+
+.dotify-dropdown__item--danger:hover {
+  background-color: var(--dotify-error-50);
+}
+
+.dotify-dropdown__item[aria-disabled='true'],
+.dotify-dropdown__item:disabled {
+  color: var(--dotify-color-on-surface-faint);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Divider */
+.dotify-dropdown__divider {
+  height: 1px;
+  background-color: var(--dotify-color-border);
+  margin: var(--dotify-spacing-1) 0;
+}
+
+/* Label / group header */
+.dotify-dropdown__label {
+  padding: var(--dotify-spacing-1-5) var(--dotify-spacing-4);
+  font-size: var(--dotify-text-xs);
+  font-weight: var(--dotify-font-weight-semibold);
+  color: var(--dotify-color-on-surface-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--dotify-tracking-wide);
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-dropdown__item--danger:hover { background-color: var(--dotify-error-950); }
+}
+
+.dark .dotify-dropdown__item--danger:hover { background-color: var(--dotify-error-950); }

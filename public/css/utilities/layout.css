@@ -1,0 +1,140 @@
+/* ============================================================
+   Dotify One Design Kit — Layout Utilities
+   https://repo.dotify.biz/one/design-system/css/utilities/layout.css
+   ============================================================ */
+
+/* ---- Display ---- */
+.dotify-block        { display: block; }
+.dotify-inline-block { display: inline-block; }
+.dotify-inline       { display: inline; }
+.dotify-flex         { display: flex; }
+.dotify-inline-flex  { display: inline-flex; }
+.dotify-grid         { display: grid; }
+.dotify-inline-grid  { display: inline-grid; }
+.dotify-hidden       { display: none; }
+
+/* ---- Flex utilities ---- */
+.dotify-flex-row     { flex-direction: row; }
+.dotify-flex-col     { flex-direction: column; }
+.dotify-flex-row-rev { flex-direction: row-reverse; }
+.dotify-flex-col-rev { flex-direction: column-reverse; }
+.dotify-flex-wrap    { flex-wrap: wrap; }
+.dotify-flex-nowrap  { flex-wrap: nowrap; }
+.dotify-flex-1       { flex: 1 1 0%; }
+.dotify-flex-auto    { flex: 1 1 auto; }
+.dotify-flex-none    { flex: none; }
+.dotify-flex-shrink-0{ flex-shrink: 0; }
+.dotify-flex-grow    { flex-grow: 1; }
+
+/* ---- Alignment ---- */
+.dotify-items-start    { align-items: flex-start; }
+.dotify-items-end      { align-items: flex-end; }
+.dotify-items-center   { align-items: center; }
+.dotify-items-baseline { align-items: baseline; }
+.dotify-items-stretch  { align-items: stretch; }
+
+.dotify-justify-start   { justify-content: flex-start; }
+.dotify-justify-end     { justify-content: flex-end; }
+.dotify-justify-center  { justify-content: center; }
+.dotify-justify-between { justify-content: space-between; }
+.dotify-justify-around  { justify-content: space-around; }
+.dotify-justify-evenly  { justify-content: space-evenly; }
+
+.dotify-self-start  { align-self: flex-start; }
+.dotify-self-end    { align-self: flex-end; }
+.dotify-self-center { align-self: center; }
+.dotify-self-stretch{ align-self: stretch; }
+
+/* ---- Grid utilities ---- */
+.dotify-grid-cols-1  { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.dotify-grid-cols-2  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.dotify-grid-cols-3  { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.dotify-grid-cols-4  { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.dotify-grid-cols-6  { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.dotify-grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+
+.dotify-col-span-1  { grid-column: span 1 / span 1; }
+.dotify-col-span-2  { grid-column: span 2 / span 2; }
+.dotify-col-span-3  { grid-column: span 3 / span 3; }
+.dotify-col-span-4  { grid-column: span 4 / span 4; }
+.dotify-col-span-6  { grid-column: span 6 / span 6; }
+.dotify-col-span-full { grid-column: 1 / -1; }
+
+/* ---- Container ---- */
+.dotify-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--dotify-spacing-4);
+  padding-right: var(--dotify-spacing-4);
+}
+
+@media (min-width: 640px)  { .dotify-container { max-width: 640px;  padding-left: var(--dotify-spacing-6);  padding-right: var(--dotify-spacing-6); } }
+@media (min-width: 768px)  { .dotify-container { max-width: 768px; } }
+@media (min-width: 1024px) { .dotify-container { max-width: 1024px; padding-left: var(--dotify-spacing-8); padding-right: var(--dotify-spacing-8); } }
+@media (min-width: 1280px) { .dotify-container { max-width: 1280px; } }
+@media (min-width: 1536px) { .dotify-container { max-width: 1536px; } }
+
+/* ---- Position ---- */
+.dotify-relative  { position: relative; }
+.dotify-absolute  { position: absolute; }
+.dotify-fixed     { position: fixed; }
+.dotify-sticky    { position: sticky; }
+.dotify-static    { position: static; }
+
+.dotify-inset-0     { inset: 0; }
+.dotify-top-0       { top: 0; }
+.dotify-right-0     { right: 0; }
+.dotify-bottom-0    { bottom: 0; }
+.dotify-left-0      { left: 0; }
+
+/* ---- Sizing ---- */
+.dotify-w-full    { width: 100%; }
+.dotify-w-screen  { width: 100vw; }
+.dotify-w-auto    { width: auto; }
+.dotify-w-fit     { width: fit-content; }
+.dotify-h-full    { height: 100%; }
+.dotify-h-screen  { height: 100vh; }
+.dotify-h-auto    { height: auto; }
+.dotify-min-h-screen { min-height: 100vh; }
+
+/* ---- Overflow ---- */
+.dotify-overflow-hidden { overflow: hidden; }
+.dotify-overflow-auto   { overflow: auto; }
+.dotify-overflow-scroll { overflow: scroll; }
+.dotify-overflow-x-auto { overflow-x: auto; }
+.dotify-overflow-y-auto { overflow-y: auto; }
+
+/* ---- Z-index ---- */
+.dotify-z-base     { z-index: var(--dotify-z-base); }
+.dotify-z-raised   { z-index: var(--dotify-z-raised); }
+.dotify-z-dropdown { z-index: var(--dotify-z-dropdown); }
+.dotify-z-sticky   { z-index: var(--dotify-z-sticky); }
+.dotify-z-overlay  { z-index: var(--dotify-z-overlay); }
+.dotify-z-modal    { z-index: var(--dotify-z-modal); }
+.dotify-z-toast    { z-index: var(--dotify-z-toast); }
+
+/* ---- Accessibility ---- */
+/* Visually hidden but accessible to screen readers */
+.dotify-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.dotify-not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}

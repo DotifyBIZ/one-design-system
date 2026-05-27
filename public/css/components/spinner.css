@@ -1,0 +1,81 @@
+/* ============================================================
+   Dotify One Design Kit — Spinner / Loading Indicator
+   https://repo.dotify.biz/one/design-system/css/components/spinner.css
+
+   HTML usage:
+     <span class="dotify-spinner" role="status" aria-label="Loading…"></span>
+
+     <!-- Sizes -->
+     <span class="dotify-spinner dotify-spinner--sm"></span>
+     <span class="dotify-spinner dotify-spinner--lg"></span>
+     <span class="dotify-spinner dotify-spinner--xl"></span>
+
+     <!-- Colour variants -->
+     <span class="dotify-spinner dotify-spinner--white"></span>
+     <span class="dotify-spinner dotify-spinner--primary"></span>
+   ============================================================ */
+
+@keyframes dotify-spin {
+  to { transform: rotate(360deg); }
+}
+
+.dotify-spinner {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--dotify-color-border);
+  border-top-color: var(--dotify-color-secondary);
+  border-radius: var(--dotify-radius-full);
+  animation: dotify-spin 0.7s linear infinite;
+}
+
+/* ---- Sizes ---- */
+.dotify-spinner--xs {
+  width: 14px;
+  height: 14px;
+  border-width: 2px;
+}
+
+.dotify-spinner--sm {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+}
+
+/* md = default (24px) */
+
+.dotify-spinner--lg {
+  width: 36px;
+  height: 36px;
+  border-width: 4px;
+}
+
+.dotify-spinner--xl {
+  width: 48px;
+  height: 48px;
+  border-width: 5px;
+}
+
+/* ---- Colour variants ---- */
+.dotify-spinner--white {
+  border-color: rgba(255 255 255 / 0.3);
+  border-top-color: #ffffff;
+}
+
+.dotify-spinner--primary {
+  border-color: var(--dotify-red-200);
+  border-top-color: var(--dotify-color-primary);
+}
+
+.dotify-spinner--muted {
+  border-color: var(--dotify-color-border);
+  border-top-color: var(--dotify-color-on-surface-muted);
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .dotify-spinner {
+    animation-duration: 1.5s;
+  }
+}

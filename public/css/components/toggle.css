@@ -1,0 +1,125 @@
+/* ============================================================
+   Dotify One Design Kit — Toggle (Switch) Component
+   https://repo.dotify.biz/one/design-system/css/components/toggle.css
+
+   HTML usage:
+     <label class="dotify-toggle">
+       <input type="checkbox" class="dotify-toggle__input" role="switch">
+       <span class="dotify-toggle__track" aria-hidden="true"></span>
+       <span class="dotify-toggle__label">Enable notifications</span>
+     </label>
+   ============================================================ */
+
+.dotify-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dotify-spacing-3);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dotify-toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Hide the native checkbox */
+.dotify-toggle__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Track */
+.dotify-toggle__track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 24px;
+  border-radius: var(--dotify-radius-full);
+  background-color: var(--dotify-gray-300);
+  transition: background-color 200ms ease;
+}
+
+/* Thumb (circle) */
+.dotify-toggle__track::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--dotify-radius-full);
+  background-color: #ffffff;
+  box-shadow: var(--dotify-shadow-sm);
+  transition: transform 200ms ease;
+}
+
+/* Checked state */
+.dotify-toggle__input:checked ~ .dotify-toggle__track {
+  background-color: var(--dotify-color-secondary);
+}
+
+.dotify-toggle__input:checked ~ .dotify-toggle__track::after {
+  transform: translateX(20px);
+}
+
+/* Focus ring on track when input is focused */
+.dotify-toggle__input:focus-visible ~ .dotify-toggle__track {
+  outline: 2px solid var(--dotify-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Disabled */
+.dotify-toggle__input:disabled ~ .dotify-toggle__track {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ---- Sizes ---- */
+.dotify-toggle--sm .dotify-toggle__track {
+  width: 32px;
+  height: 18px;
+}
+.dotify-toggle--sm .dotify-toggle__track::after {
+  width: 12px;
+  height: 12px;
+  left: 3px;
+}
+.dotify-toggle--sm .dotify-toggle__input:checked ~ .dotify-toggle__track::after {
+  transform: translateX(14px);
+}
+
+.dotify-toggle--lg .dotify-toggle__track {
+  width: 56px;
+  height: 30px;
+}
+.dotify-toggle--lg .dotify-toggle__track::after {
+  width: 24px;
+  height: 24px;
+  left: 3px;
+}
+.dotify-toggle--lg .dotify-toggle__input:checked ~ .dotify-toggle__track::after {
+  transform: translateX(26px);
+}
+
+/* ---- Label ---- */
+.dotify-toggle__label {
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  color: var(--dotify-color-on-surface);
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-toggle__track { background-color: var(--dotify-gray-600); }
+}
+
+.dark .dotify-toggle__track { background-color: var(--dotify-gray-600); }

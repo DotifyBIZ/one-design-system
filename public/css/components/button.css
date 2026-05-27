@@ -1,0 +1,188 @@
+/* ============================================================
+   Dotify One Design Kit — Button Component
+   https://repo.dotify.biz/one/design-system/css/components/button.css
+
+   HTML usage:
+     <button class="dotify-btn dotify-btn--primary">Label</button>
+     <button class="dotify-btn dotify-btn--secondary dotify-btn--lg">Label</button>
+     <a href="…" class="dotify-btn dotify-btn--ghost">Link Button</a>
+   ============================================================ */
+
+.dotify-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dotify-spacing-2);
+  padding: var(--dotify-spacing-2-5) var(--dotify-spacing-5);
+  border-radius: var(--dotify-radius);
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  font-weight: var(--dotify-font-weight-semibold);
+  line-height: 1.25;
+  cursor: pointer;
+  border: 2px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: background-color 150ms ease, border-color 150ms ease,
+              color 150ms ease, opacity 150ms ease, box-shadow 150ms ease;
+}
+
+.dotify-btn:focus-visible {
+  outline: 2px solid var(--dotify-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.dotify-btn[disabled],
+.dotify-btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---- Sizes ---- */
+.dotify-btn--sm {
+  padding: var(--dotify-spacing-1-5) var(--dotify-spacing-3);
+  font-size: var(--dotify-text-xs);
+}
+
+.dotify-btn--md {
+  /* default size — same as base */
+}
+
+.dotify-btn--lg {
+  padding: var(--dotify-spacing-3) var(--dotify-spacing-6);
+  font-size: var(--dotify-text-base);
+}
+
+/* ---- Variant: Primary (Dotify Red) ---- */
+.dotify-btn--primary {
+  background-color: var(--dotify-color-primary);
+  color: var(--dotify-color-primary-fg);
+  border-color: var(--dotify-color-primary);
+}
+
+.dotify-btn--primary:hover:not([disabled]):not(.dotify-btn--disabled) {
+  background-color: var(--dotify-color-primary-hover);
+  border-color: var(--dotify-color-primary-hover);
+}
+
+.dotify-btn--primary:active:not([disabled]):not(.dotify-btn--disabled) {
+  background-color: var(--dotify-color-primary-active);
+  border-color: var(--dotify-color-primary-active);
+}
+
+/* ---- Variant: Secondary (Dotify Indigo — primary secondary) ---- */
+.dotify-btn--secondary {
+  background-color: var(--dotify-color-secondary);
+  color: var(--dotify-color-secondary-fg);
+  border-color: var(--dotify-color-secondary);
+}
+
+.dotify-btn--secondary:hover:not([disabled]):not(.dotify-btn--disabled) {
+  background-color: var(--dotify-color-secondary-hover);
+  border-color: var(--dotify-color-secondary-hover);
+}
+
+.dotify-btn--secondary:active:not([disabled]):not(.dotify-btn--disabled) {
+  background-color: var(--dotify-color-secondary-active);
+  border-color: var(--dotify-color-secondary-active);
+}
+
+/* ---- Variant: Ghost (outlined, indigo) ---- */
+.dotify-btn--ghost {
+  background-color: transparent;
+  color: var(--dotify-color-secondary);
+  border-color: var(--dotify-color-secondary);
+}
+
+.dotify-btn--ghost:hover:not([disabled]):not(.dotify-btn--disabled) {
+  background-color: var(--dotify-color-secondary-light);
+}
+
+.dotify-btn--ghost:active:not([disabled]):not(.dotify-btn--disabled) {
+  background-color: var(--dotify-indigo-100);
+}
+
+/* ---- Variant: Danger ---- */
+.dotify-btn--danger {
+  background-color: var(--dotify-color-error);
+  color: var(--dotify-color-error-fg);
+  border-color: var(--dotify-color-error);
+}
+
+.dotify-btn--danger:hover:not([disabled]):not(.dotify-btn--disabled) {
+  background-color: var(--dotify-error-700);
+  border-color: var(--dotify-error-700);
+}
+
+.dotify-btn--danger:active:not([disabled]):not(.dotify-btn--disabled) {
+  background-color: var(--dotify-error-800);
+  border-color: var(--dotify-error-800);
+}
+
+/* ---- Variant: Link ---- */
+.dotify-btn--link {
+  background-color: transparent;
+  color: var(--dotify-color-secondary);
+  border-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dotify-btn--link:hover:not([disabled]):not(.dotify-btn--disabled) {
+  color: var(--dotify-color-secondary-hover);
+}
+
+/* ---- Icon-only button ---- */
+.dotify-btn--icon {
+  padding: var(--dotify-spacing-2);
+  aspect-ratio: 1;
+}
+
+.dotify-btn--icon.dotify-btn--sm {
+  padding: var(--dotify-spacing-1-5);
+}
+
+.dotify-btn--icon.dotify-btn--lg {
+  padding: var(--dotify-spacing-3);
+}
+
+/* ---- Full-width ---- */
+.dotify-btn--block {
+  width: 100%;
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-btn--ghost {
+    color: var(--dotify-indigo-300);
+    border-color: var(--dotify-indigo-300);
+  }
+  .dotify-btn--ghost:hover:not([disabled]):not(.dotify-btn--disabled) {
+    background-color: var(--dotify-indigo-900);
+  }
+  .dotify-btn--link {
+    color: var(--dotify-indigo-300);
+  }
+  .dotify-btn--link:hover:not([disabled]):not(.dotify-btn--disabled) {
+    color: var(--dotify-indigo-200);
+  }
+}
+
+.dark .dotify-btn--ghost {
+  color: var(--dotify-indigo-300);
+  border-color: var(--dotify-indigo-300);
+}
+.dark .dotify-btn--ghost:hover:not([disabled]):not(.dotify-btn--disabled) {
+  background-color: var(--dotify-indigo-900);
+}
+.dark .dotify-btn--link {
+  color: var(--dotify-indigo-300);
+}
+.dark .dotify-btn--link:hover:not([disabled]):not(.dotify-btn--disabled) {
+  color: var(--dotify-indigo-200);
+}

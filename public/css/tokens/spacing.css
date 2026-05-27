@@ -1,0 +1,45 @@
+/* ============================================================
+   Dotify One Design Kit — Spacing Tokens
+   Mirrors Tailwind's spacing scale for easy migration.
+   Step name maps to Tailwind class number (e.g. --dotify-spacing-4 = 16px = p-4).
+   Decimal steps use hyphen notation (--dotify-spacing-0-5 = 0.5 = 2px).
+   https://repo.dotify.biz/one/design-system/css/tokens/spacing.css
+   ============================================================ */
+
+:root {
+  --dotify-spacing-0:    0px;
+  --dotify-spacing-px:   1px;
+  --dotify-spacing-0-5:  0.125rem;  /*  2px */
+  --dotify-spacing-1:    0.25rem;   /*  4px */
+  --dotify-spacing-1-5:  0.375rem;  /*  6px */
+  --dotify-spacing-2:    0.5rem;    /*  8px */
+  --dotify-spacing-2-5:  0.625rem;  /* 10px */
+  --dotify-spacing-3:    0.75rem;   /* 12px */
+  --dotify-spacing-3-5:  0.875rem;  /* 14px */
+  --dotify-spacing-4:    1rem;      /* 16px */
+  --dotify-spacing-5:    1.25rem;   /* 20px */
+  --dotify-spacing-6:    1.5rem;    /* 24px */
+  --dotify-spacing-7:    1.75rem;   /* 28px */
+  --dotify-spacing-8:    2rem;      /* 32px */
+  --dotify-spacing-9:    2.25rem;   /* 36px */
+  --dotify-spacing-10:   2.5rem;    /* 40px */
+  --dotify-spacing-11:   2.75rem;   /* 44px */
+  --dotify-spacing-12:   3rem;      /* 48px */
+  --dotify-spacing-14:   3.5rem;    /* 56px */
+  --dotify-spacing-16:   4rem;      /* 64px */
+  --dotify-spacing-20:   5rem;      /* 80px */
+  --dotify-spacing-24:   6rem;      /* 96px */
+  --dotify-spacing-28:   7rem;      /* 112px */
+  --dotify-spacing-32:   8rem;      /* 128px */
+  --dotify-spacing-36:   9rem;      /* 144px */
+  --dotify-spacing-40:   10rem;     /* 160px */
+  --dotify-spacing-44:   11rem;     /* 176px */
+  --dotify-spacing-48:   12rem;     /* 192px */
+  --dotify-spacing-52:   13rem;     /* 208px */
+  --dotify-spacing-56:   14rem;     /* 224px */
+  --dotify-spacing-60:   15rem;     /* 240px */
+  --dotify-spacing-64:   16rem;     /* 256px */
+  --dotify-spacing-72:   18rem;     /* 288px */
+  --dotify-spacing-80:   20rem;     /* 320px */
+  --dotify-spacing-96:   24rem;     /* 384px */
+}

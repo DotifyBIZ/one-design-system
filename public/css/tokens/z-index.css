@@ -1,0 +1,14 @@
+/* ============================================================
+   Dotify One Design Kit — Z-Index Tokens
+   https://repo.dotify.biz/one/design-system/css/tokens/z-index.css
+   ============================================================ */
+
+:root {
+  --dotify-z-base:     0;
+  --dotify-z-raised:   1;
+  --dotify-z-dropdown: 10;
+  --dotify-z-sticky:   20;
+  --dotify-z-overlay:  30;
+  --dotify-z-modal:    40;
+  --dotify-z-toast:    50;
+}

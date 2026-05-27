@@ -1,0 +1,43 @@
+# Deploy to the production FTP server on every merge to main.
+#
+# ─── One-time setup in your repository ───────────────────────────────────────
+#
+#   Secrets  (Settings › Secrets and variables › Actions › Secrets)
+#     FTP_PROD_HOST        FTP server hostname    e.g. ftp.example.com
+#     FTP_PROD_USERNAME    FTP account username
+#     FTP_PROD_PASSWORD    FTP account password
+#
+#   Variables  (Settings › Secrets and variables › Actions › Variables)
+#     FTP_PROD_REMOTE_DIR  Target path on FTP server  e.g. /public_html/
+#     FTP_PROD_LOCAL_DIR   Repo directory to upload   e.g. public/
+#                          (optional — defaults to public/ when not set)
+#
+# ─── Usage ───────────────────────────────────────────────────────────────────
+#   Copy this file into your repository at:
+#     .github/workflows/deploy-production.yml
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: Deploy to Production FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Push to production FTP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+        with:
+          server:     ${{ secrets.FTP_PROD_HOST }}
+          username:   ${{ secrets.FTP_PROD_USERNAME }}
+          password:   ${{ secrets.FTP_PROD_PASSWORD }}
+          local-dir:  ${{ vars.FTP_PROD_LOCAL_DIR || 'public/' }}
+          server-dir: ${{ vars.FTP_PROD_REMOTE_DIR }}
+          protocol:   ftps

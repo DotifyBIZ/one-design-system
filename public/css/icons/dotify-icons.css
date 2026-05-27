@@ -1,0 +1,49 @@
+/* ============================================================
+   Dotify One Design Kit — Icon Utility Classes
+   https://repo.dotify.biz/one/design-system/css/icons/dotify-icons.css
+
+   HTML usage:
+     <svg class="dotify-icon" aria-hidden="true">
+       <use href="https://repo.dotify.biz/one/design-system/icons/heroicons-sprite.svg#magnifying-glass"></use>
+     </svg>
+
+     <!-- With size modifier -->
+     <svg class="dotify-icon dotify-icon--lg" aria-hidden="true">
+       <use href="…#home"></use>
+     </svg>
+
+     <!-- Accessible icon-only button -->
+     <button aria-label="Search">
+       <svg class="dotify-icon" aria-hidden="true"><use href="…#magnifying-glass"></use></svg>
+     </button>
+   ============================================================ */
+
+.dotify-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  /* Default: md */
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---- Sizes ---- */
+.dotify-icon--xs { width: 12px; height: 12px; }
+.dotify-icon--sm { width: 16px; height: 16px; }
+/* md = default (24px) */
+.dotify-icon--lg { width: 32px; height: 32px; }
+.dotify-icon--xl { width: 40px; height: 40px; }
+.dotify-icon--2xl { width: 48px; height: 48px; }
+
+/* ---- Colour variants ---- */
+.dotify-icon--primary   { color: var(--dotify-color-primary); }
+.dotify-icon--secondary { color: var(--dotify-color-secondary); }
+.dotify-icon--success   { color: var(--dotify-color-success); }
+.dotify-icon--error     { color: var(--dotify-color-error); }
+.dotify-icon--warning   { color: var(--dotify-yellow-500); }
+.dotify-icon--muted     { color: var(--dotify-color-on-surface-muted); }

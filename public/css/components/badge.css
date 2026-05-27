@@ -1,0 +1,117 @@
+/* ============================================================
+   Dotify One Design Kit — Badge Component
+   https://repo.dotify.biz/one/design-system/css/components/badge.css
+
+   HTML usage:
+     <span class="dotify-badge dotify-badge--primary">New</span>
+     <span class="dotify-badge dotify-badge--success">Active</span>
+     <span class="dotify-badge dotify-badge--error dotify-badge--pill">99+</span>
+   ============================================================ */
+
+.dotify-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dotify-spacing-1);
+  padding: var(--dotify-spacing-0-5) var(--dotify-spacing-2);
+  border-radius: var(--dotify-radius);
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-xs);
+  font-weight: var(--dotify-font-weight-semibold);
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+/* ---- Sizes ---- */
+.dotify-badge--sm {
+  padding: var(--dotify-spacing-0-5) var(--dotify-spacing-1-5);
+  font-size: 0.625rem; /* 10px */
+}
+
+.dotify-badge--lg {
+  padding: var(--dotify-spacing-1) var(--dotify-spacing-3);
+  font-size: var(--dotify-text-sm);
+}
+
+/* ---- Pill modifier ---- */
+.dotify-badge--pill {
+  border-radius: var(--dotify-radius-full);
+}
+
+/* ---- Variants ---- */
+.dotify-badge--primary {
+  background-color: var(--dotify-color-primary-light);
+  color: var(--dotify-red-700);
+}
+
+.dotify-badge--secondary {
+  background-color: var(--dotify-color-secondary-light);
+  color: var(--dotify-color-secondary);
+}
+
+.dotify-badge--success {
+  background-color: var(--dotify-color-success-light);
+  color: var(--dotify-green-700);
+}
+
+.dotify-badge--error {
+  background-color: var(--dotify-color-error-light);
+  color: var(--dotify-error-700);
+}
+
+.dotify-badge--warning {
+  background-color: var(--dotify-color-warning-light);
+  color: var(--dotify-yellow-700);
+}
+
+.dotify-badge--gray {
+  background-color: var(--dotify-gray-100);
+  color: var(--dotify-gray-700);
+}
+
+/* Filled variants */
+.dotify-badge--primary-filled {
+  background-color: var(--dotify-color-primary);
+  color: #ffffff;
+}
+
+.dotify-badge--secondary-filled {
+  background-color: var(--dotify-color-secondary);
+  color: #ffffff;
+}
+
+.dotify-badge--success-filled {
+  background-color: var(--dotify-color-success);
+  color: #ffffff;
+}
+
+.dotify-badge--error-filled {
+  background-color: var(--dotify-color-error);
+  color: #ffffff;
+}
+
+/* ---- Dot indicator ---- */
+.dotify-badge__dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--dotify-radius-full);
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-badge--primary   { background-color: var(--dotify-red-950);    color: var(--dotify-red-300); }
+  .dotify-badge--secondary { background-color: var(--dotify-indigo-950); color: var(--dotify-indigo-300); }
+  .dotify-badge--success   { background-color: var(--dotify-green-950);  color: var(--dotify-green-300); }
+  .dotify-badge--error     { background-color: var(--dotify-error-950);  color: var(--dotify-error-300); }
+  .dotify-badge--warning   { background-color: var(--dotify-yellow-950); color: var(--dotify-yellow-300); }
+  .dotify-badge--gray      { background-color: var(--dotify-gray-800);   color: var(--dotify-gray-200); }
+}
+
+.dark .dotify-badge--primary   { background-color: var(--dotify-red-950);    color: var(--dotify-red-300); }
+.dark .dotify-badge--secondary { background-color: var(--dotify-indigo-950); color: var(--dotify-indigo-300); }
+.dark .dotify-badge--success   { background-color: var(--dotify-green-950);  color: var(--dotify-green-300); }
+.dark .dotify-badge--error     { background-color: var(--dotify-error-950);  color: var(--dotify-error-300); }
+.dark .dotify-badge--warning   { background-color: var(--dotify-yellow-950); color: var(--dotify-yellow-300); }
+.dark .dotify-badge--gray      { background-color: var(--dotify-gray-800);   color: var(--dotify-gray-200); }

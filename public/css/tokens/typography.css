@@ -1,0 +1,45 @@
+/* ============================================================
+   Dotify One Design Kit — Typography Tokens
+   https://repo.dotify.biz/one/design-system/css/tokens/typography.css
+   ============================================================ */
+
+/* Montserrat — 400 (Regular) for body, 600 (SemiBold) for headings */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+:root {
+  /* Font families */
+  --dotify-font-body:    'Montserrat', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --dotify-font-heading: 'Montserrat', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --dotify-font-mono:    ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+
+  /* Font weights */
+  --dotify-font-weight-normal:   400;
+  --dotify-font-weight-semibold: 600;
+
+  /* Font size scale */
+  --dotify-text-xs:   0.75rem;   /* 12px */
+  --dotify-text-sm:   0.875rem;  /* 14px */
+  --dotify-text-base: 1rem;      /* 16px */
+  --dotify-text-lg:   1.125rem;  /* 18px */
+  --dotify-text-xl:   1.25rem;   /* 20px */
+  --dotify-text-2xl:  1.5rem;    /* 24px */
+  --dotify-text-3xl:  1.875rem;  /* 30px */
+  --dotify-text-4xl:  2.25rem;   /* 36px */
+  --dotify-text-5xl:  3rem;      /* 48px */
+
+  /* Line heights */
+  --dotify-leading-none:    1;
+  --dotify-leading-tight:   1.25;
+  --dotify-leading-snug:    1.375;
+  --dotify-leading-normal:  1.5;
+  --dotify-leading-relaxed: 1.625;
+  --dotify-leading-loose:   2;
+
+  /* Letter spacing */
+  --dotify-tracking-tighter: -0.05em;
+  --dotify-tracking-tight:   -0.025em;
+  --dotify-tracking-normal:  0em;
+  --dotify-tracking-wide:    0.025em;
+  --dotify-tracking-wider:   0.05em;
+  --dotify-tracking-widest:  0.1em;
+}

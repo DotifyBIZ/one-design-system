@@ -1,0 +1,124 @@
+/* ============================================================
+   Dotify One Design Kit — Tabs Component
+   https://repo.dotify.biz/one/design-system/css/components/tabs.css
+
+   HTML usage:
+     <div class="dotify-tabs">
+       <div class="dotify-tabs__list" role="tablist" aria-label="Content sections">
+         <button class="dotify-tabs__tab dotify-tabs__tab--active" role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1">Overview</button>
+         <button class="dotify-tabs__tab" role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2">Details</button>
+         <button class="dotify-tabs__tab" role="tab" aria-selected="false" aria-controls="panel-3" id="tab-3" disabled>Archived</button>
+       </div>
+       <div class="dotify-tabs__panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1">…</div>
+       <div class="dotify-tabs__panel dotify-hidden" id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>…</div>
+     </div>
+   ============================================================ */
+
+.dotify-tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Tab list ---- */
+.dotify-tabs__list {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--dotify-spacing-0-5);
+  border-bottom: 2px solid var(--dotify-color-border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.dotify-tabs__list::-webkit-scrollbar { display: none; }
+
+/* ---- Tab button ---- */
+.dotify-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dotify-spacing-1-5);
+  flex-shrink: 0;
+  padding: var(--dotify-spacing-2-5) var(--dotify-spacing-4);
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  background: transparent;
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  font-weight: var(--dotify-font-weight-semibold);
+  color: var(--dotify-color-on-surface-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: var(--dotify-radius) var(--dotify-radius) 0 0;
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+}
+
+.dotify-tabs__tab:hover:not(:disabled):not(.dotify-tabs__tab--active) {
+  color: var(--dotify-color-on-surface);
+  background-color: var(--dotify-color-surface-inset);
+}
+
+.dotify-tabs__tab--active,
+.dotify-tabs__tab[aria-selected='true'] {
+  color: var(--dotify-color-secondary);
+  border-bottom-color: var(--dotify-color-secondary);
+}
+
+.dotify-tabs__tab:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dotify-tabs__tab:focus-visible {
+  outline: 2px solid var(--dotify-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Badge / count inside tab */
+.dotify-tabs__tab__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 var(--dotify-spacing-1-5);
+  border-radius: var(--dotify-radius-full);
+  font-size: var(--dotify-text-xs);
+  background-color: var(--dotify-color-surface-inset);
+  color: var(--dotify-color-on-surface-muted);
+}
+
+.dotify-tabs__tab--active .dotify-tabs__tab__count,
+.dotify-tabs__tab[aria-selected='true'] .dotify-tabs__tab__count {
+  background-color: var(--dotify-color-secondary-light);
+  color: var(--dotify-color-secondary);
+}
+
+/* ---- Panel ---- */
+.dotify-tabs__panel {
+  padding: var(--dotify-spacing-6) 0;
+  color: var(--dotify-color-on-surface);
+}
+
+/* ---- Variant: pill/boxed tabs ---- */
+.dotify-tabs--pills .dotify-tabs__list {
+  border-bottom: none;
+  background-color: var(--dotify-color-surface-inset);
+  padding: var(--dotify-spacing-1);
+  border-radius: var(--dotify-radius);
+  gap: var(--dotify-spacing-0-5);
+}
+
+.dotify-tabs--pills .dotify-tabs__tab {
+  border: none;
+  border-radius: var(--dotify-radius);
+  margin-bottom: 0;
+}
+
+.dotify-tabs--pills .dotify-tabs__tab--active,
+.dotify-tabs--pills .dotify-tabs__tab[aria-selected='true'] {
+  background-color: var(--dotify-color-surface-overlay);
+  color: var(--dotify-color-secondary);
+  box-shadow: var(--dotify-shadow-sm);
+  border-bottom-color: transparent;
+}

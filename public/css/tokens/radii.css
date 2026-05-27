@@ -1,0 +1,11 @@
+/* ============================================================
+   Dotify One Design Kit — Border Radius Tokens
+   Dotify uses a single standard radius of 15px for all components.
+   https://repo.dotify.biz/one/design-system/css/tokens/radii.css
+   ============================================================ */
+
+:root {
+  --dotify-radius-none: 0px;
+  --dotify-radius:      15px;      /* The Dotify standard — used on all components */
+  --dotify-radius-full: 9999px;    /* Pills, circular avatars, toggle tracks */
+}

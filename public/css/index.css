@@ -1,0 +1,64 @@
+/* ============================================================
+   Dotify One Design Kit — Entry Point
+   Link this single file to use the full design kit:
+
+     <link rel="stylesheet"
+           href="https://repo.dotify.biz/one/design-system/css/index.css">
+
+   or via CSS import:
+
+     @import url('https://repo.dotify.biz/one/design-system/css/index.css');
+
+   https://repo.dotify.biz/one/design-system/css/index.css
+   ============================================================ */
+
+/* ======================
+   Layer 1: Design Tokens
+   ====================== */
+@import url('./tokens/colors.css');
+@import url('./tokens/typography.css');
+@import url('./tokens/spacing.css');
+@import url('./tokens/radii.css');
+@import url('./tokens/shadows.css');
+@import url('./tokens/z-index.css');
+@import url('./tokens/breakpoints.css');
+
+/* ======================
+   Layer 2: Base / Reset
+   ====================== */
+@import url('./base/reset.css');
+@import url('./base/base.css');
+
+/* ======================
+   Layer 3: Utilities
+   ====================== */
+@import url('./utilities/colors.css');
+@import url('./utilities/spacing.css');
+@import url('./utilities/layout.css');
+@import url('./utilities/typography.css');
+@import url('./utilities/borders.css');
+
+/* ======================
+   Layer 4: Components
+   ====================== */
+@import url('./components/button.css');
+@import url('./components/badge.css');
+@import url('./components/input.css');
+@import url('./components/textarea.css');
+@import url('./components/select.css');
+@import url('./components/checkbox.css');
+@import url('./components/radio.css');
+@import url('./components/toggle.css');
+@import url('./components/alert.css');
+@import url('./components/card.css');
+@import url('./components/modal.css');
+@import url('./components/dropdown.css');
+@import url('./components/navbar.css');
+@import url('./components/sidebar.css');
+@import url('./components/table.css');
+@import url('./components/tabs.css');
+@import url('./components/tooltip.css');
+@import url('./components/spinner.css');
+@import url('./components/avatar.css');
+@import url('./components/breadcrumb.css');
+@import url('./components/pagination.css');

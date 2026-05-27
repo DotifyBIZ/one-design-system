@@ -1,0 +1,110 @@
+/* ============================================================
+   Dotify One Design Kit — Breadcrumb Component
+   https://repo.dotify.biz/one/design-system/css/components/breadcrumb.css
+
+   HTML usage:
+     <nav class="dotify-breadcrumb" aria-label="Breadcrumb">
+       <ol class="dotify-breadcrumb__list">
+         <li class="dotify-breadcrumb__item">
+           <a href="/" class="dotify-breadcrumb__link">Home</a>
+         </li>
+         <li class="dotify-breadcrumb__item" aria-hidden="true">
+           <span class="dotify-breadcrumb__separator"></span>
+         </li>
+         <li class="dotify-breadcrumb__item">
+           <a href="/settings" class="dotify-breadcrumb__link">Settings</a>
+         </li>
+         <li class="dotify-breadcrumb__item" aria-hidden="true">
+           <span class="dotify-breadcrumb__separator"></span>
+         </li>
+         <li class="dotify-breadcrumb__item">
+           <span class="dotify-breadcrumb__current" aria-current="page">Profile</span>
+         </li>
+       </ol>
+     </nav>
+   ============================================================ */
+
+.dotify-breadcrumb {
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+}
+
+.dotify-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dotify-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Link */
+.dotify-breadcrumb__link {
+  color: var(--dotify-color-secondary);
+  text-decoration: none;
+  transition: color 150ms ease;
+  padding: var(--dotify-spacing-0-5) var(--dotify-spacing-1);
+  border-radius: 4px;
+}
+
+.dotify-breadcrumb__link:hover {
+  color: var(--dotify-color-secondary-hover);
+  text-decoration: underline;
+}
+
+.dotify-breadcrumb__link:focus-visible {
+  outline: 2px solid var(--dotify-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Current page */
+.dotify-breadcrumb__current {
+  color: var(--dotify-color-on-surface-muted);
+  padding: var(--dotify-spacing-0-5) var(--dotify-spacing-1);
+}
+
+/* Separator (CSS chevron via clip-path) */
+.dotify-breadcrumb__separator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--dotify-color-on-surface-faint);
+  flex-shrink: 0;
+}
+
+.dotify-breadcrumb__separator::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 10px;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 10'%3E%3Cpath fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l4 4-4 4'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 10'%3E%3Cpath fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l4 4-4 4'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* Variant: slash separator */
+.dotify-breadcrumb--slash .dotify-breadcrumb__separator::before {
+  content: '/';
+  display: inline;
+  width: auto;
+  height: auto;
+  background: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+  color: var(--dotify-color-on-surface-faint);
+  font-size: var(--dotify-text-sm);
+}

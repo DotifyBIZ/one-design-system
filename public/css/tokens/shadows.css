@@ -1,0 +1,36 @@
+/* ============================================================
+   Dotify One Design Kit — Shadow Tokens
+   https://repo.dotify.biz/one/design-system/css/tokens/shadows.css
+   ============================================================ */
+
+:root {
+  --dotify-shadow-none: none;
+  --dotify-shadow-sm:   0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --dotify-shadow:      0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --dotify-shadow-md:   0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --dotify-shadow-lg:   0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --dotify-shadow-xl:   0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --dotify-shadow-2xl:  0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --dotify-shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+}
+
+/* Shadows use slightly higher opacity in dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dotify-shadow-sm:  0 1px 2px 0 rgb(0 0 0 / 0.2);
+    --dotify-shadow:     0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+    --dotify-shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --dotify-shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --dotify-shadow-xl:  0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+    --dotify-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+  }
+}
+
+.dark {
+  --dotify-shadow-sm:  0 1px 2px 0 rgb(0 0 0 / 0.2);
+  --dotify-shadow:     0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+  --dotify-shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --dotify-shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --dotify-shadow-xl:  0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+  --dotify-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+}

@@ -1,0 +1,170 @@
+/* ============================================================
+   Dotify One Design Kit — Input Component
+   https://repo.dotify.biz/one/design-system/css/components/input.css
+
+   HTML usage:
+     <div class="dotify-field">
+       <label class="dotify-label" for="email">Email</label>
+       <input class="dotify-input" id="email" type="email" placeholder="you@example.com">
+       <p class="dotify-field__hint">We'll never share your email.</p>
+     </div>
+
+     <!-- Invalid state -->
+     <input class="dotify-input dotify-input--invalid" aria-invalid="true">
+     <p class="dotify-field__error">This field is required.</p>
+   ============================================================ */
+
+/* ---- Field wrapper ---- */
+.dotify-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dotify-spacing-1-5);
+}
+
+/* ---- Label ---- */
+.dotify-label {
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  font-weight: var(--dotify-font-weight-semibold);
+  color: var(--dotify-color-on-surface);
+  line-height: var(--dotify-leading-normal);
+}
+
+.dotify-label--required::after {
+  content: ' *';
+  color: var(--dotify-color-error);
+}
+
+/* ---- Input ---- */
+.dotify-input {
+  display: block;
+  width: 100%;
+  padding: var(--dotify-spacing-2-5) var(--dotify-spacing-3-5);
+  background-color: var(--dotify-color-surface-raised);
+  color: var(--dotify-color-on-surface);
+  border: 1px solid var(--dotify-color-border-strong);
+  border-radius: var(--dotify-radius);
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  line-height: var(--dotify-leading-normal);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.dotify-input::placeholder {
+  color: var(--dotify-color-on-surface-faint);
+}
+
+.dotify-input:hover:not(:disabled) {
+  border-color: var(--dotify-color-secondary);
+}
+
+.dotify-input:focus,
+.dotify-input:focus-visible {
+  outline: none;
+  border-color: var(--dotify-color-border-focus);
+  box-shadow: 0 0 0 3px rgb(33 31 96 / 0.15);
+}
+
+/* ---- Sizes ---- */
+.dotify-input--sm {
+  padding: var(--dotify-spacing-1-5) var(--dotify-spacing-3);
+  font-size: var(--dotify-text-xs);
+}
+
+.dotify-input--lg {
+  padding: var(--dotify-spacing-3) var(--dotify-spacing-4);
+  font-size: var(--dotify-text-base);
+}
+
+/* ---- States ---- */
+.dotify-input--invalid,
+.dotify-input[aria-invalid='true'] {
+  border-color: var(--dotify-color-error);
+}
+
+.dotify-input--invalid:focus,
+.dotify-input[aria-invalid='true']:focus {
+  border-color: var(--dotify-color-error);
+  box-shadow: 0 0 0 3px rgb(217 26 29 / 0.15);
+}
+
+.dotify-input:disabled,
+.dotify-input--disabled {
+  background-color: var(--dotify-color-surface-inset);
+  color: var(--dotify-color-on-surface-muted);
+  border-color: var(--dotify-color-border);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ---- Input with icon (left or right adornment) ---- */
+.dotify-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dotify-input-group .dotify-input {
+  padding-left: var(--dotify-spacing-10);
+}
+
+.dotify-input-group--right .dotify-input {
+  padding-left: var(--dotify-spacing-3-5);
+  padding-right: var(--dotify-spacing-10);
+}
+
+.dotify-input-group__icon {
+  position: absolute;
+  left: var(--dotify-spacing-3);
+  color: var(--dotify-color-on-surface-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.dotify-input-group--right .dotify-input-group__icon {
+  left: auto;
+  right: var(--dotify-spacing-3);
+}
+
+/* ---- Hint / error text ---- */
+.dotify-field__hint {
+  font-size: var(--dotify-text-xs);
+  color: var(--dotify-color-on-surface-muted);
+  line-height: var(--dotify-leading-normal);
+}
+
+.dotify-field__error {
+  font-size: var(--dotify-text-xs);
+  color: var(--dotify-color-error);
+  line-height: var(--dotify-leading-normal);
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-input {
+    background-color: var(--dotify-gray-800);
+    border-color: var(--dotify-gray-600);
+  }
+  .dotify-input:focus,
+  .dotify-input:focus-visible {
+    box-shadow: 0 0 0 3px rgb(134 131 232 / 0.25);
+  }
+  .dotify-input:disabled {
+    background-color: var(--dotify-gray-900);
+  }
+}
+
+.dark .dotify-input {
+  background-color: var(--dotify-gray-800);
+  border-color: var(--dotify-gray-600);
+}
+.dark .dotify-input:focus,
+.dark .dotify-input:focus-visible {
+  box-shadow: 0 0 0 3px rgb(134 131 232 / 0.25);
+}
+.dark .dotify-input:disabled {
+  background-color: var(--dotify-gray-900);
+}

@@ -1,0 +1,118 @@
+/* ============================================================
+   Dotify One Design Kit — Sidebar Component
+   https://repo.dotify.biz/one/design-system/css/components/sidebar.css
+
+   HTML usage:
+     <aside class="dotify-sidebar">
+       <nav class="dotify-sidebar__nav" aria-label="Sidebar">
+         <div class="dotify-sidebar__section">
+           <p class="dotify-sidebar__section-label">Main</p>
+           <a href="/dashboard" class="dotify-sidebar__link dotify-sidebar__link--active">
+             <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="/icons/heroicons-sprite.svg#home"/></svg>
+             Dashboard
+           </a>
+           <a href="/users" class="dotify-sidebar__link">
+             <svg class="dotify-icon dotify-icon--sm" aria-hidden="true"><use href="/icons/heroicons-sprite.svg#users"/></svg>
+             Users
+           </a>
+         </div>
+       </nav>
+     </aside>
+   ============================================================ */
+
+.dotify-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 16rem;
+  min-height: 100%;
+  background-color: var(--dotify-color-surface-raised);
+  border-right: 1px solid var(--dotify-color-border);
+  padding: var(--dotify-spacing-4) 0;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+/* Narrow variant */
+.dotify-sidebar--sm {
+  width: 4rem;
+}
+
+/* ---- Nav ---- */
+.dotify-sidebar__nav {
+  flex: 1;
+  padding: 0 var(--dotify-spacing-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--dotify-spacing-6);
+}
+
+/* Section */
+.dotify-sidebar__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dotify-spacing-0-5);
+}
+
+.dotify-sidebar__section-label {
+  font-size: var(--dotify-text-xs);
+  font-weight: var(--dotify-font-weight-semibold);
+  color: var(--dotify-color-on-surface-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--dotify-tracking-wider);
+  padding: var(--dotify-spacing-2) var(--dotify-spacing-3);
+}
+
+/* Link */
+.dotify-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: var(--dotify-spacing-3);
+  padding: var(--dotify-spacing-2) var(--dotify-spacing-3);
+  border-radius: var(--dotify-radius);
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-sm);
+  font-weight: var(--dotify-font-weight-semibold);
+  color: var(--dotify-color-on-surface-muted);
+  text-decoration: none;
+  transition: color 150ms ease, background-color 150ms ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.dotify-sidebar__link:hover {
+  color: var(--dotify-color-on-surface);
+  background-color: var(--dotify-color-surface-inset);
+}
+
+.dotify-sidebar__link--active {
+  color: var(--dotify-color-secondary);
+  background-color: var(--dotify-color-secondary-light);
+}
+
+.dotify-sidebar__link:focus-visible {
+  outline: 2px solid var(--dotify-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.dotify-sidebar__link__badge {
+  margin-left: auto;
+}
+
+/* Divider */
+.dotify-sidebar__divider {
+  height: 1px;
+  background-color: var(--dotify-color-border);
+  margin: var(--dotify-spacing-2) var(--dotify-spacing-3);
+}
+
+/* Footer area (user info, logout) */
+.dotify-sidebar__footer {
+  padding: var(--dotify-spacing-4) var(--dotify-spacing-3);
+  border-top: 1px solid var(--dotify-color-border);
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--dotify-spacing-3);
+}
+
+/* ---- Dark mode — no extra overrides needed (relies on semantic tokens) ---- */

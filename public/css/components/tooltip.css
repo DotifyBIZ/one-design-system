@@ -1,0 +1,126 @@
+/* ============================================================
+   Dotify One Design Kit — Tooltip Component
+   https://repo.dotify.biz/one/design-system/css/components/tooltip.css
+
+   HTML usage:
+     <span class="dotify-tooltip-wrapper">
+       <button class="dotify-btn dotify-btn--ghost dotify-btn--sm" aria-describedby="tip-1">Hover me</button>
+       <span class="dotify-tooltip dotify-tooltip--top" id="tip-1" role="tooltip">Helpful hint</span>
+     </span>
+
+   Tooltip shows on :hover and when [data-show] attribute is present.
+   Use JS to manage [data-show] for keyboard/focus-visible accessibility.
+   ============================================================ */
+
+.dotify-tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dotify-tooltip {
+  position: absolute;
+  z-index: var(--dotify-z-overlay);
+  pointer-events: none;
+  white-space: nowrap;
+  max-width: 20rem;
+  white-space: normal;
+
+  padding: var(--dotify-spacing-1-5) var(--dotify-spacing-3);
+  border-radius: var(--dotify-radius);
+  background-color: var(--dotify-gray-900);
+  color: var(--dotify-gray-50);
+  font-family: var(--dotify-font-body);
+  font-size: var(--dotify-text-xs);
+  line-height: var(--dotify-leading-snug);
+  box-shadow: var(--dotify-shadow-md);
+
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+/* Visible states */
+.dotify-tooltip-wrapper:hover > .dotify-tooltip,
+.dotify-tooltip[data-show] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---- Position: top (default) ---- */
+.dotify-tooltip,
+.dotify-tooltip--top {
+  bottom: calc(100% + var(--dotify-spacing-2));
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+}
+
+.dotify-tooltip-wrapper:hover > .dotify-tooltip,
+.dotify-tooltip-wrapper:hover > .dotify-tooltip--top,
+.dotify-tooltip[data-show],
+.dotify-tooltip--top[data-show] {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* ---- Position: bottom ---- */
+.dotify-tooltip--bottom {
+  top: calc(100% + var(--dotify-spacing-2));
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+}
+
+.dotify-tooltip-wrapper:hover > .dotify-tooltip--bottom,
+.dotify-tooltip--bottom[data-show] {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* ---- Position: left ---- */
+.dotify-tooltip--left {
+  right: calc(100% + var(--dotify-spacing-2));
+  left: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) scale(0.95);
+}
+
+.dotify-tooltip-wrapper:hover > .dotify-tooltip--left,
+.dotify-tooltip--left[data-show] {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+/* ---- Position: right ---- */
+.dotify-tooltip--right {
+  left: calc(100% + var(--dotify-spacing-2));
+  right: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) scale(0.95);
+}
+
+.dotify-tooltip-wrapper:hover > .dotify-tooltip--right,
+.dotify-tooltip--right[data-show] {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+/* ---- Dark mode: light tooltip ---- */
+@media (prefers-color-scheme: dark) {
+  .dotify-tooltip {
+    background-color: var(--dotify-gray-100);
+    color: var(--dotify-gray-900);
+  }
+}
+
+.dark .dotify-tooltip {
+  background-color: var(--dotify-gray-100);
+  color: var(--dotify-gray-900);
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .dotify-tooltip { transition: none; }
+}

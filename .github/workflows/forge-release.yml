@@ -1,0 +1,137 @@
+# Post a release entry to the Forge portal whenever a GitHub Release is published.
+# Can also be triggered manually from Actions → Run workflow for testing.
+#
+# ─── One-time setup ──────────────────────────────────────────────────────────
+#   Secret  (Settings › Secrets and variables › Actions › Secrets)
+#     FORGE_TOKEN   Bearer token — create it in the Forge admin panel → API Tokens
+#
+#   The product slug defaults to the repository name automatically.
+#   Override it by setting a repository variable:
+#     Variable: FORGE_PRODUCT_SLUG   e.g. my-custom-slug
+#
+# ─── How to trigger ──────────────────────────────────────────────────────────
+#   Automatic: Repository → Releases → Draft a new release → Publish.
+#   Manual:    Repository → Actions → Post Release to Forge → Run workflow.
+#
+# ─── Usage ───────────────────────────────────────────────────────────────────
+#   Copy this file into your repository at:
+#     .github/workflows/forge-release.yml
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: Post Release to Forge
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag to post as a release entry (e.g. v1.2.3)'
+        required: true
+        type: string
+
+jobs:
+  post-release:
+    name: Post release to Forge portal
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve product slug
+        id: slug
+        run: |
+          SLUG="${{ vars.FORGE_PRODUCT_SLUG }}"
+          [ -z "$SLUG" ] && SLUG="${{ github.event.repository.name }}"
+          echo "value=$SLUG" >> "$GITHUB_OUTPUT"
+
+      - name: Build release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${{ github.event.release.tag_name || inputs.tag_name }}"
+
+          # Resolve the git ref — handle both 'v1.2.3' and '1.2.3' tag formats
+          GIT_TAG="$TAG"
+          if ! git rev-parse --verify "$GIT_TAG" >/dev/null 2>&1; then
+            GIT_TAG="v${TAG}"
+            if ! git rev-parse --verify "$GIT_TAG" >/dev/null 2>&1; then
+              echo "::error::Tag '$TAG' not found in repository. Ensure the tag exists before triggering this workflow."
+              exit 1
+            fi
+          fi
+
+          PREV_TAG=$(git describe --tags --abbrev=0 "${GIT_TAG}^" 2>/dev/null || true)
+
+          RANGE="$GIT_TAG"
+          [ -n "$PREV_TAG" ] && RANGE="${PREV_TAG}..${GIT_TAG}"
+
+          {
+            if [ -n "$PREV_TAG" ]; then
+              SINCE=$(git log -1 --format="%cI" "$PREV_TAG" 2>/dev/null || true)
+              if [ -n "$SINCE" ]; then
+                SEARCH_QUERY="merged:>${SINCE}"
+              else
+                SEARCH_QUERY="is:merged"
+              fi
+            else
+              SEARCH_QUERY="is:merged"
+            fi
+
+            PRS=$(gh pr list \
+              --state merged \
+              --base "${{ github.event.repository.default_branch }}" \
+              --limit 200 \
+              --search "$SEARCH_QUERY" \
+              --json number,title \
+              --jq '.[] | "- #\(.number) \(.title)"' 2>/dev/null || true)
+            if [ -n "$PRS" ]; then
+              printf "## Pull Requests\n\n%s\n\n" "$PRS"
+            fi
+
+            COMMITS=$(git log "$RANGE" --pretty=format:"- %s (%h)" --no-merges 2>/dev/null || true)
+            if [ -n "$COMMITS" ]; then
+              printf "## Commits\n\n%s\n" "$COMMITS"
+            fi
+          } > /tmp/release-notes.md
+
+          if [ ! -s /tmp/release-notes.md ]; then
+            echo "Release $TAG" > /tmp/release-notes.md
+          fi
+
+      - name: Post release to Forge
+        env:
+          FORGE_TOKEN: ${{ secrets.FORGE_TOKEN }}
+        run: |
+          SLUG="${{ steps.slug.outputs.value }}"
+          TAG="${{ github.event.release.tag_name || inputs.tag_name }}"
+
+          jq -n \
+            --arg     title   "${TAG} released" \
+            --rawfile content /tmp/release-notes.md \
+            --arg     version "${TAG#v}" \
+            '{"title": $title, "content": $content, "version": $version}' \
+            > /tmp/forge-payload.json
+
+          HTTP_STATUS=$(curl -s -o /tmp/forge-response.json -w "%{http_code}" \
+            -X POST "https://forge.dotify.biz/api/v1/products/${SLUG}/releases" \
+            -H "Authorization: Bearer $FORGE_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d @/tmp/forge-payload.json)
+
+          cat /tmp/forge-response.json
+
+          if [ "$HTTP_STATUS" -lt 200 ] || [ "$HTTP_STATUS" -ge 300 ]; then
+            echo "::error::Forge API returned HTTP ${HTTP_STATUS}"
+            exit 1
+          fi
+
+          echo "Release ${TAG} posted to Forge (HTTP ${HTTP_STATUS})"
+

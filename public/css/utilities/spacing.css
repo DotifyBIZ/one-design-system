@@ -1,0 +1,179 @@
+/* ============================================================
+   Dotify One Design Kit — Spacing Utilities
+   Mirrors Tailwind naming for easy migration.
+   Decimal steps: -0-5 = Tailwind's 0.5, -1-5 = 1.5, etc.
+   https://repo.dotify.biz/one/design-system/css/utilities/spacing.css
+   ============================================================ */
+
+/* ---- Padding ---- */
+.dotify-p-0    { padding: var(--dotify-spacing-0); }
+.dotify-p-px   { padding: var(--dotify-spacing-px); }
+.dotify-p-0-5  { padding: var(--dotify-spacing-0-5); }
+.dotify-p-1    { padding: var(--dotify-spacing-1); }
+.dotify-p-1-5  { padding: var(--dotify-spacing-1-5); }
+.dotify-p-2    { padding: var(--dotify-spacing-2); }
+.dotify-p-2-5  { padding: var(--dotify-spacing-2-5); }
+.dotify-p-3    { padding: var(--dotify-spacing-3); }
+.dotify-p-3-5  { padding: var(--dotify-spacing-3-5); }
+.dotify-p-4    { padding: var(--dotify-spacing-4); }
+.dotify-p-5    { padding: var(--dotify-spacing-5); }
+.dotify-p-6    { padding: var(--dotify-spacing-6); }
+.dotify-p-7    { padding: var(--dotify-spacing-7); }
+.dotify-p-8    { padding: var(--dotify-spacing-8); }
+.dotify-p-10   { padding: var(--dotify-spacing-10); }
+.dotify-p-12   { padding: var(--dotify-spacing-12); }
+.dotify-p-16   { padding: var(--dotify-spacing-16); }
+.dotify-p-20   { padding: var(--dotify-spacing-20); }
+.dotify-p-24   { padding: var(--dotify-spacing-24); }
+
+/* Padding X (horizontal) */
+.dotify-px-0   { padding-left: var(--dotify-spacing-0);   padding-right: var(--dotify-spacing-0); }
+.dotify-px-1   { padding-left: var(--dotify-spacing-1);   padding-right: var(--dotify-spacing-1); }
+.dotify-px-2   { padding-left: var(--dotify-spacing-2);   padding-right: var(--dotify-spacing-2); }
+.dotify-px-3   { padding-left: var(--dotify-spacing-3);   padding-right: var(--dotify-spacing-3); }
+.dotify-px-4   { padding-left: var(--dotify-spacing-4);   padding-right: var(--dotify-spacing-4); }
+.dotify-px-5   { padding-left: var(--dotify-spacing-5);   padding-right: var(--dotify-spacing-5); }
+.dotify-px-6   { padding-left: var(--dotify-spacing-6);   padding-right: var(--dotify-spacing-6); }
+.dotify-px-8   { padding-left: var(--dotify-spacing-8);   padding-right: var(--dotify-spacing-8); }
+.dotify-px-10  { padding-left: var(--dotify-spacing-10);  padding-right: var(--dotify-spacing-10); }
+.dotify-px-12  { padding-left: var(--dotify-spacing-12);  padding-right: var(--dotify-spacing-12); }
+.dotify-px-16  { padding-left: var(--dotify-spacing-16);  padding-right: var(--dotify-spacing-16); }
+
+/* Padding Y (vertical) */
+.dotify-py-0   { padding-top: var(--dotify-spacing-0);   padding-bottom: var(--dotify-spacing-0); }
+.dotify-py-1   { padding-top: var(--dotify-spacing-1);   padding-bottom: var(--dotify-spacing-1); }
+.dotify-py-2   { padding-top: var(--dotify-spacing-2);   padding-bottom: var(--dotify-spacing-2); }
+.dotify-py-3   { padding-top: var(--dotify-spacing-3);   padding-bottom: var(--dotify-spacing-3); }
+.dotify-py-4   { padding-top: var(--dotify-spacing-4);   padding-bottom: var(--dotify-spacing-4); }
+.dotify-py-5   { padding-top: var(--dotify-spacing-5);   padding-bottom: var(--dotify-spacing-5); }
+.dotify-py-6   { padding-top: var(--dotify-spacing-6);   padding-bottom: var(--dotify-spacing-6); }
+.dotify-py-8   { padding-top: var(--dotify-spacing-8);   padding-bottom: var(--dotify-spacing-8); }
+.dotify-py-10  { padding-top: var(--dotify-spacing-10);  padding-bottom: var(--dotify-spacing-10); }
+.dotify-py-12  { padding-top: var(--dotify-spacing-12);  padding-bottom: var(--dotify-spacing-12); }
+.dotify-py-16  { padding-top: var(--dotify-spacing-16);  padding-bottom: var(--dotify-spacing-16); }
+
+/* Padding directional */
+.dotify-pt-0 { padding-top: var(--dotify-spacing-0); }
+.dotify-pt-1 { padding-top: var(--dotify-spacing-1); }
+.dotify-pt-2 { padding-top: var(--dotify-spacing-2); }
+.dotify-pt-3 { padding-top: var(--dotify-spacing-3); }
+.dotify-pt-4 { padding-top: var(--dotify-spacing-4); }
+.dotify-pt-6 { padding-top: var(--dotify-spacing-6); }
+.dotify-pt-8 { padding-top: var(--dotify-spacing-8); }
+
+.dotify-pr-0 { padding-right: var(--dotify-spacing-0); }
+.dotify-pr-1 { padding-right: var(--dotify-spacing-1); }
+.dotify-pr-2 { padding-right: var(--dotify-spacing-2); }
+.dotify-pr-3 { padding-right: var(--dotify-spacing-3); }
+.dotify-pr-4 { padding-right: var(--dotify-spacing-4); }
+.dotify-pr-6 { padding-right: var(--dotify-spacing-6); }
+
+.dotify-pb-0 { padding-bottom: var(--dotify-spacing-0); }
+.dotify-pb-1 { padding-bottom: var(--dotify-spacing-1); }
+.dotify-pb-2 { padding-bottom: var(--dotify-spacing-2); }
+.dotify-pb-3 { padding-bottom: var(--dotify-spacing-3); }
+.dotify-pb-4 { padding-bottom: var(--dotify-spacing-4); }
+.dotify-pb-6 { padding-bottom: var(--dotify-spacing-6); }
+.dotify-pb-8 { padding-bottom: var(--dotify-spacing-8); }
+
+.dotify-pl-0 { padding-left: var(--dotify-spacing-0); }
+.dotify-pl-1 { padding-left: var(--dotify-spacing-1); }
+.dotify-pl-2 { padding-left: var(--dotify-spacing-2); }
+.dotify-pl-3 { padding-left: var(--dotify-spacing-3); }
+.dotify-pl-4 { padding-left: var(--dotify-spacing-4); }
+.dotify-pl-6 { padding-left: var(--dotify-spacing-6); }
+
+/* ---- Margin ---- */
+.dotify-m-0    { margin: var(--dotify-spacing-0); }
+.dotify-m-px   { margin: var(--dotify-spacing-px); }
+.dotify-m-1    { margin: var(--dotify-spacing-1); }
+.dotify-m-2    { margin: var(--dotify-spacing-2); }
+.dotify-m-3    { margin: var(--dotify-spacing-3); }
+.dotify-m-4    { margin: var(--dotify-spacing-4); }
+.dotify-m-5    { margin: var(--dotify-spacing-5); }
+.dotify-m-6    { margin: var(--dotify-spacing-6); }
+.dotify-m-8    { margin: var(--dotify-spacing-8); }
+.dotify-m-auto { margin: auto; }
+
+/* Margin X */
+.dotify-mx-0    { margin-left: var(--dotify-spacing-0);  margin-right: var(--dotify-spacing-0); }
+.dotify-mx-1    { margin-left: var(--dotify-spacing-1);  margin-right: var(--dotify-spacing-1); }
+.dotify-mx-2    { margin-left: var(--dotify-spacing-2);  margin-right: var(--dotify-spacing-2); }
+.dotify-mx-4    { margin-left: var(--dotify-spacing-4);  margin-right: var(--dotify-spacing-4); }
+.dotify-mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Margin Y */
+.dotify-my-0  { margin-top: var(--dotify-spacing-0);  margin-bottom: var(--dotify-spacing-0); }
+.dotify-my-1  { margin-top: var(--dotify-spacing-1);  margin-bottom: var(--dotify-spacing-1); }
+.dotify-my-2  { margin-top: var(--dotify-spacing-2);  margin-bottom: var(--dotify-spacing-2); }
+.dotify-my-4  { margin-top: var(--dotify-spacing-4);  margin-bottom: var(--dotify-spacing-4); }
+.dotify-my-6  { margin-top: var(--dotify-spacing-6);  margin-bottom: var(--dotify-spacing-6); }
+.dotify-my-8  { margin-top: var(--dotify-spacing-8);  margin-bottom: var(--dotify-spacing-8); }
+
+/* Margin directional */
+.dotify-mt-0    { margin-top: var(--dotify-spacing-0); }
+.dotify-mt-1    { margin-top: var(--dotify-spacing-1); }
+.dotify-mt-2    { margin-top: var(--dotify-spacing-2); }
+.dotify-mt-3    { margin-top: var(--dotify-spacing-3); }
+.dotify-mt-4    { margin-top: var(--dotify-spacing-4); }
+.dotify-mt-6    { margin-top: var(--dotify-spacing-6); }
+.dotify-mt-8    { margin-top: var(--dotify-spacing-8); }
+.dotify-mt-auto { margin-top: auto; }
+
+.dotify-mr-0    { margin-right: var(--dotify-spacing-0); }
+.dotify-mr-1    { margin-right: var(--dotify-spacing-1); }
+.dotify-mr-2    { margin-right: var(--dotify-spacing-2); }
+.dotify-mr-4    { margin-right: var(--dotify-spacing-4); }
+.dotify-mr-auto { margin-right: auto; }
+
+.dotify-mb-0    { margin-bottom: var(--dotify-spacing-0); }
+.dotify-mb-1    { margin-bottom: var(--dotify-spacing-1); }
+.dotify-mb-2    { margin-bottom: var(--dotify-spacing-2); }
+.dotify-mb-3    { margin-bottom: var(--dotify-spacing-3); }
+.dotify-mb-4    { margin-bottom: var(--dotify-spacing-4); }
+.dotify-mb-6    { margin-bottom: var(--dotify-spacing-6); }
+.dotify-mb-8    { margin-bottom: var(--dotify-spacing-8); }
+.dotify-mb-auto { margin-bottom: auto; }
+
+.dotify-ml-0    { margin-left: var(--dotify-spacing-0); }
+.dotify-ml-1    { margin-left: var(--dotify-spacing-1); }
+.dotify-ml-2    { margin-left: var(--dotify-spacing-2); }
+.dotify-ml-4    { margin-left: var(--dotify-spacing-4); }
+.dotify-ml-auto { margin-left: auto; }
+
+/* ---- Gap (for flex/grid) ---- */
+.dotify-gap-0   { gap: var(--dotify-spacing-0); }
+.dotify-gap-1   { gap: var(--dotify-spacing-1); }
+.dotify-gap-2   { gap: var(--dotify-spacing-2); }
+.dotify-gap-3   { gap: var(--dotify-spacing-3); }
+.dotify-gap-4   { gap: var(--dotify-spacing-4); }
+.dotify-gap-5   { gap: var(--dotify-spacing-5); }
+.dotify-gap-6   { gap: var(--dotify-spacing-6); }
+.dotify-gap-8   { gap: var(--dotify-spacing-8); }
+.dotify-gap-10  { gap: var(--dotify-spacing-10); }
+.dotify-gap-12  { gap: var(--dotify-spacing-12); }
+
+.dotify-gap-x-1  { column-gap: var(--dotify-spacing-1); }
+.dotify-gap-x-2  { column-gap: var(--dotify-spacing-2); }
+.dotify-gap-x-4  { column-gap: var(--dotify-spacing-4); }
+.dotify-gap-x-6  { column-gap: var(--dotify-spacing-6); }
+.dotify-gap-x-8  { column-gap: var(--dotify-spacing-8); }
+
+.dotify-gap-y-1  { row-gap: var(--dotify-spacing-1); }
+.dotify-gap-y-2  { row-gap: var(--dotify-spacing-2); }
+.dotify-gap-y-4  { row-gap: var(--dotify-spacing-4); }
+.dotify-gap-y-6  { row-gap: var(--dotify-spacing-6); }
+.dotify-gap-y-8  { row-gap: var(--dotify-spacing-8); }
+
+/* ---- Space between children (stack / inline) ---- */
+.dotify-space-y-1 > * + * { margin-top: var(--dotify-spacing-1); }
+.dotify-space-y-2 > * + * { margin-top: var(--dotify-spacing-2); }
+.dotify-space-y-3 > * + * { margin-top: var(--dotify-spacing-3); }
+.dotify-space-y-4 > * + * { margin-top: var(--dotify-spacing-4); }
+.dotify-space-y-6 > * + * { margin-top: var(--dotify-spacing-6); }
+.dotify-space-y-8 > * + * { margin-top: var(--dotify-spacing-8); }
+
+.dotify-space-x-1 > * + * { margin-left: var(--dotify-spacing-1); }
+.dotify-space-x-2 > * + * { margin-left: var(--dotify-spacing-2); }
+.dotify-space-x-3 > * + * { margin-left: var(--dotify-spacing-3); }
+.dotify-space-x-4 > * + * { margin-left: var(--dotify-spacing-4); }
