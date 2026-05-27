@@ -1,7 +1,0 @@
-/* Badges component */
-.dt-badge { display: inline-block; padding: 0.15rem 0.5rem; font-size: 0.75rem; border-radius: var(--radius-pill); background: var(--dt-grey-100); color: var(--dt-text); }
-.dt-badge--primary { background: var(--dt-indigo); color: #fff; }
-.dt-badge--accent { background: var(--dt-red); color: #fff; }
-.dt-badge--success { background: var(--dt-plus); color: #fff; }
-.dt-badge--error { background: var(--dt-minus); color: #fff; }
-.dt-badge--warning { background: var(--dt-attention); color: #111; }
