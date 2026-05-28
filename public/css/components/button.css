@@ -42,6 +42,11 @@
 }
 
 /* ---- Sizes ---- */
+.dotify-btn--xs {
+  padding: var(--dotify-spacing-1) var(--dotify-spacing-2-5);
+  font-size: var(--dotify-text-xs);
+}
+
 .dotify-btn--sm {
   padding: var(--dotify-spacing-1-5) var(--dotify-spacing-3);
   font-size: var(--dotify-text-xs);
@@ -54,6 +59,11 @@
 .dotify-btn--lg {
   padding: var(--dotify-spacing-3) var(--dotify-spacing-6);
   font-size: var(--dotify-text-base);
+}
+
+.dotify-btn--xl {
+  padding: var(--dotify-spacing-4) var(--dotify-spacing-8);
+  font-size: var(--dotify-text-lg);
 }
 
 /* ---- Variant: Primary (Dotify Red) ---- */
@@ -143,12 +153,20 @@
   aspect-ratio: 1;
 }
 
+.dotify-btn--icon.dotify-btn--xs {
+  padding: var(--dotify-spacing-1);
+}
+
 .dotify-btn--icon.dotify-btn--sm {
   padding: var(--dotify-spacing-1-5);
 }
 
 .dotify-btn--icon.dotify-btn--lg {
   padding: var(--dotify-spacing-3);
+}
+
+.dotify-btn--icon.dotify-btn--xl {
+  padding: var(--dotify-spacing-4);
 }
 
 /* ---- Full-width ---- */

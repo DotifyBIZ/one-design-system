@@ -158,7 +158,51 @@
       color: var(--dotify-color-on-surface);
       margin-bottom: 1.25rem;
     }
+
+    /* ---- Force-light override ----
+       html.light has higher specificity than :root in @media blocks,
+       so it overrides dark-mode tokens even when system is in dark mode. */
+    html.light {
+      --dotify-color-surface:          var(--dotify-gray-50);
+      --dotify-color-surface-raised:   #ffffff;
+      --dotify-color-surface-overlay:  #ffffff;
+      --dotify-color-surface-inset:    var(--dotify-gray-100);
+      --dotify-color-on-surface:        var(--dotify-gray-900);
+      --dotify-color-on-surface-muted:  var(--dotify-gray-500);
+      --dotify-color-on-surface-faint:  var(--dotify-gray-400);
+      --dotify-color-border:         var(--dotify-gray-200);
+      --dotify-color-border-strong:  var(--dotify-gray-300);
+      --dotify-color-border-focus:   var(--dotify-indigo-600);
+      --dotify-color-primary-light:    var(--dotify-red-50);
+      --dotify-color-secondary-light:  var(--dotify-indigo-50);
+      --dotify-color-success-light:    var(--dotify-green-50);
+      --dotify-color-error-light:      var(--dotify-error-50);
+      --dotify-color-warning-light:    var(--dotify-yellow-50);
+      --dotify-color-on-success: var(--dotify-green-900);
+      --dotify-color-on-error:   var(--dotify-error-900);
+      --dotify-color-on-warning: var(--dotify-yellow-900);
+      --dotify-color-focus-ring: var(--dotify-indigo-600);
+    }
+
+    /* Component overrides — reset primitive-token dark rules under forced light */
+    html.light .dotify-btn--ghost {
+      color: var(--dotify-color-secondary);
+      border-color: var(--dotify-color-secondary);
+    }
+    html.light .dotify-btn--ghost:hover:not([disabled]):not(.dotify-btn--disabled) {
+      background-color: var(--dotify-color-secondary-light);
+    }
+    html.light .dotify-btn--link,
+    html.light .dotify-btn--link:hover:not([disabled]):not(.dotify-btn--disabled) {
+      color: var(--dotify-color-secondary);
+    }
   </style>
+  <script>
+    /* Apply dark class immediately to avoid flash on page load */
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
 </head>
 <body>
 
@@ -187,7 +231,8 @@
     <div class="dotify-navbar__actions">
       <button
         class="dotify-btn dotify-btn--ghost dotify-btn--sm"
-        onclick="document.documentElement.classList.toggle('dark'); this.textContent = document.documentElement.classList.contains('dark') ? '☀ Light' : '☾ Dark';"
+        onclick="toggleTheme(this)"
+        id="theme-toggle"
       >☾ Dark</button>
     </div>
     <button class="dotify-navbar__mobile-toggle" aria-label="Open menu" onclick="this.closest('nav').querySelector('.dotify-navbar__mobile-menu').classList.toggle('dotify-navbar__mobile-menu--open')">
@@ -1425,6 +1470,29 @@
 
 
 <script>
+  /* ---- Theme toggle ---- */
+
+  /* Sync button label with the class already set by the <head> init script */
+  (function () {
+    var isDark = document.documentElement.classList.contains('dark');
+    var btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = isDark ? '☀ Light' : '☾ Dark';
+  }());
+
+  function toggleTheme(btn) {
+    var html = document.documentElement;
+    var goingLight = html.classList.contains('dark');
+    if (goingLight) {
+      html.classList.remove('dark');
+      html.classList.add('light');
+      btn.textContent = '☾ Dark';
+    } else {
+      html.classList.remove('light');
+      html.classList.add('dark');
+      btn.textContent = '☀ Light';
+    }
+  }
+
   /* ---- Indeterminate checkbox ---- */
   document.getElementById('t-indeterminate').indeterminate = true;
 
